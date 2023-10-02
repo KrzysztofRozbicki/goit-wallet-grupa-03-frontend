@@ -1,7 +1,7 @@
 function App() {
   return (
     <>
-      <p>This is the Fast Buck Devs</p>
+      <h1>This is the Quick Buck Devs</h1>
     </>
   );
 }
