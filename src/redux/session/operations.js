@@ -2,7 +2,7 @@ export const setUserNameAction = (state, action) => {
   state.user.name = action.payload;
 };
 
-export const setUserToken = (state, action) => {
+export const setUserTokenAction = (state, action) => {
   state.user.token = action.payload;
 };
 

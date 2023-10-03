@@ -22,6 +22,9 @@ const globalSlice = createSlice({
     changeIsModalLogoutOpen: changeIsModalLogoutOpenAction,
     changeIsModalAddTransactionOpen: changeIsModalAddTransactionOpenAction,
     changeIsModalEditTransactionOpen: changeIsModalEditTransactionOpenAction,
+    resetGlobal: () => {
+      return { ...initialState };
+    },
   },
 });
 
@@ -30,5 +33,6 @@ export const {
   changeIsModalLogoutOpen,
   changeIsModalAddTransactionOpen,
   changeIsModalEditTransactionOpen,
+  resetGlobal,
 } = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;

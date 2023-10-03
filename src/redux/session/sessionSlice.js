@@ -24,8 +24,12 @@ const sessionSlice = createSlice({
     setUserToken: setUserTokenAction,
     changeError: changeErrorAction,
     changeIsAuth: changeIsAuthAction,
+    resetSession: () => {
+      return { ...initialState };
+    },
   },
 });
 
-export const { setUserName, setUserToken, changeError, changeIsAuth } = sessionSlice.actions;
+export const { setUserName, setUserToken, changeError, changeIsAuth, resetSession } =
+  sessionSlice.actions;
 export const sessionReducer = sessionSlice.reducer;

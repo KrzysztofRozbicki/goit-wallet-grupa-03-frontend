@@ -13,9 +13,12 @@ const financeSlice = createSlice({
   reducers: {
     setTotalBalance: setTotalBalanceAction,
     setData: setDataAction,
+    resetFinance: () => {
+      return { ...initialState };
+    },
   },
 });
 
-export const { setTotalBalance, setData } = financeSlice.actions;
+export const { setTotalBalance, setData, resetFinance } = financeSlice.actions;
 
 export const financeReducer = financeSlice.reducer;
