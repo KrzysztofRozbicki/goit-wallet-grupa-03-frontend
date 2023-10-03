@@ -26,12 +26,15 @@
 // element: <WithAuthRedirect children={<DashboardPage />} />,
 // children: [
 
+import LoginForm from '../LoginForm/LoginForm';
 import css from './LoginPage.module.css';
+import { bannerSVG } from '../../assets/icons/banner.svg';
 
 const LoginPage = () => {
   return (
     <>
-      <div className={css.test}></div>
+      {/* <img src={bannerSVG}/> */}
+      <LoginForm />
     </>
   );
 };

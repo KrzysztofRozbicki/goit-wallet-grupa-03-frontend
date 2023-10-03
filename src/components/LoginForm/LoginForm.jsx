@@ -19,11 +19,37 @@
 //Dodatkowo dodać link do strony rejestracji - bardzo podobny do RegistrationForm
 
 import css from './LoginForm.module.css';
+import walletSVG from '../../assets/icons/wallet.svg';
+import emailSVG from '../../assets/icons/email.svg';
+import passwordSVG from '../../assets/icons/lock.svg';
+
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
   return (
     <>
-      <div className={css.test}></div>
+      <div className={css.wrapper}>
+        <form className={css.form}>
+          <div className={css.header}>
+            <img src={walletSVG} className={css.logo} alt="wallet logo" />
+            <h2 className={css.title}>Wallet</h2>
+          </div>
+          <label className={css.label}>
+            <img src={emailSVG} className={css.icon} alt="email logo" />
+
+            <input className={css.input} type="email" placeholder="E-mail" />
+          </label>
+          <label className={css.label}>
+            <img src={passwordSVG} className={css.icon} alt="email logo" />
+
+            <input className={css.input} type="password" placeholder="Password" />
+          </label>
+          <button className={css.loginButton}>Login</button>
+          <Link to="/goit-wallet-grupa-03-frontend/register">
+            <button className={css.registerButton}>Register</button>
+          </Link>
+        </form>
+      </div>
     </>
   );
 };
