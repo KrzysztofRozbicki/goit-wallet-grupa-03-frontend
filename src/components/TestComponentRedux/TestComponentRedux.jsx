@@ -17,8 +17,18 @@ import {
   changeIsModalEditTransactionOpen,
 } from '../../redux/global/globalSlice';
 
-import { selectError, selectIsAuth, selectUserName } from '../../redux/session/selectors';
-import { setUserName, changeError, changeIsAuth } from '../../redux/session/sessionSlice';
+import {
+  selectError,
+  selectIsAuth,
+  selectUserName,
+  selectUserToken,
+} from '../../redux/session/selectors';
+import {
+  setUserName,
+  setUserToken,
+  changeError,
+  changeIsAuth,
+} from '../../redux/session/sessionSlice';
 
 const TestComponentRedux = () => {
   const dispatch = useDispatch();
@@ -40,9 +50,11 @@ const TestComponentRedux = () => {
   const error = useSelector(selectError);
   const isAuth = useSelector(selectIsAuth);
   const userName = useSelector(selectUserName);
+  const userToken = useSelector(selectUserToken);
   const handleError = () => dispatch(changeError);
   const handleIsAuth = () => dispatch(changeIsAuth);
   const handleUserName = name => dispatch(setUserName(name));
+  const handleUserToken = token => dispatch(setUserToken(token));
 
   return (
     <>

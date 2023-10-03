@@ -2,6 +2,10 @@ export const setUserNameAction = (state, action) => {
   state.user.name = action.payload;
 };
 
+export const setUserToken = (state, action) => {
+  state.user.token = action.payload;
+};
+
 export const changeErrorAction = state => {
   state.error = !state.error;
 };
