@@ -1,6 +1,7 @@
 @import '../../stylesheet/vars.css';
 .wrapper {
   width: 100%;
+  background-color: white;
 }
 .form {
   display: flex;
@@ -61,7 +62,31 @@
   color: var(--color-brand-primary);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
+  .wrapper {
+    margin-top: 50px;
+    border-radius: 20px;
+    width: 533px;
+    margin-bottom: 196px;
+  }
   .form {
+    margin-top: 0;
+    padding-top: 40px;
+    padding-bottom: 62px;
+  }
+  .label {
+    width: 410px;
+  }
+  .title {
+    font-size: 30px;
+  }
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
+}
+@media screen and (min-width: 1279px) {
+  .wrapper {
+    margin: 0;
   }
 }
