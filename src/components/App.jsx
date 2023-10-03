@@ -1,15 +1,45 @@
-import wallet from '../assets/icons/wallet.svg';
-import banner from '../assets/icons/banner.svg';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import Header from './Header/Header';
+import HomeTab from './HomeTab/HomeTab';
+import LoginPage from './LoginPage/LoginPage';
+import RegistrationPage from './RegistrationPage/RegistrationPage';
 
-function App() {
+const Dashboard = () => {
   return (
     <>
-      <h1>This is the Quick Buck Devs</h1>
-      <p> bellow are the test show of icons</p>
-      <img src={wallet} />
-      <img src={banner} />
+      <Header />
+      <Outlet />
     </>
   );
-}
+};
+
+const router = createBrowserRouter([
+  {
+    path: 'goit-wallet-grupa-03-frontend/',
+    element: <Dashboard />,
+    children: [
+      {
+        path: '',
+        element: <HomeTab />,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
+      },
+      {
+        path: 'registration',
+        element: <RegistrationPage />,
+      },
+    ],
+  },
+]);
+
+const App = () => {
+  return (
+    <div>
+      <RouterProvider router={router} />
+    </div>
+  );
+};
 
 export default App;
