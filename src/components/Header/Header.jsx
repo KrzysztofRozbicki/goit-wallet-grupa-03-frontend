@@ -10,10 +10,10 @@ const Header = () => {
             <Link to={''}>Home</Link>
           </li>
           <li>
-            <Link to={'login'}>Login</Link>
+            <Link to={'chart'}>Chart</Link>
           </li>
           <li>
-            <Link to={'registration'}>registration</Link>
+            <Link to={'diagram'}>Diagram</Link>
           </li>
         </ul>
       </nav>
