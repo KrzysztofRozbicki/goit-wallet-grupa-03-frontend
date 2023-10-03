@@ -1,15 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import {
+  changeIsLoadingAction,
+  changeIsModalLogoutOpenAction,
+  changeIsModalAddTransactionOpenAction,
+  changeIsModalEditTransactionOpenAction,
+} from './operations';
+
 const initialState = {
   isLoading: false,
   isModalLogoutOpen: false,
   isModalAddTransactionOpen: false,
+  isModalEditTransactionOpen: false,
 };
 
 const globalSlice = createSlice({
   name: 'global',
   initialState,
-  reducers: {},
+  reducers: {
+    changeIsLoading: changeIsLoadingAction,
+    changeIsModalLogoutOpen: changeIsModalLogoutOpenAction,
+    changeIsModalAddTransactionOpen: changeIsModalAddTransactionOpenAction,
+    changeIsModalEditTransactionOpen: changeIsModalEditTransactionOpenAction,
+  },
 });
 
+export const {
+  changeIsLoading,
+  changeIsModalLogoutOpen,
+  changeIsModalAddTransactionOpen,
+  changeIsModalEditTransactionOpen,
+} = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;
