@@ -1,6 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectIsModalAddTransactionOpen } from '../redux/global/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectIsModalAddTransactionOpen,
+  selectIsModalLogoutOpen,
+} from '../redux/global/selectors';
 
 import '../stylesheet/fonts.css';
 
@@ -20,6 +23,8 @@ import CurrencyTable from './Currency/Currency';
 import ModalLogout from './ModalLogout/ModalLogout';
 import Navigation from './Navigation/Navigation';
 import Table from './Table/Table';
+import { openModalLogout } from '../redux/global/globalSlice';
+import { useEffect } from 'react';
 
 const router = createBrowserRouter([
   {
@@ -92,11 +97,20 @@ const router = createBrowserRouter([
 const App = () => {
   const isModalAddTransactionOpen = useSelector(selectIsModalAddTransactionOpen);
   console.log('isModalOpen:', isModalAddTransactionOpen);
+  const dispatch = useDispatch();
+
+  useEffect(() => {});
+
+  const handleOpenLogoutModal = () => {
+    dispatch(openModalLogout());
+  };
   return (
     <div>
       <RouterProvider router={router} />
       <HomeTab />
+      <button onClick={handleOpenLogoutModal}>LogoutModal</button>
       <ButtonAddTransactions />
+      <ModalLogout />
       {isModalAddTransactionOpen ? <ModalAddTransaction /> : null}
     </div>
   );

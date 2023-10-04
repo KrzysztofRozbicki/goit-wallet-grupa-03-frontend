@@ -9,13 +9,46 @@
 // Na przycisku "Tak" napisać operację wylogowania, przy udanej operacji wyczyszczać cały redux store w initial state,
 //przy nieudanej operacji za pomocą biblioteki react - toastify wyświetlać błąd i zamykać okno modalne
 
-import css from './ModalLogout.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsModalLogoutOpen } from '../../redux/global/selectors';
+import style from './ModalLogout.module.css';
+import ReactModal from 'react-modal';
+import { closeModalLogout, resetGlobal } from '../../redux/global/globalSlice';
+import { resetSession } from '../../redux/session/sessionSlice';
+import { resetFinance } from '../../redux/finance/financeSlice';
 
 const ModalLogout = () => {
+  const dispatch = useDispatch();
+  const isLogoutModalOpen = useSelector(selectIsModalLogoutOpen);
+
+  const handleClose = () => {
+    dispatch(closeModalLogout());
+  };
+
+  const handleLogout = () => {
+    dispatch(resetSession());
+    dispatch(resetGlobal());
+    dispatch(resetFinance());
+  };
+
   return (
-    <>
-      <div className={css.test}></div>
-    </>
+    <ReactModal
+      isOpen={isLogoutModalOpen}
+      contentLabel="onRequestClose Example"
+      onRequestClose={handleClose}
+      shouldCloseOnOverlayClick={true}
+      className={style.modal}
+    >
+      <p className={style.title}>Log out from Wallet?</p>
+      <div className={style.buttonContainer}>
+        <button onClick={handleLogout} className={style.confirm}>
+          Yes, log out
+        </button>
+        <button onClick={handleClose} className={style.cancel}>
+          Cancel
+        </button>
+      </div>
+    </ReactModal>
   );
 };
 
