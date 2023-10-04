@@ -1,15 +1,27 @@
-export const changeIsLoadingAction = state => {
-  state.isLoading = !state.isLoading;
+export const openLoadingAction = (state, action) => {
+  state.isLoading = action.payload;
+};
+export const closeLoadingAction = state => {
+  state.isLoading = false;
 };
 
-export const changeIsModalLogoutOpenAction = state => {
-  state.isModalLogoutOpen = !state.isModalLogoutOpen;
+export const openModalLogoutAction = state => {
+  state.isModalLogoutOpen = true;
+};
+export const closeModalLogoutAction = state => {
+  state.isModalLogoutOpen = false;
 };
 
-export const changeIsModalAddTransactionOpenAction = state => {
-  state.isModalAddTransactionOpen = !state.isModalAddTransactionOpen;
+export const openModalAddTransactionAction = state => {
+  state.isModalAddTransactionOpen = true;
+};
+export const closeModalAddTransactionAction = state => {
+  state.isModalAddTransactionOpen = false;
 };
 
-export const changeIsModalEditTransactionOpenAction = state => {
-  state.isModalEditTransactionOpen = !state.isModalEditTransactionOpen;
+export const openModalEditTransactionAction = state => {
+  state.isModalEditTransactionOpen = true;
+};
+export const closeModalEditTransactionAction = state => {
+  state.isModalEditTransactionOpen = false;
 };

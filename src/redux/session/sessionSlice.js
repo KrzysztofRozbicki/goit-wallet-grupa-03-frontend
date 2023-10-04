@@ -3,12 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   setUserNameAction,
   setUserTokenAction,
-  changeErrorAction,
-  changeIsAuthAction,
+  setErrorAction,
+  setIsAuthAction,
 } from './operations';
 
 const initialState = {
-  error: false,
+  error: '',
   isAuth: false,
   user: {
     name: '',
@@ -22,14 +22,14 @@ const sessionSlice = createSlice({
   reducers: {
     setUserName: setUserNameAction,
     setUserToken: setUserTokenAction,
-    changeError: changeErrorAction,
-    changeIsAuth: changeIsAuthAction,
+    setError: setErrorAction,
+    setIsAuth: setIsAuthAction,
     resetSession: () => {
       return { ...initialState };
     },
   },
 });
 
-export const { setUserName, setUserToken, changeError, changeIsAuth, resetSession } =
+export const { setUserName, setUserToken, setError, setIsAuth, resetSession } =
   sessionSlice.actions;
 export const sessionReducer = sessionSlice.reducer;

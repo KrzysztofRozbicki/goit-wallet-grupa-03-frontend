@@ -6,10 +6,10 @@ export const setUserTokenAction = (state, action) => {
   state.user.token = action.payload;
 };
 
-export const changeErrorAction = state => {
-  state.error = !state.error;
+export const setErrorAction = (state, action) => {
+  state.error = action.payload;
 };
 
-export const changeIsAuthAction = state => {
-  state.isAuth = !state.isAuth;
+export const setIsAuthAction = state => {
+  state.isAuth = true;
 };

@@ -1,10 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
-  changeIsLoadingAction,
-  changeIsModalLogoutOpenAction,
-  changeIsModalAddTransactionOpenAction,
-  changeIsModalEditTransactionOpenAction,
+  openLoadingAction,
+  closeLoadingAction,
+  openModalLogoutAction,
+  closeModalLogoutAction,
+  openModalAddTransactionAction,
+  closeModalAddTransactionAction,
+  openModalEditTransactionAction,
+  closeModalEditTransactionAction,
 } from './operations';
 
 const initialState = {
@@ -18,10 +22,14 @@ const globalSlice = createSlice({
   name: 'global',
   initialState,
   reducers: {
-    changeIsLoading: changeIsLoadingAction,
-    changeIsModalLogoutOpen: changeIsModalLogoutOpenAction,
-    changeIsModalAddTransactionOpen: changeIsModalAddTransactionOpenAction,
-    changeIsModalEditTransactionOpen: changeIsModalEditTransactionOpenAction,
+    openLoading: openLoadingAction,
+    closeLoading: closeLoadingAction,
+    openModalLogout: openModalLogoutAction,
+    closeModalLogout: closeModalLogoutAction,
+    openModalAddTransaction: openModalAddTransactionAction,
+    closeModalAddTransaction: closeModalAddTransactionAction,
+    openModalEditTransaction: openModalEditTransactionAction,
+    closeModalEditTransaction: closeModalEditTransactionAction,
     resetGlobal: () => {
       return { ...initialState };
     },
@@ -29,10 +37,14 @@ const globalSlice = createSlice({
 });
 
 export const {
-  changeIsLoading,
-  changeIsModalLogoutOpen,
-  changeIsModalAddTransactionOpen,
-  changeIsModalEditTransactionOpen,
+  openLoading,
+  closeLoading,
+  openModalLogout,
+  closeModalLogout,
+  openModalAddTransaction,
+  closeModalAddTransaction,
+  openModalEditTransaction,
+  closeModalEditTransaction,
   resetGlobal,
 } = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;

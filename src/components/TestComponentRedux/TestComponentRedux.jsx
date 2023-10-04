@@ -11,10 +11,14 @@ import {
   selectIsModalEditTransactionOpen,
 } from '../../redux/global/selectors';
 import {
-  changeIsLoading,
-  changeIsModalLogoutOpen,
-  changeIsModalAddTransactionOpen,
-  changeIsModalEditTransactionOpen,
+  openLoading,
+  closeLoading,
+  openModalLogout,
+  closeModalLogout,
+  openModalAddTransaction,
+  closeModalAddTransaction,
+  openModalEditTransaction,
+  closeModalEditTransaction,
   resetGlobal,
 } from '../../redux/global/globalSlice';
 
@@ -27,8 +31,8 @@ import {
 import {
   setUserName,
   setUserToken,
-  changeError,
-  changeIsAuth,
+  setError,
+  setIsAuth,
   resetSession,
 } from '../../redux/session/sessionSlice';
 
@@ -45,18 +49,22 @@ const TestComponentRedux = () => {
   const isModalLogoutOpen = useSelector(selectIsModalLogoutOpen);
   const isModalAddTransactionOpen = useSelector(selectIsModalAddTransactionOpen);
   const isModalEditTransactionOpen = useSelector(selectIsModalEditTransactionOpen);
-  const handleIsLoading = () => dispatch(changeIsLoading);
-  const handleIsModalLogoutOpen = () => dispatch(changeIsModalLogoutOpen);
-  const handleIsModalAddTransactionOpen = () => dispatch(changeIsModalAddTransactionOpen);
-  const handleIsModalEditTransactionOpen = () => dispatch(changeIsModalEditTransactionOpen);
+  const handleOpenLoading = () => dispatch(openLoading);
+  const handleCloseLoading = () => dispatch(closeLoading);
+  const handleOpenModalLogout = () => dispatch(openModalLogout);
+  const handleCloseModalLogout = () => dispatch(closeModalLogout);
+  const handleOpenModalAddTransaction = () => dispatch(openModalAddTransaction);
+  const handleCloseModalAddTransaction = () => dispatch(closeModalAddTransaction);
+  const handleOpenModalEditTransaction = () => dispatch(openModalEditTransaction);
+  const handleCloseModalEditTransaction = () => dispatch(closeModalEditTransaction);
   const handleResetGlobal = () => dispatch(resetGlobal());
 
   const error = useSelector(selectError);
   const isAuth = useSelector(selectIsAuth);
   const userName = useSelector(selectUserName);
   const userToken = useSelector(selectUserToken);
-  const handleError = () => dispatch(changeError);
-  const handleIsAuth = () => dispatch(changeIsAuth);
+  const handleError = error => dispatch(setError(error));
+  const handleIsAuth = () => dispatch(setIsAuth);
   const handleUserName = name => dispatch(setUserName(name));
   const handleUserToken = token => dispatch(setUserToken(token));
   const handleResetSession = () => dispatch(resetSession());
