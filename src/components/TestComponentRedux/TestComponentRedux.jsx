@@ -49,14 +49,14 @@ const TestComponentRedux = () => {
   const isModalLogoutOpen = useSelector(selectIsModalLogoutOpen);
   const isModalAddTransactionOpen = useSelector(selectIsModalAddTransactionOpen);
   const isModalEditTransactionOpen = useSelector(selectIsModalEditTransactionOpen);
-  const handleOpenLoading = () => dispatch(openLoading);
-  const handleCloseLoading = () => dispatch(closeLoading);
-  const handleOpenModalLogout = () => dispatch(openModalLogout);
-  const handleCloseModalLogout = () => dispatch(closeModalLogout);
-  const handleOpenModalAddTransaction = () => dispatch(openModalAddTransaction);
-  const handleCloseModalAddTransaction = () => dispatch(closeModalAddTransaction);
-  const handleOpenModalEditTransaction = () => dispatch(openModalEditTransaction);
-  const handleCloseModalEditTransaction = () => dispatch(closeModalEditTransaction);
+  const handleOpenLoading = () => dispatch(openLoading());
+  const handleCloseLoading = () => dispatch(closeLoading());
+  const handleOpenModalLogout = () => dispatch(openModalLogout());
+  const handleCloseModalLogout = () => dispatch(closeModalLogout());
+  const handleOpenModalAddTransaction = () => dispatch(openModalAddTransaction());
+  const handleCloseModalAddTransaction = () => dispatch(closeModalAddTransaction());
+  const handleOpenModalEditTransaction = () => dispatch(openModalEditTransaction());
+  const handleCloseModalEditTransaction = () => dispatch(closeModalEditTransaction());
   const handleResetGlobal = () => dispatch(resetGlobal());
 
   const error = useSelector(selectError);
@@ -64,7 +64,7 @@ const TestComponentRedux = () => {
   const userName = useSelector(selectUserName);
   const userToken = useSelector(selectUserToken);
   const handleError = error => dispatch(setError(error));
-  const handleIsAuth = () => dispatch(setIsAuth);
+  const handleIsAuth = () => dispatch(setIsAuth());
   const handleUserName = name => dispatch(setUserName(name));
   const handleUserToken = token => dispatch(setUserToken(token));
   const handleResetSession = () => dispatch(resetSession());
