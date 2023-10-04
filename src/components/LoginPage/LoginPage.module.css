@@ -55,8 +55,9 @@
 @media screen and (min-width: 1279px) {
   .wrapper {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: inherit;
     background-color: transparent;
+    width: 100vw;
   }
 
   .header {
@@ -84,7 +85,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 66%;
+    width: 77%;
     background-color: rgba(238, 236, 236, 0.422);
   }
 

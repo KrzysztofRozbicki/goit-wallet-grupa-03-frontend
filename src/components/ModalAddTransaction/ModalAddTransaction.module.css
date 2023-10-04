@@ -37,7 +37,7 @@
 .formHeader {
   font-family: Poppins;
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .switchBox {
@@ -107,7 +107,7 @@
   right: 0;
   bottom: 0;
   background-color: #fff;
-  border: 1px solid black;
+  border: 1px solid var(--color-switch-main);
   transition: 0.4s;
   border-radius: 34px;
 }
@@ -126,8 +126,8 @@
   content: '';
   height: 44px;
   width: 44px;
-  left: -6px;
-  bottom: 0px;
+  left: -5px;
+  bottom: -5px;
   background-color: white;
   transition: 0.4s;
   border-radius: 50%;
@@ -135,12 +135,20 @@
 
 .switch input:not(:checked) + .slider:before {
   background-color: var(--color-brand-accent);
+  background-image: url(../../assets/icons/Minus.svg);
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position: center;
   box-shadow: 0px 6px 15px 0px #ff659680;
   transform: translateX(26px); /* Move the slider to the right when checked */
 }
 
 .switch input:checked + .slider:before {
   background-color: var(--color-brand-secondary);
+  background-image: url(../../assets/icons/Plus.svg);
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position: center;
   box-shadow: 0px 6px 15px 0px var(--shadow-progress-bar);
   transform: translateX(0px); /* Move the slider to the right when checked */
 }
