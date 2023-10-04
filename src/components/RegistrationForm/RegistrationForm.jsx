@@ -20,11 +20,43 @@
 //Dodatkowo dodać link do strony logowania - bardzo podobny do LoginForm
 
 import css from './RegistrationForm.module.css';
+import walletSVG from '../../assets/icons/wallet.svg';
+import emailSVG from '../../assets/icons/email.svg';
+import passwordSVG from '../../assets/icons/lock.svg';
+import nameSVG from '../../assets/icons/profile-name.svg';
 
+import { Link } from 'react-router-dom';
 const RegistrationForm = () => {
   return (
     <>
-      <div className={css.test}></div>
+      <div className={css.wrapper}>
+        <form className={css.form}>
+          <div className={css.header}>
+            <img src={walletSVG} className={css.logo} alt="wallet logo" />
+            <h2 className={css.title}>Wallet</h2>
+          </div>
+          <label className={css.label}>
+            <img src={emailSVG} className={css.icon} alt="email logo" />
+            <input className={css.input} type="email" placeholder="E-mail" />
+          </label>
+          <label className={css.label}>
+            <img src={passwordSVG} className={css.icon} alt="email logo" />
+            <input className={css.input} type="password" placeholder="Password" />
+          </label>
+          <label className={css.label}>
+            <img src={passwordSVG} className={css.icon} alt="email logo" />
+            <input className={css.input} type="password" placeholder="Confirm Password" />
+          </label>
+          <label className={css.label}>
+            <img src={nameSVG} className={css.icon} alt="email logo" />
+            <input className={css.input} type="name" placeholder="First Name" />
+          </label>
+          <button className={css.registerButton}>Register</button>
+          <Link to="/goit-wallet-grupa-03-frontend/login">
+            <button className={css.loginButton}>Login</button>
+          </Link>
+        </form>
+      </div>
     </>
   );
 };
