@@ -41,7 +41,7 @@ const DatetimePicker = ({ ...props }) => {
       onChange={value => {
         helpers.setValue(moment(value).format('DD.MM.YYYY'));
       }}
-      className={css.formInput}
+      className={`${css.formInput} ${css.formCalendar}`}
     />
   );
 };
@@ -99,6 +99,15 @@ const ModalAddTransaction = () => {
                 name="comment"
                 placeholder="Comment"
               />
+              <button type="submit" className={`${css.button} ${css.buttonAdd}`}>
+                ADD
+              </button>
+              <button
+                onClick={() => dispatch(closeModalAddTransaction())}
+                className={`${css.button} ${css.buttonCancel}`}
+              >
+                CANCEL
+              </button>
             </Form>
           )}
         </Formik>

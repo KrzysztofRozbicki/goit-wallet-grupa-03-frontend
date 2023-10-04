@@ -23,10 +23,6 @@ import Table from './Table/Table';
 
 const router = createBrowserRouter([
   {
-    path: 'goit-wallet-grupa-03-frontend/',
-    element: <HomeTab />,
-  },
-  {
     path: 'goit-wallet-grupa-03-frontend/login',
     element: <LoginPage />,
   },
