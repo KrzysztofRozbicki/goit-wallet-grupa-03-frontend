@@ -6,6 +6,7 @@ import DiagramTab from './DiagramTab/DiagramTab';
 import HomeTab from './HomeTab/HomeTab';
 import LoginPage from './LoginPage/LoginPage';
 import RegistrationPage from './RegistrationPage/RegistrationPage';
+import Currency from './Currency/Currency';
 
 // const router = createBrowserRouter([
 //   {
@@ -42,6 +43,7 @@ const App = () => {
     <div>
       {/* <RouterProvider router={router} /> */}
       <HomeTab />
+      <DashboardPage />
     </div>
   );
 };
