@@ -8,6 +8,7 @@ import ButtonAddTransactions from './ButtonAddTransactions/ButtonAddTransactions
 import TestComponentRedux from './TestComponentRedux/TestComponentRedux';
 import LoginPage from './LoginPage/LoginPage';
 import RegistrationPage from './RegistrationPage/RegistrationPage';
+import '../stylesheet/fonts.css';
 
 const router = createBrowserRouter([
   {
@@ -19,24 +20,24 @@ const router = createBrowserRouter([
     element: <RegistrationPage />,
   },
 
-  {
-    path: 'goit-wallet-grupa-03-frontend/',
-    element: <DashboardPage />,
-    children: [
-      {
-        path: '',
-        element: <HomeTab />,
-      },
-      {
-        path: 'chart',
-        element: <Chart />,
-      },
-      {
-        path: 'diagram',
-        element: <DiagramTab />,
-      },
-    ],
-  },
+  //   {
+  //     path: 'goit-wallet-grupa-03-frontend/',
+  //     element: <DashboardPage />,
+  //     children: [
+  //       {
+  //         path: '',
+  //         element: <HomeTab />,
+  //       },
+  //       {
+  //         path: 'chart',
+  //         element: <Chart />,
+  //       },
+  //       {
+  //         path: 'diagram',
+  //         element: <DiagramTab />,
+  //       },
+  // ],
+  // },
 ]);
 
 const App = () => {
