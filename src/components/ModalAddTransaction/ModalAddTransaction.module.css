@@ -106,7 +106,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #fff;
+  border: 1px solid black;
   transition: 0.4s;
   border-radius: 34px;
 }
@@ -123,8 +124,8 @@
 .slider:before {
   position: absolute;
   content: '';
-  height: 40px;
-  width: 40px;
+  height: 44px;
+  width: 44px;
   left: -6px;
   bottom: 0px;
   background-color: white;
@@ -134,10 +135,12 @@
 
 .switch input:not(:checked) + .slider:before {
   background-color: var(--color-brand-accent);
+  box-shadow: 0px 6px 15px 0px #ff659680;
   transform: translateX(26px); /* Move the slider to the right when checked */
 }
 
 .switch input:checked + .slider:before {
   background-color: var(--color-brand-secondary);
+  box-shadow: 0px 6px 15px 0px var(--shadow-progress-bar);
   transform: translateX(0px); /* Move the slider to the right when checked */
 }
