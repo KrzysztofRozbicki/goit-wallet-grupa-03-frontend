@@ -40,13 +40,7 @@ import RegistrationPage from './RegistrationPage/RegistrationPage';
 // ]);
 
 const App = () => {
-  return (
-    <div>
-      {/* <RouterProvider router={router} /> */}
-      <TestComponentRedux />
-      <ButtonAddTransactions />
-    </div>
-  );
+  return <div>{/* <RouterProvider router={router} /> */}</div>;
 };
 
 export default App;
