@@ -16,11 +16,13 @@ import css from './HomeTab.module.css';
 const HomeTab = () => {
   return (
     <>
-      <div className={css.test}></div>
-      <h1>This is the Quick Buck Devs</h1>
-      <p>Below are the test shows of icons</p>
-      <img src={wallet} />
-      <img src={banner} />
+      <div className={css.wrapper}>
+        <div className={css.test}></div>
+        <h1>This is the Quick Buck Devs</h1>
+        <p>Below are the test shows of icons</p>
+        <img src={wallet} />
+        <img src={banner} />
+      </div>
     </>
   );
 };
