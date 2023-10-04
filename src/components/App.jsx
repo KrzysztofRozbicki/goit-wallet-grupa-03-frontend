@@ -10,6 +10,7 @@ import LoginPage from './LoginPage/LoginPage';
 import RegistrationPage from './RegistrationPage/RegistrationPage';
 import '../stylesheet/fonts.css';
 
+
 const router = createBrowserRouter([
   {
     path: 'goit-wallet-grupa-03-frontend/login',
