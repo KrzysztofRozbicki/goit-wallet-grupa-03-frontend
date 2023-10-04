@@ -4,3 +4,140 @@
   height: 100px;
   background-color: var(--background-primary);
 }
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background-color: var(--background-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.formHeader {
+  font-family: Poppins;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.switchBox {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--background-gray);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: Circe;
+}
+
+.incomeSelected {
+  color: var(--color-brand-secondary);
+}
+
+.expenseSelected {
+  color: var(--color-brand-accent);
+}
+
+.formInput {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--color-switch-main);
+  padding-inline: 1.25rem;
+  padding-block: 0.5rem;
+  font-size: 18px;
+  font-family: Circe;
+  font-weight: Bold;
+}
+.formInput::placeholder {
+  color: var(--background-gray);
+}
+.formInputComment {
+  display: block;
+  position: relative;
+  font-weight: 400;
+  height: 5.25rem;
+  vertical-align: top;
+}
+
+.datePicker {
+  position: relative;
+}
+
+.satePicker::before {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: red;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch input:checked + .slider {
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 40px;
+  width: 40px;
+  left: -6px;
+  bottom: 0px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.switch input:not(:checked) + .slider:before {
+  background-color: var(--color-brand-accent);
+  transform: translateX(26px); /* Move the slider to the right when checked */
+}
+
+.switch input:checked + .slider:before {
+  background-color: var(--color-brand-secondary);
+  transform: translateX(0px); /* Move the slider to the right when checked */
+}

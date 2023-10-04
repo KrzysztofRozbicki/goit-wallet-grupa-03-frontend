@@ -1,10 +1,13 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectIsModalAddTransactionOpen } from '../redux/global/selectors';
 
 import DashboardPage from './DashboardPage/DashboardPage';
 import Chart from './Chart/Chart';
 import DiagramTab from './DiagramTab/DiagramTab';
 import HomeTab from './HomeTab/HomeTab';
 import ButtonAddTransactions from './ButtonAddTransactions/ButtonAddTransactions';
+import ModalAddTransaction from './ModalAddTransaction/ModalAddTransaction';
 import TestComponentRedux from './TestComponentRedux/TestComponentRedux';
 import LoginPage from './LoginPage/LoginPage';
 import RegistrationPage from './RegistrationPage/RegistrationPage';
@@ -20,37 +23,37 @@ const router = createBrowserRouter([
     element: <RegistrationPage />,
   },
 
-  //   {
-  //     path: 'goit-wallet-grupa-03-frontend/',
-  //     element: <DashboardPage />,
-  //     children: [
-  //       {
-  //         path: '',
-  //         element: <HomeTab />,
-  //       },
-  //       {
-  //         path: 'chart',
-  //         element: <Chart />,
-  //       },
-  //       {
-  //         path: 'diagram',
-  //         element: <DiagramTab />,
-  //       },
-  // ],
-  // },
+  {
+    path: 'goit-wallet-grupa-03-frontend/',
+    element: <DashboardPage />,
+    children: [
+      {
+        path: '',
+        element: <HomeTab />,
+      },
+      {
+        path: 'chart',
+        element: <Chart />,
+      },
+      {
+        path: 'diagram',
+        element: <DiagramTab />,
+      },
+    ],
+  },
 ]);
 
 const App = () => {
-<<<<<<< HEAD
-  return <div>{/* <RouterProvider router={router} /> */}</div>;
-=======
+  const isModalAddTransactionOpen = useSelector(selectIsModalAddTransactionOpen);
+  console.log('isModalOpen:', isModalAddTransactionOpen);
   return (
     <div>
       <RouterProvider router={router} />
       <HomeTab />
+      <ButtonAddTransactions />
+      {isModalAddTransactionOpen ? <ModalAddTransaction /> : null}
     </div>
   );
->>>>>>> 07326d9c6be54cca7da5582834c1a73a8377d447
 };
 
 export default App;
