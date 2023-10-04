@@ -4,6 +4,7 @@ import DashboardPage from './DashboardPage/DashboardPage';
 import Chart from './Chart/Chart';
 import DiagramTab from './DiagramTab/DiagramTab';
 import HomeTab from './HomeTab/HomeTab';
+import ButtonAddTransactions from './ButtonAddTransactions/ButtonAddTransactions';
 import TestComponentRedux from './TestComponentRedux/TestComponentRedux';
 import LoginPage from './LoginPage/LoginPage';
 import RegistrationPage from './RegistrationPage/RegistrationPage';
@@ -43,6 +44,7 @@ const App = () => {
     <div>
       {/* <RouterProvider router={router} /> */}
       <TestComponentRedux />
+      <ButtonAddTransactions />
     </div>
   );
 };
