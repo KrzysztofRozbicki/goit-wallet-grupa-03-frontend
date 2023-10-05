@@ -95,6 +95,16 @@ const router = createBrowserRouter([
   },
 ]);
 
+  const isModalAddTransactionOpen = useSelector(selectIsModalAddTransactionOpen);
+  console.log('isModalOpen:', isModalAddTransactionOpen);
+  const dispatch = useDispatch();
+
+  useEffect(() => {});
+
+  const handleOpenLogoutModal = () => {
+    dispatch(openModalLogout());
+  };
+
 const App = () => {
   return (
     <div>
