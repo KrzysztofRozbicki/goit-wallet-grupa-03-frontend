@@ -30,7 +30,19 @@ import { Link } from 'react-router-dom';
 import PasswordStrength from '../PasswordStrength/PasswordStrength';
 
 const SignupSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email').required(''),
+  email: Yup.string()
+    .email('Invalid email')
+    .test('has-domain', 'Invalid email domain', function (value) {
+      if (value) {
+        const emailParts = value.split('@');
+        if (emailParts.length === 2) {
+          const domainParts = emailParts[1].split('.');
+          return domainParts.length > 1 && domainParts[domainParts.length - 1].length > 1;
+        }
+      }
+      return false;
+    })
+    .required(''),
   password: Yup.string()
     .min(6, 'Password is too short!')
     .max(12, 'Password is too long!')
@@ -38,9 +50,10 @@ const SignupSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .min(6, 'Too Short!')
     .max(12, 'Too Long!')
+
     .required('')
     .oneOf([Yup.ref('password')], 'Passwords do not match.'),
-  firstName: Yup.string().min(1, 'Too Short!').max(12, 'Too Long!'),
+  firstName: Yup.string().min(1, 'Too Short!').max(12, 'Too Long!').required('Name is required'),
 });
 
 const RegistrationForm = () => {
