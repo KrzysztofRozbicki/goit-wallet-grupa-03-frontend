@@ -1,6 +1,12 @@
 @import '../../stylesheet/vars.css';
-.test {
-  width: 100px;
-  height: 100px;
-  background-color: var(--background-primary);
+.loader {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
 }
