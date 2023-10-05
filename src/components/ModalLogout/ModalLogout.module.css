@@ -1,6 +1,7 @@
 @import '../../stylesheet/vars.css';
 
-.modalContainer {}
+.modalContainer {
+}
 
 .modal {
   background-color: var(--background-light);
@@ -29,7 +30,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 5px
+  gap: 5px;
 }
 
 .confirm {
@@ -54,7 +55,7 @@
 .cancel:hover {
   transition: 0.4s ease;
   background-color: var(--color-brand-primary);
-  color: var(--font-color-light)
+  color: var(--font-color-light);
 }
 
 @media (min-width: 767px) {

@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { setTotalBalanceAction, setDataAction } from './operations';
 
 const initialState = {
-  totalBalance: 0,
+  totalBalance: '',
   data: [],
 };
 
