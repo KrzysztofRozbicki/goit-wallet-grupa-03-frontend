@@ -20,6 +20,10 @@ const router = createBrowserRouter([
     path: 'goit-wallet-grupa-03-frontend/register',
     element: <RegistrationPage />,
   },
+  {
+    path: 'goit-wallet-grupa-03-frontend/dashboard',
+    element: <DashboardPage />,
+  },
 
   //   {
   //     path: 'goit-wallet-grupa-03-frontend/',
