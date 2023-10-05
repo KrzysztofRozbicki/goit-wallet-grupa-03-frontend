@@ -12,25 +12,39 @@
 import { Link } from 'react-router-dom';
 
 import css from './Header.module.css';
+import walletSVG from '../../assets/icons/wallet.svg';
+import logOutSVG from '../../assets/icons/lo.svg';
 
 const Header = () => {
+  /*
+   const user = useSelector(state => state.session.user);
+  const dispatch = useDispatch();
+  const shortUserName = user.name.length > 8 ? user.name.slice(0, 8) + '...' : user.name;
+
+  const openModal = () => {
+    dispatch(setIsModalLogoutOpen(true));
+  };
+
+  oraz dodać poniżej po <span className={css.name}>Name</span> -->
+  <button className="button" type="button">
+              {shortUserName}
+            </button>
+  */
   return (
     <>
-      {/* <p> This is Header</p>
-      <nav>
-        <ul>
-          <li>
-            <Link to={''}>Home</Link>
-          </li>
-          <li>
-            <Link to={'chart'}>Chart</Link>
-          </li>
-          <li>
-            <Link to={'diagram'}>Diagram</Link>
-          </li>
-        </ul>
-      </nav> */}
-      <div className={css.test}></div>
+      <div className={css.header}>
+        <div className={css.logoContainer}>
+      <img src={walletSVG} className={css.logo} alt="wallet logo" />
+      <h2 className={css.title}>Wallet</h2>
+        </div>
+        <div className={css.logOutContainer}>
+          <span className={css.name}>Name</span>
+          <div className={css.exit}>
+            <img src={logOutSVG} className={css.exitLogo} alt="logout logo" />
+            <span className={css.exitText}>Exit</span>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
