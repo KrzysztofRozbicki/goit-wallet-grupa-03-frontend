@@ -13,14 +13,14 @@ import { Outlet } from 'react-router-dom';
 
 import css from './DashboardPage.module.css';
 import CurrencyTable from '../Currency/Currency';
+import Balance from '../Balance/Balance';
 
 export const DashboardPage = () => {
   return (
     <>
-      <div className={css.test}></div>
+
       <CurrencyTable />
-      {/* <Header />
-      <Outlet /> */}
+      <Balance />
     </>
   );
 };
