@@ -24,39 +24,110 @@ import walletSVG from '../../assets/icons/wallet.svg';
 import emailSVG from '../../assets/icons/email.svg';
 import passwordSVG from '../../assets/icons/lock.svg';
 import nameSVG from '../../assets/icons/profile-name.svg';
-
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
+import PasswordStrength from '../PasswordStrength/PasswordStrength';
+
+const SignupSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required(''),
+  password: Yup.string()
+    .min(6, 'Password is too short!')
+    .max(12, 'Password is too long!')
+    .required(''),
+  confirmPassword: Yup.string()
+    .min(6, 'Too Short!')
+    .max(12, 'Too Long!')
+    .required('')
+    .oneOf([Yup.ref('password')], 'Passwords do not match.'),
+  firstName: Yup.string().min(1, 'Too Short!').max(12, 'Too Long!'),
+});
+
 const RegistrationForm = () => {
   return (
     <>
-      <div className={css.wrapper}>
-        <form className={css.form}>
-          <div className={css.header}>
-            <img src={walletSVG} className={css.logo} alt="wallet logo" />
-            <h2 className={css.title}>Wallet</h2>
+      <Formik
+        initialValues={{
+          email: '',
+          password: '',
+          confirmPassword: '',
+          firstName: '',
+        }}
+        validationSchema={SignupSchema}
+        onSubmit={async values => {
+          await new Promise(r => setTimeout(r, 500));
+          alert(JSON.stringify(values, null, 2));
+        }}
+      >
+        {({ errors, touched, values }) => (
+          <div className={css.wrapper}>
+            <Form className={css.form}>
+              <div className={css.header}>
+                <img src={walletSVG} className={css.logo} alt="wallet logo" />
+                <h2 className={css.title}>Wallet</h2>
+              </div>
+              <label className={css.label}>
+                <img src={emailSVG} className={css.icon} alt="email logo" />
+                <div className={css.fieldWrapper}>
+                  <Field className={css.input} type="email" name="email" placeholder="E-mail" />
+                  {errors.email && touched.email ? (
+                    <div className={css.validateError}>{errors.email}</div>
+                  ) : null}
+                </div>
+              </label>
+              <label className={css.label}>
+                <img src={passwordSVG} className={css.icon} alt="email logo" />
+                <div className={css.fieldWrapper}>
+                  <Field
+                    className={css.input}
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                  {errors.password && touched.password ? (
+                    <div className={css.validateError}>{errors.password}</div>
+                  ) : null}
+                </div>
+              </label>
+              <label className={css.label}>
+                <img src={passwordSVG} className={css.icon} alt="email logo" />
+                <div className={css.fieldWrapper}>
+                  <Field
+                    className={css.input}
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
+                  />
+                  {errors.confirmPassword && touched.confirmPassword ? (
+                    <div className={css.validateError}>{errors.confirmPassword}</div>
+                  ) : null}
+                </div>
+              </label>
+              <PasswordStrength className={css.passwordBar} value={values.password} />
+              <label className={css.label}>
+                <img src={nameSVG} className={css.icon} alt="email logo" />
+                <div className={css.fieldWrapper}>
+                  <Field
+                    className={css.input}
+                    type="name"
+                    name="firstName"
+                    placeholder="First Name"
+                  />
+                  {errors.firstName && touched.firstName ? (
+                    <div className={css.validateError}>{errors.firstName}</div>
+                  ) : null}
+                </div>
+              </label>
+              <button type="submit" className={css.registerButton}>
+                Register
+              </button>
+              <Link to="/goit-wallet-grupa-03-frontend/login">
+                <button className={css.loginButton}>Login</button>
+              </Link>
+            </Form>
           </div>
-          <label className={css.label}>
-            <img src={emailSVG} className={css.icon} alt="email logo" />
-            <input className={css.input} type="email" placeholder="E-mail" />
-          </label>
-          <label className={css.label}>
-            <img src={passwordSVG} className={css.icon} alt="email logo" />
-            <input className={css.input} type="password" placeholder="Password" />
-          </label>
-          <label className={css.label}>
-            <img src={passwordSVG} className={css.icon} alt="email logo" />
-            <input className={css.input} type="password" placeholder="Confirm Password" />
-          </label>
-          <label className={css.label}>
-            <img src={nameSVG} className={css.icon} alt="email logo" />
-            <input className={css.input} type="name" placeholder="First Name" />
-          </label>
-          <button className={css.registerButton}>Register</button>
-          <Link to="/goit-wallet-grupa-03-frontend/login">
-            <button className={css.loginButton}>Login</button>
-          </Link>
-        </form>
-      </div>
+        )}
+      </Formik>
     </>
   );
 };

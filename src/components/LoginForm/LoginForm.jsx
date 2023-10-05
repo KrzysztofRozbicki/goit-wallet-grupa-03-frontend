@@ -22,34 +22,69 @@ import css from './LoginForm.module.css';
 import walletSVG from '../../assets/icons/wallet.svg';
 import emailSVG from '../../assets/icons/email.svg';
 import passwordSVG from '../../assets/icons/lock.svg';
-
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
+
+const LoginSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required(''),
+  password: Yup.string().required(''),
+});
 
 const LoginForm = () => {
   return (
     <>
-      <div className={css.wrapper}>
-        <form className={css.form}>
-          <div className={css.header}>
-            <img src={walletSVG} className={css.logo} alt="wallet logo" />
-            <h2 className={css.title}>Wallet</h2>
+      <Formik
+        initialValues={{
+          email: '',
+          password: '',
+        }}
+        validationSchema={LoginSchema}
+        onSubmit={async values => {
+          await new Promise(r => setTimeout(r, 500));
+          alert(JSON.stringify(values, null, 2));
+        }}
+      >
+        {({ errors, touched, values }) => (
+          <div className={css.wrapper}>
+            <Form className={css.form}>
+              <div className={css.header}>
+                <img src={walletSVG} className={css.logo} alt="wallet logo" />
+                <h2 className={css.title}>Wallet</h2>
+              </div>
+              <label className={css.label}>
+                <img src={emailSVG} className={css.icon} alt="email logo" />
+                <div className={css.fieldWrapper}>
+                  <Field className={css.input} type="email" name="email" placeholder="E-mail" />
+                  {errors.email && touched.email ? (
+                    <div className={css.validateError}>{errors.email}</div>
+                  ) : null}
+                </div>
+              </label>
+              <label className={css.label}>
+                <img src={passwordSVG} className={css.icon} alt="email logo" />
+                <div className={css.fieldWrapper}>
+                  <Field
+                    className={css.input}
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                  {errors.password && touched.password ? (
+                    <div className={css.validateError}>{errors.password}</div>
+                  ) : null}
+                </div>
+              </label>
+              <button type="sumbit" className={css.loginButton}>
+                Login
+              </button>
+              <Link to="/goit-wallet-grupa-03-frontend/register">
+                <button className={css.registerButton}>Register</button>
+              </Link>
+            </Form>
           </div>
-          <label className={css.label}>
-            <img src={emailSVG} className={css.icon} alt="email logo" />
-
-            <input className={css.input} type="email" placeholder="E-mail" />
-          </label>
-          <label className={css.label}>
-            <img src={passwordSVG} className={css.icon} alt="email logo" />
-
-            <input className={css.input} type="password" placeholder="Password" />
-          </label>
-          <button className={css.loginButton}>Login</button>
-          <Link to="/goit-wallet-grupa-03-frontend/register">
-            <button className={css.registerButton}>Register</button>
-          </Link>
-        </form>
-      </div>
+        )}
+      </Formik>
     </>
   );
 };
