@@ -27,7 +27,6 @@ import nameSVG from '../../assets/icons/profile-name.svg';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
-import { passwordStrength } from 'check-password-strength';
 import PasswordStrength from '../PasswordStrength/PasswordStrength';
 
 const SignupSchema = Yup.object().shape({
@@ -56,9 +55,8 @@ const RegistrationForm = () => {
         }}
         validationSchema={SignupSchema}
         onSubmit={async values => {
-          // await new Promise(r => setTimeout(r, 500));
-          // alert(JSON.stringify(values, null, 2));
-          console.log(values);
+          await new Promise(r => setTimeout(r, 500));
+          alert(JSON.stringify(values, null, 2));
         }}
       >
         {({ errors, touched, values }) => (
