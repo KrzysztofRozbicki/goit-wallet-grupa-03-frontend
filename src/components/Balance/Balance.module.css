@@ -1,6 +1,26 @@
 @import '../../stylesheet/vars.css';
-.test {
-  width: 100px;
-  height: 100px;
-  background-color: var(--background-primary);
+
+.container {
+  background-color: lightblue;
+  margin: 0 auto;
+  width: fit-content;
+  border-radius: 30px;
+}
+
+.container h2 {
+  color: #A6A6A6;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17.69px;
+  padding-top: 8px;
+  padding-left: 32px;
+
+}
+
+.container div {
+  color: #000000;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 45px;
+  padding: 12px 73px 12px 32px
 }
