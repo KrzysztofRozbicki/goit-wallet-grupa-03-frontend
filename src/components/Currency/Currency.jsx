@@ -1,22 +1,56 @@
-// Inteligentny komponent, statefull, otrzymane dane do wyświetlenia z żądania get przechowuje w sobie,
-//loader i jego włączenia przechowuje w sobie
-
-// Uwaga: ze względu na częste żądania, może wystąpić błąd (nie panikuj), po prostu za kilka minut jeszcze raz złóż żądanie
-
-// Jako zadanie bonusowe, możesz zapisywać w localStorage odpowiedź z datą ostatniego żądania
-//i nie wykonywać żądania w ciągu godziny.
-//Aby to zrobić, porównaj datę, która obecnie idzie na żądanie i która jest zapisana w localStorage
-//dla ostatniego żądania i jeśli minęło mniej, niż godzinę, po prostu zabierz z localStorage.
-//Jeśli więcej wykonywać żądanie na otrzymanie kursów
 
 import css from './Currency.module.css';
 
-const Currency = () => {
-  return (
-    <>
-      <div className={css.test}></div>
-    </>
-  );
-};
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-export default Currency;
+function CurrencyTable() {
+  const [exchangeRates, setExchangeRates] = useState({});
+  const selectedCurrencies = ['USD', 'PLN'];
+  const apiKey = import.meta.env.VITE_CURRENCY_API_KEY;
+  const spread = 0.02;
+
+  useEffect(() => {
+    const apiUrl = `http://data.fixer.io/api/latest?access_key=${apiKey}&symbols=${selectedCurrencies.join(',')}`;
+
+    axios.get(apiUrl)
+      .then((response) => {
+        setExchangeRates(response.data.rates);
+      })
+      .catch((error) => {
+        console.error('Błąd podczas pobierania danych z API:', error);
+      });
+  }, []);
+
+
+
+  const calculateSellRate = (buyRate) => {
+    const sellRate = buyRate / (1 - spread);
+    return sellRate.toFixed(2);
+  };
+
+  return (
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Currency</th>
+            <th>Buy</th>
+            <th>Sell</th>
+          </tr>
+        </thead>
+        <tbody>
+          {selectedCurrencies.map((currency) => (
+            <tr key={currency}>
+              <td>{currency}</td>
+              <td>{parseFloat(exchangeRates[currency]).toFixed(2)}</td>
+              <td>{calculateSellRate(exchangeRates[currency])}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default CurrencyTable;

@@ -4,3 +4,40 @@
   height: 100px;
   background-color: var(--background-primary);
 }
+
+.button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-brand-secondary);
+  cursor: pointer;
+  transition: transform 0.4s ease, background-color 0.7s ease;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 6px 15px 0px var(--shadow-progress-bar);
+}
+
+.button:hover {
+  transform: scale(1.1);
+  background-color: var(--color-brand-primary);
+}
+
+.plusIcon {
+  display: block;
+}
+
+@media (min-width: 767px) {
+  .button {
+    bottom: 40px;
+    right: 40px;
+  }
+}
+
+@media (min-width: 1279px) {
+}

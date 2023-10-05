@@ -5,12 +5,20 @@
 
 //W skrócie ma zmienić stan global.isModalAddTransactionOpen false na true od którego zależy cyz wyświetli się modal
 
+import { useDispatch } from 'react-redux';
+
+import { openModalAddTransaction } from '../../redux/global/globalSlice';
+import plus from '../../assets/icons/plus.svg';
+
 import css from './ButtonAddTransactions.module.css';
 
 const ButtonAddTransactions = () => {
+  const dispatch = useDispatch();
   return (
     <>
-      <div className={css.test}></div>
+      <button className={css.button} onClick={() => dispatch(openModalAddTransaction())}>
+        <img src={plus} className={css.plusIcon} alt="add transaction" />
+      </button>
     </>
   );
 };
