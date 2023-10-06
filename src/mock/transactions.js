@@ -1,7 +1,7 @@
 export const mockTransactions = [
   {
     id: 'sda123',
-    type: 'income',
+    isIncome: true,
     owner: '12233', //john
     date: '2023-10-02',
     category: 'Income',
@@ -10,7 +10,7 @@ export const mockTransactions = [
   },
   {
     id: 'sda144',
-    type: 'expense',
+    isIncome: false,
     owner: '12233', //john
     date: '2023-10-01',
     category: 'Self care',
