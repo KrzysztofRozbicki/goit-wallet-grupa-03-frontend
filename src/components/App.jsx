@@ -36,6 +36,7 @@ const router = createBrowserRouter([
     element: <RegistrationPage />,
   },
   {
+
     path: 'goit-wallet-grupa-03-frontend/',
     children: [
       {
@@ -93,6 +94,8 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+
 
 const App = () => {
   const isModalAddTransactionOpen = useSelector(selectIsModalAddTransactionOpen);

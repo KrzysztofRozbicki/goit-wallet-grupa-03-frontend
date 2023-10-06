@@ -14,37 +14,16 @@
 //Tutaj trzeba ustlić co konkretnie i w jakiej formie jest wysyłane do servera i jaką odpowiedź dostajemy
 
 import { useDispatch } from 'react-redux';
-import { Formik, Field, Form, useField } from 'formik';
-import Datetime from 'react-datetime';
+import { Formik, Field, Form } from 'formik';
 import moment from 'moment';
+import Select from 'react-select';
 
 import { closeModalAddTransaction } from '../../redux/global/globalSlice';
 import { categories } from '../../mock/categories';
+import selectStyles from './Select.styles.js';
+import DatetimePicker from '../DatetimePicker/DatetimePicker';
 
 import css from './ModalAddTransaction.module.css';
-import 'react-datetime/css/react-datetime.css';
-
-const DatetimePicker = ({ ...props }) => {
-  const [field, , helpers] = useField(props);
-
-  return (
-    <Datetime
-      {...field}
-      {...props}
-      inputProps={{
-        readOnly: true,
-        style: {
-          border: 'none',
-        },
-      }}
-      selected={field.value}
-      onChange={value => {
-        helpers.setValue(moment(value).format('DD.MM.YYYY'));
-      }}
-      className={`${css.formInput} ${css.formCalendar}`}
-    />
-  );
-};
 
 const ModalAddTransaction = () => {
   const dispatch = useDispatch();
@@ -56,7 +35,7 @@ const ModalAddTransaction = () => {
         </button>
         <Formik
           initialValues={{
-            income: true,
+            income: false,
             category: null,
             value: '',
             date: `${moment(new Date()).format('DD.MM.YYYY')}`,
@@ -78,16 +57,27 @@ const ModalAddTransaction = () => {
                 <p className={!values.income ? css.expenseSelected : null}> Expenses</p>
               </div>
               {!values.income ? (
-                <Field as="select" name="color" className={css.formInput}>
-                  <option value="" disabled selected>
-                    Select a category
-                  </option>
-                  {categories.map((category, index) => (
-                    <option key={index} value={category}>
-                      {category}
-                    </option>
-                  ))}
-                </Field>
+                // <Field as="select" name="color" className={`${css.formInput} ${css.formSelect}`}>
+                //   <option className={css.formOption} value="" disabled selected>
+                //     Select a category
+                //   </option>
+                //   {categories.map((category, index) => (
+                //     <option className={css.formOption} key={index} value={category}>
+                //       {category}
+                //     </option>
+                //   ))}
+                // </Field>
+                <Select
+                  options={categories.map((category, index) => ({
+                    key: index,
+                    label: category,
+                    value: category,
+                  }))}
+                  placeholder={'Select a category'}
+                  styles={selectStyles}
+                  isSearchable={false}
+                  name="category"
+                />
               ) : null}
 
               <DatetimePicker dateFormat="DD.MM.YYYY" name="date" type="date" timeFormat={false} />

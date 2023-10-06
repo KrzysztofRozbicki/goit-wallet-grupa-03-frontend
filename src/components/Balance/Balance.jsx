@@ -5,7 +5,10 @@ import css from './Balance.module.css';
 const Balance = () => {
   return (
     <>
-      <div className={css.test}></div>
+      <div className={css.container}>
+        <h2>YOUR BALANCE</h2>
+        <div>€ 20000000</div>
+      </div>
     </>
   );
 };
