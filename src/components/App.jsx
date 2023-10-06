@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   selectIsModalAddTransactionOpen,
   selectIsModalLogoutOpen,
+  selectIsModalEditTransactionOpen,
 } from '../redux/global/selectors';
 
 import '../stylesheet/fonts.css';
@@ -16,6 +17,7 @@ import DiagramTab from './DiagramTab/DiagramTab';
 import HomeTab from './HomeTab/HomeTab';
 import ButtonAddTransactions from './ButtonAddTransactions/ButtonAddTransactions';
 import ModalAddTransaction from './ModalAddTransaction/ModalAddTransaction';
+import ModalEditTransaction from './ModalEditTransaction/ModalEditTransaction';
 import TestComponentRedux from './TestComponentRedux/TestComponentRedux';
 import LoginPage from './LoginPage/LoginPage';
 import RegistrationPage from './RegistrationPage/RegistrationPage';
@@ -23,7 +25,7 @@ import CurrencyTable from './Currency/Currency';
 import ModalLogout from './ModalLogout/ModalLogout';
 import Navigation from './Navigation/Navigation';
 import Table from './Table/Table';
-import { openModalLogout } from '../redux/global/globalSlice';
+import { openModalLogout, openModalEditTransaction } from '../redux/global/globalSlice';
 import { useEffect } from 'react';
 
 const router = createBrowserRouter([
@@ -36,7 +38,6 @@ const router = createBrowserRouter([
     element: <RegistrationPage />,
   },
   {
-
     path: 'goit-wallet-grupa-03-frontend/',
     children: [
       {
@@ -95,10 +96,9 @@ const router = createBrowserRouter([
   },
 ]);
 
-
-
 const App = () => {
   const isModalAddTransactionOpen = useSelector(selectIsModalAddTransactionOpen);
+  const isModalEditTransactionOpen = useSelector(selectIsModalEditTransactionOpen);
   console.log('isModalOpen:', isModalAddTransactionOpen);
   const dispatch = useDispatch();
 
@@ -111,10 +111,12 @@ const App = () => {
     <div>
       <RouterProvider router={router} />
       <HomeTab />
+      <button onClick={() => dispatch(openModalEditTransaction())}>EditTransaction</button>
       <button onClick={handleOpenLogoutModal}>LogoutModal</button>
       <ButtonAddTransactions />
       <ModalLogout />
       {isModalAddTransactionOpen ? <ModalAddTransaction /> : null}
+      {isModalEditTransactionOpen ? <ModalEditTransaction id="223" /> : null}
     </div>
   );
 };

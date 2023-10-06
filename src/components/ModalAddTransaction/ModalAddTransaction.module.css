@@ -5,6 +5,22 @@
   background-color: var(--background-primary);
 }
 
+.validateError {
+  color: var(--color-brand-accent);
+  position: absolute;
+  top: 40px;
+  width: 100vw;
+  font-size: 14px;
+}
+
+.validateErrorCategory {
+  top: 45px;
+}
+.label {
+  position: relative;
+  width: 100%;
+}
+
 .modal {
   position: absolute;
   top: 0;
@@ -72,7 +88,7 @@
   font-size: 18px;
   font-family: Circe;
   font-weight: 400;
-  color: var(--background-gray);
+  color: var(--font-color-dark);
 }
 .formInput::placeholder {
   color: var(--background-gray);
@@ -83,19 +99,6 @@
   font-weight: 400;
   height: 5rem;
   vertical-align: top;
-}
-
-.datePicker {
-  position: relative;
-}
-
-.satePicker::before {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 40px;
-  height: 40px;
-  background-color: red;
 }
 
 .switch {
