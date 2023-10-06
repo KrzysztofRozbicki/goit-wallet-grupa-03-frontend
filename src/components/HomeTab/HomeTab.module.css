@@ -1,5 +1,50 @@
 @import '../../stylesheet/vars.css';
+@import '../../stylesheet/fonts.css';
 
-.wrapper {
+.table {
+  border-spacing: 0;
+  width: 715px;
+}
+
+.tableBody {
+  width: 715px;
+  height: 60vh;
+  overflow: scroll;
+}
+
+.tableBody::-webkit-scrollbar {
   display: none;
+}
+
+.tableHeader {
+  background-color: var(--background-light);
+  height: 58px;
+  text-align: left;
+}
+
+.item {
+  padding-left: 5px;
+  font-family: 'Circe';
+  font-weight: 700;
+}
+
+.sortedBy {
+  text-decoration: none;
+  color: var(--font-color-dark)
+}
+
+.itemFirst {
+  border-top-left-radius: 29px;
+  border-bottom-left-radius: 29px;
+  padding-left: 20px;
+}
+
+.itemLast {
+  border-top-right-radius: 29px;
+  border-bottom-right-radius: 29px;
+  width: 120px
+}
+
+.itemType {
+  width: 50px;
 }

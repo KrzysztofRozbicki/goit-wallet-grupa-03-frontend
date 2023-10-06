@@ -1,10 +1,13 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { selectIsModalAddTransactionOpen } from '../redux/global/selectors';
+
 import {
   selectIsModalAddTransactionOpen,
   selectIsModalLogoutOpen,
   selectIsModalEditTransactionOpen,
 } from '../redux/global/selectors';
+
 
 import '../stylesheet/fonts.css';
 
@@ -108,13 +111,20 @@ const App = () => {
     dispatch(openModalLogout());
   };
   return (
-    <div>
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'lightgray',
+      }}
+    >
       <RouterProvider router={router} />
       <HomeTab />
       <button onClick={() => dispatch(openModalEditTransaction())}>EditTransaction</button>
       <button onClick={handleOpenLogoutModal}>LogoutModal</button>
       <ButtonAddTransactions />
-      <ModalLogout />
+      {/* <button onClick={handleOpenLogoutModal}>LogoutModal</button> */}
+      {/* <ModalLogout /> */}
       {isModalAddTransactionOpen ? <ModalAddTransaction /> : null}
       {isModalEditTransactionOpen ? <ModalEditTransaction id="223" /> : null}
     </div>
