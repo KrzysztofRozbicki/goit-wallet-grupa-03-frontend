@@ -69,7 +69,7 @@
   color: var(--color-brand-primary);
 }
 .validateError {
-  color: red;
+  color: var(--color-brand-accent);
   position: absolute;
   top: 40px;
   width: 100vw;

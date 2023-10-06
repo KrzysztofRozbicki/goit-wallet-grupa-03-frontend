@@ -25,6 +25,9 @@ import passwordSVG from '../../assets/icons/lock.svg';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setError, setIsAuth, setUserName, setUserToken } from '../../redux/session/sessionSlice';
+import axios from 'axios';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required(''),
@@ -32,6 +35,30 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const handleSubmit = async (values, { setSubmitting }) => {
+    const dataToSend = values;
+    try {
+      const response = await axios.post(
+        'https://pocketbook-basket-clam.cyclic.app/api/users/login',
+        JSON.stringify(dataToSend),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      dispatch(setUserName(response.data.user.name));
+      dispatch(setUserToken(response.data.user.token));
+    } catch (error) {
+      dispatch(setError(error.response.data.message));
+      console.log('Error:', error.response.data.message);
+    } finally {
+      dispatch(setIsAuth(true));
+      setSubmitting(false);
+      console.log('sumbit');
+    }
+  };
   return (
     <>
       <Formik
@@ -40,12 +67,9 @@ const LoginForm = () => {
           password: '',
         }}
         validationSchema={LoginSchema}
-        onSubmit={async values => {
-          await new Promise(r => setTimeout(r, 500));
-          alert(JSON.stringify(values, null, 2));
-        }}
+        onSubmit={handleSubmit}
       >
-        {({ errors, touched, values }) => (
+        {({ errors, touched }) => (
           <div className={css.wrapper}>
             <Form className={css.form}>
               <div className={css.header}>
