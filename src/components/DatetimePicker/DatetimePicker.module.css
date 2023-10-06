@@ -1,0 +1,20 @@
+.formInput {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--color-switch-main);
+  padding-inline: 1.25rem;
+  padding-block: 0.5rem;
+  font-size: 18px;
+  font-family: Circe;
+  font-weight: 400;
+  color: var(--background-gray);
+}
+
+.formCalendar {
+  top: -1px;
+  background-image: url(../../assets/icons/calendar.svg);
+  background-repeat: no-repeat;
+  background-size: 18px;
+  background-position: right 20px center;
+  z-index: 1;
+}

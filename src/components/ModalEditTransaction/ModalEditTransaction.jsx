@@ -15,19 +15,19 @@
 
 import { useDispatch } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
-import moment from 'moment';
 import Select from 'react-select';
 import axios from 'axios';
 import * as Yup from 'yup';
 
-import { closeModalAddTransaction } from '../../redux/global/globalSlice';
-import { addTransaction } from '../../redux/finance/financeSlice';
+import { closeModalEditTransaction } from '../../redux/global/globalSlice';
+import { editTransaction } from '../../redux/finance/financeSlice';
 import { setError } from '../../redux/session/sessionSlice';
 import { categories } from '../../mock/categories';
-import selectStyles from './Select.styles.js';
+import mockTransactions from '../../mock/transactions';
+import selectStyles from '../ModalAddTransaction/Select.styles.js';
 import DatetimePicker from '../DatetimePicker/DatetimePicker';
 
-import css from './ModalAddTransaction.module.css';
+import css from '../ModalAddTransaction/ModalAddTransaction.module.css';
 
 const serverAddress = import.meta.env.VITE_SERVER_ADDRESS;
 
@@ -46,27 +46,41 @@ const TransactionSchema = Yup.object().shape({
   amount: Yup.number('').required('Please provide transaction value.'),
 });
 
-const ModalAddTransaction = () => {
+const getTransaction = (transactions, id) => {
+  const transaction = transactions.find(transaction => transaction.id === id);
+  const updateTransaction = { ...transaction };
+  updateTransaction.type === 'income'
+    ? (updateTransaction.type = true)
+    : (updateTransaction.type = false);
+  return updateTransaction;
+};
+
+const ModalEditTransaction = ({ id }) => {
   const dispatch = useDispatch();
+
+  const transaction = getTransaction(mockTransactions, id);
 
   const handleSubmit = async values => {
     setIsIncomeCategory(values);
     try {
       console.log(JSON.stringify(values));
-      const response = await axios.post(serverAddress, JSON.stringify(values), {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await axios.patch(
+        `${serverAddress}/api/transactions/${id}`,
+        JSON.stringify(values),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       // if (response.status === 200) {
-      //  dispatch(addTransaction(response.data));
+      //  dispatch(editTransaction(id, response.data));
       // }
-
       console.log(response);
     } catch (error) {
       dispatch(setError(error));
     }
-    dispatch(closeModalAddTransaction());
+    dispatch(closeModalEditTransaction());
   };
 
   return (
@@ -75,28 +89,21 @@ const ModalAddTransaction = () => {
         <div className={css.modal}>
           <button
             className={css.closeButton}
-            onClick={() => dispatch(closeModalAddTransaction())}
+            onClick={() => dispatch(closeModalEditTransaction())}
           />
           <Formik
             initialValues={{
-              isIncome: false,
-              category: null,
-              amount: '',
-              date: `${moment(new Date()).format('DD.MM.YYYY')}`,
-              comment: '',
+              ...transaction,
             }}
             validationSchema={TransactionSchema}
             onSubmit={values => handleSubmit(values)}
           >
             {({ errors, touched, values }) => (
               <Form className={css.form}>
-                <h2 className={css.formHeader}> Add transaction</h2>
+                <h2 className={css.formHeader}>Edit Transaction</h2>
                 <div className={css.switchBox}>
                   <p className={values.isIncome ? css.incomeSelected : null}> Income </p>
-                  <label className={css.switch}>
-                    <Field type="checkbox" name="isIncome" />
-                    <span className={css.slider}></span>
-                  </label>
+                  <p>/ </p>
                   <p className={!values.isIncome ? css.expenseSelected : null}> Expenses</p>
                 </div>
                 {!values.isIncome ? (
@@ -146,8 +153,8 @@ const ModalAddTransaction = () => {
                       name="amount"
                       placeholder="0.00"
                     />
-                    {errors.amount && touched.amount ? (
-                      <div className={css.validateError}>{errors.amount}</div>
+                    {errors.value && touched.value ? (
+                      <div className={css.validateError}>{errors.value}</div>
                     ) : null}
                   </label>
                 </div>
@@ -161,7 +168,7 @@ const ModalAddTransaction = () => {
                   ADD
                 </button>
                 <button
-                  onClick={() => dispatch(closeModalAddTransaction())}
+                  onClick={() => dispatch(closeModalEditTransaction())}
                   className={`${css.button} ${css.buttonCancel}`}
                 >
                   CANCEL
@@ -175,4 +182,4 @@ const ModalAddTransaction = () => {
   );
 };
 
-export default ModalAddTransaction;
+export default ModalEditTransaction;

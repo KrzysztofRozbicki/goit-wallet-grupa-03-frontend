@@ -33,7 +33,11 @@
   padding-left: 10.5px;
   padding-bottom: 8px;
 }
-
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
 .input {
   border: none;
 }
@@ -62,7 +66,13 @@
   border: 1px solid var(--color-brand-primary);
   color: var(--color-brand-primary);
 }
-
+.validateError {
+  color: red;
+  position: absolute;
+  top: 40px;
+  width: 100vw;
+  font-size: 14px;
+}
 @media screen and (min-width: 768px) {
   .wrapper {
     margin-top: 50px;

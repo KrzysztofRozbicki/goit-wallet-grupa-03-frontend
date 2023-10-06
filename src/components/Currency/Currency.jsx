@@ -6,7 +6,7 @@ import axios from 'axios';
 
 function CurrencyTable() {
   const [exchangeRates, setExchangeRates] = useState({});
-  const selectedCurrencies = ['USD', 'PLN'];
+  const selectedCurrencies = ['GBP', 'USD', 'PLN'];
   const apiKey = import.meta.env.VITE_CURRENCY_API_KEY;
   const spread = 0.02;
 
@@ -30,26 +30,26 @@ function CurrencyTable() {
   };
 
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Currency</th>
-            <th>Buy</th>
-            <th>Sell</th>
-          </tr>
-        </thead>
-        <tbody>
-          {selectedCurrencies.map((currency) => (
-            <tr key={currency}>
-              <td>{currency}</td>
-              <td>{parseFloat(exchangeRates[currency]).toFixed(2)}</td>
-              <td>{calculateSellRate(exchangeRates[currency])}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+
+    <div className={css.table}>
+      <div className={css.header}>
+        <div>Currency</div>
+        <div>Buy</div>
+        <div>Sell</div>
+      </div>
+
+      <div className={css.currencyContainer} >
+        {selectedCurrencies.map((currency) => (
+          <div key={currency} className={css.currency}>
+            <div>{currency}</div>
+            <div className={css.buyValue}>{parseFloat(exchangeRates[currency]).toFixed(2)}</div>
+            <div className={css.sellValue}>{calculateSellRate(exchangeRates[currency])}</div>
+          </div>
+        ))}
+      </div>
+
     </div>
+
   );
 }
 

@@ -1,9 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { setTotalBalanceAction, setDataAction } from './operations';
+import {
+  setTotalBalanceAction,
+  setDataAction,
+  addTransactionAction,
+  editTransactionAction,
+} from './operations';
 
 const initialState = {
-  totalBalance: 0,
+  totalBalance: '',
   data: [],
 };
 
@@ -13,12 +18,15 @@ const financeSlice = createSlice({
   reducers: {
     setTotalBalance: setTotalBalanceAction,
     setData: setDataAction,
+    addTransaction: addTransactionAction,
+    editTransaction: editTransactionAction,
     resetFinance: () => {
       return { ...initialState };
     },
   },
 });
 
-export const { setTotalBalance, setData, resetFinance } = financeSlice.actions;
+export const { setTotalBalance, setData, resetFinance, addTransaction, editTransaction } =
+  financeSlice.actions;
 
 export const financeReducer = financeSlice.reducer;

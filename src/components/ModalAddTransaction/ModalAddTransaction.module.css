@@ -5,6 +5,22 @@
   background-color: var(--background-primary);
 }
 
+.validateError {
+  color: var(--color-brand-accent);
+  position: absolute;
+  top: 40px;
+  width: 100vw;
+  font-size: 14px;
+}
+
+.validateErrorCategory {
+  top: 45px;
+}
+.label {
+  position: relative;
+  width: 100%;
+}
+
 .modal {
   position: absolute;
   top: 0;
@@ -19,10 +35,7 @@
 }
 
 .closeButton {
-  position: absolute;
   display: none;
-  top: 0;
-  right: 0;
 }
 
 .form {
@@ -33,6 +46,10 @@
   padding: 20px;
   width: 100%;
   max-width: 400px;
+}
+
+.form::-webkit-scrollbar {
+  display: none;
 }
 
 .formHeader {
@@ -67,7 +84,8 @@
   padding-block: 0.5rem;
   font-size: 18px;
   font-family: Circe;
-  font-weight: Bold;
+  font-weight: 400;
+  color: var(--font-color-dark);
 }
 .formInput::placeholder {
   color: var(--background-gray);
@@ -76,21 +94,9 @@
   display: block;
   position: relative;
   font-weight: 400;
-  height: 5.25rem;
-  vertical-align: top;
-}
+  height: 5rem;
 
-.datePicker {
-  position: relative;
-}
-
-.satePicker::before {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 40px;
-  height: 40px;
-  background-color: red;
+  resize: none;
 }
 
 .switch {
@@ -189,10 +195,80 @@
   box-shadow: 0px 6px 15px 0px #4a56e260;
 }
 
-.formCalendar {
-  background-image: url(../../assets/icons/calendar.svg);
-  background-repeat: no-repeat;
-  background-size: 20px;
-  background-position: right 20px center;
-  z-index: -1;
+.formOption {
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.formSelect {
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.formOption:hover {
+  cursor: pointer;
+}
+.valueAndDateContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+select {
+  background-color: transparent;
+  --webkit-appearance: none;
+}
+@media screen and (min-width: 768px) {
+  .backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-overlay-modal);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal {
+    position: relative;
+    height: auto;
+    width: 540px;
+    border-radius: 20px;
+  }
+  .form {
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+
+  .valueAndDateContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+    flex-direction: row-reverse;
+  }
+  .closeButton {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 1rem;
+    height: 1rem;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    background-image: url('../../assets/icons/close.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .closeButton:hover {
+    cursor: pointer;
+  }
 }
