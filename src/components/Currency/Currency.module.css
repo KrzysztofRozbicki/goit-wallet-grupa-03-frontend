@@ -25,7 +25,7 @@
 }
 
 .currencyContainer {
-  background-image: url(/dist/assets/currencyBg.svg);
+  background-image: url(/src/assets/icons/currencyBg.svg);
   background-repeat: no-repeat;
   background-color: #4A56E2;
   border-radius: 0 0 30px 30px;
