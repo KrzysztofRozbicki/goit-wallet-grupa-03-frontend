@@ -5,6 +5,22 @@
   background-color: var(--background-primary);
 }
 
+.validateError {
+  color: var(--color-brand-accent);
+  position: absolute;
+  top: 40px;
+  width: 100vw;
+  font-size: 14px;
+}
+
+.validateErrorCategory {
+  top: 45px;
+}
+.label {
+  position: relative;
+  width: 100%;
+}
+
 .modal {
   position: absolute;
   top: 0;
@@ -33,6 +49,10 @@
   padding: 20px;
   width: 100%;
   max-width: 400px;
+}
+
+.form::-webkit-scrollbar {
+  display: none;
 }
 
 .formHeader {
@@ -67,7 +87,8 @@
   padding-block: 0.5rem;
   font-size: 18px;
   font-family: Circe;
-  font-weight: Bold;
+  font-weight: 400;
+  color: var(--font-color-dark);
 }
 .formInput::placeholder {
   color: var(--background-gray);
@@ -76,21 +97,8 @@
   display: block;
   position: relative;
   font-weight: 400;
-  height: 5.25rem;
+  height: 5rem;
   vertical-align: top;
-}
-
-.datePicker {
-  position: relative;
-}
-
-.satePicker::before {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 40px;
-  height: 40px;
-  background-color: red;
 }
 
 .switch {
@@ -189,10 +197,21 @@
   box-shadow: 0px 6px 15px 0px #4a56e260;
 }
 
-.formCalendar {
-  background-image: url(../../assets/icons/calendar.svg);
-  background-repeat: no-repeat;
-  background-size: 20px;
-  background-position: right 20px center;
-  z-index: -1;
+.formOption {
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.formSelect {
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.formOption:hover {
+  cursor: pointer;
+}
+
+select {
+  background-color: transparent;
+  --webkit-appearance: none;
 }

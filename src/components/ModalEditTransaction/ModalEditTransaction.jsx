@@ -23,31 +23,23 @@ import * as Yup from 'yup';
 import { closeModalAddTransaction } from '../../redux/global/globalSlice';
 import { setError } from '../../redux/session/sessionSlice';
 import { categories } from '../../mock/categories';
-import selectStyles from './Select.styles.js';
+import selectStyles from '../ModalAddTransaction/Select.styles.js';
 import DatetimePicker from '../DatetimePicker/DatetimePicker';
 
-import css from './ModalAddTransaction.module.css';
+import css from '../ModalAddTransaction/ModalAddTransaction.module.css';
 
 const serverAddress = import.meta.env.VITE_SERVER_ADDRESS;
 
 const setTypeAndCategory = values => {
   values.type = values.type ? 'income' : 'expense';
-  if (!values.category) {
-    values.category = 'Income';
-  }
 };
 
 const TransactionSchema = Yup.object().shape({
-  // category: Yup.string('').required('Please select category'),
-  category: Yup.mixed().when('type', {
-    is: type => !type,
-    then: () => Yup.mixed().required('Please choose transaction category.'),
-    otherwise: () => Yup.mixed().notRequired(),
-  }),
-  amount: Yup.number('').required('Please provide transaction value.'),
+  category: Yup.string('').required('Please select category'),
+  value: Yup.number('').required('Please provide transaction value.'),
 });
 
-const ModalAddTransaction = () => {
+const ModalEditTransaction = ({ id }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = async values => {
@@ -75,8 +67,8 @@ const ModalAddTransaction = () => {
         <Formik
           initialValues={{
             type: false,
-            category: null,
-            amount: '',
+            category: 'Income',
+            value: '',
             date: `${moment(new Date()).format('DD.MM.YYYY')}`,
             comment: '',
           }}
@@ -127,9 +119,9 @@ const ModalAddTransaction = () => {
 
               <DatetimePicker dateFormat="DD.MM.YYYY" name="date" type="date" timeFormat={false} />
               <label className={css.label}>
-                <Field className={css.formInput} type="number" name="amount" placeholder="0.00" />
-                {errors.amount && touched.amount ? (
-                  <div className={css.validateError}>{errors.amount}</div>
+                <Field className={css.formInput} type="number" name="value" placeholder="0.00" />
+                {errors.value && touched.value ? (
+                  <div className={css.validateError}>{errors.value}</div>
                 ) : null}
               </label>
               <Field
@@ -155,4 +147,4 @@ const ModalAddTransaction = () => {
   );
 };
 
-export default ModalAddTransaction;
+export default ModalEditTransaction;

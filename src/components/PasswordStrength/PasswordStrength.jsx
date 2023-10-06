@@ -12,19 +12,19 @@ const PasswordStrength = props => {
     {
       id: 1,
       value: 'Weak',
-      minDiversity: 2,
+      minDiversity: 1,
       minLength: 6,
     },
     {
       id: 2,
       value: 'Medium',
-      minDiversity: 3,
+      minDiversity: 2,
       minLength: 8,
     },
     {
       id: 3,
       value: 'Strong',
-      minDiversity: 4,
+      minDiversity: 3,
       minLength: 12,
     },
   ]).value;
@@ -41,11 +41,7 @@ const PasswordStrength = props => {
     progress = 100;
   }
 
-  return (
-    // <div className={css.wrapper}>
-    <progress className={css.strengthBar} value={progress} max="100" />
-    // </div>
-  );
+  return <progress className={css.strengthBar} value={progress} max="100" />;
 };
 
 export default PasswordStrength;
