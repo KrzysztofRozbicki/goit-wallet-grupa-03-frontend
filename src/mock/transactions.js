@@ -10,11 +10,12 @@ export const mockTransactions = [
   },
   {
     id: 'sda144',
+    type: 'expense',
     owner: '12233', //john
     date: '2023-10-01',
     category: 'Self care',
     comment: 'spa visit',
-    amount: '-200',
+    amount: '200',
   },
   {
     id: 'sdawe1543',

@@ -1,6 +1,11 @@
 @import '../../stylesheet/vars.css';
-.test {
-  width: 100px;
-  height: 100px;
-  background-color: var(--background-primary);
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.navBtn.active {
+  fill: #4A56E2;
 }

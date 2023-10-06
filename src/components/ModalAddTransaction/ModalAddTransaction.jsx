@@ -32,11 +32,18 @@ const serverAddress = import.meta.env.VITE_SERVER_ADDRESS;
 
 const setTypeAndCategory = values => {
   values.type = values.type ? 'income' : 'expense';
+  if (!values.category) {
+    values.category = 'Income';
+  }
 };
 
 const TransactionSchema = Yup.object().shape({
-  category: Yup.string('').required('Please select category'),
-  value: Yup.number('').required('Please provide transaction value.'),
+  category: Yup.mixed().when('type', {
+    is: type => !type,
+    then: () => Yup.mixed().required('Please choose transaction category.'),
+    otherwise: () => Yup.mixed().notRequired(),
+  }),
+  amount: Yup.number('').required('Please provide transaction value.'),
 });
 
 const ModalAddTransaction = () => {
@@ -67,7 +74,7 @@ const ModalAddTransaction = () => {
         <Formik
           initialValues={{
             type: false,
-            category: '',
+            category: null,
             amount: '',
             date: `${moment(new Date()).format('DD.MM.YYYY')}`,
             comment: '',
@@ -120,8 +127,8 @@ const ModalAddTransaction = () => {
               <DatetimePicker dateFormat="DD.MM.YYYY" name="date" type="date" timeFormat={false} />
               <label className={css.label}>
                 <Field className={css.formInput} type="number" name="amount" placeholder="0.00" />
-                {errors.value && touched.value ? (
-                  <div className={css.validateError}>{errors.value}</div>
+                {errors.amount && touched.amount ? (
+                  <div className={css.validateError}>{errors.amount}</div>
                 ) : null}
               </label>
               <Field

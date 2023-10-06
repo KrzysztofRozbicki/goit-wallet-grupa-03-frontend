@@ -15,7 +15,6 @@
 
 import { useDispatch } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
-import moment from 'moment';
 import Select from 'react-select';
 import axios from 'axios';
 import * as Yup from 'yup';
@@ -36,25 +35,27 @@ const setTypeAndCategory = values => {
 };
 
 const TransactionSchema = Yup.object().shape({
-  category: Yup.string('').required('Please select category'),
-  value: Yup.number('').required('Please provide transaction value.'),
+  category: Yup.mixed().when('type', {
+    is: type => !type,
+    then: () => Yup.mixed().required('Please choose transaction category.'),
+    otherwise: () => Yup.mixed().notRequired(),
+  }),
+  amount: Yup.number('').required('Please provide transaction value.'),
 });
 
 const getTransaction = (transactions, id) => {
   const transaction = transactions.find(transaction => transaction.id === id);
-  if (transaction.type === 'income') {
-    transaction.type = true;
-  } else {
-    transaction.type = false;
-  }
-  return transaction;
+  const updateTransaction = { ...transaction };
+  updateTransaction.type === 'income'
+    ? (updateTransaction.type = true)
+    : (updateTransaction.type = false);
+  return updateTransaction;
 };
 
 const ModalEditTransaction = ({ id }) => {
   const dispatch = useDispatch();
 
   const transaction = getTransaction(mockTransactions, id);
-  console.log(transaction);
 
   const handleSubmit = async values => {
     setTypeAndCategory(values);
@@ -85,11 +86,6 @@ const ModalEditTransaction = ({ id }) => {
         <Formik
           initialValues={{
             ...transaction,
-            // type: false,
-            // category: 'Income',
-            // value: '',
-            // date: `${moment(new Date()).format('DD.MM.YYYY')}`,
-            // comment: '',
           }}
           validationSchema={TransactionSchema}
           onSubmit={values => handleSubmit(values)}
@@ -99,10 +95,11 @@ const ModalEditTransaction = ({ id }) => {
               <h2 className={css.formHeader}>Edit Transaction</h2>
               <div className={css.switchBox}>
                 <p className={values.type ? css.incomeSelected : null}> Income </p>
-                <label className={css.switch}>
+                <p>/ </p>
+                {/* <label className={css.switch}>
                   <Field type="checkbox" name="type" />
                   <span className={css.slider}></span>
-                </label>
+                </label> */}
                 <p className={!values.type ? css.expenseSelected : null}> Expenses</p>
               </div>
               {!values.type ? (
@@ -138,7 +135,7 @@ const ModalEditTransaction = ({ id }) => {
 
               <DatetimePicker dateFormat="DD.MM.YYYY" name="date" type="date" timeFormat={false} />
               <label className={css.label}>
-                <Field className={css.formInput} type="number" name="value" placeholder="0.00" />
+                <Field className={css.formInput} type="number" name="amount" placeholder="0.00" />
                 {errors.value && touched.value ? (
                   <div className={css.validateError}>{errors.value}</div>
                 ) : null}
