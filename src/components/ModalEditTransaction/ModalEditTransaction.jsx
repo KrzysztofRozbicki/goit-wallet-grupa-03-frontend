@@ -26,7 +26,7 @@ import { categories } from '../../mock/categories';
 import selectStyles from './Select.styles.js';
 import DatetimePicker from '../DatetimePicker/DatetimePicker';
 
-import css from './ModalAddTransaction.module.css';
+import css from '../ModalAddTransaction/ModalAddTransaction.module.css';
 
 const serverAddress = import.meta.env.VITE_SERVER_ADDRESS;
 
@@ -39,7 +39,7 @@ const TransactionSchema = Yup.object().shape({
   value: Yup.number('').required('Please provide transaction value.'),
 });
 
-const ModalAddTransaction = () => {
+const ModalEditTransaction = ({ id }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = async values => {
@@ -147,4 +147,4 @@ const ModalAddTransaction = () => {
   );
 };
 
-export default ModalAddTransaction;
+export default ModalEditTransaction;
