@@ -1,0 +1,92 @@
+@import '../../../stylesheet/vars.css';
+@import '../../../stylesheet/fonts.css';
+
+.table {
+  border-spacing: 0;
+  margin-bottom: 8px;
+  width: 280px;
+}
+
+.item {
+  padding: 0 20px 0 8px;
+  font-family: 'Circe';
+  font-weight: 700;
+  font-size: 18px;
+  border-bottom: 1px solid var(--border-transactions);
+}
+
+.itemIncome {
+  border-left: 5px solid var(--color-brand-secondary);
+}
+
+.itemExpense {
+  border-left: 5px solid var(--color-brand-accent);
+}
+
+.firstItem {
+  border-top-left-radius: 10px;
+}
+
+.lastItem {
+  border-bottom-left-radius: 10px;
+  border-bottom: 0;
+}
+
+.data {
+  text-align: right;
+  font-family: 'Circe';
+  font-weight: 400;
+  border-bottom: 1px solid var(--border-transactions);
+  padding-right: 20px;
+}
+
+.dataIncome {
+  font-weight: 700;
+  color: var(--color-brand-secondary)
+}
+
+.dataExpense {
+  font-weight: 700;
+  color: var(--color-brand-accent)
+}
+
+.firstData {
+  border-top-right-radius: 10px;
+}
+
+.lastData {
+  border-bottom-right-radius: 10px;
+  border-bottom: 0;
+}
+
+.row {
+  background-color: var(--background-light);
+  height: 46px;
+}
+
+.editButton {
+  background-color: transparent;
+  border: 0;
+  transition: color 0.3s ease;
+}
+
+.deleteButton {
+  background-color: var(--color-brand-secondary);
+  border: 0;
+  border-radius: 18px;
+  padding: 4px 12px 4px 12px;
+  color: var(--font-color-light);
+  transition: background-color 0.7s ease;
+}
+
+.deleteButton:hover {
+  background-color: var(--nav-color-active);
+  cursor: pointer;
+  transition: background-color 0.7s ease;
+}
+
+.editButton:hover {
+  cursor: pointer;
+  color: var(--nav-color-active);
+  transition: color 0.3s ease;
+}
