@@ -126,7 +126,7 @@ const App = () => {
       {/* <button onClick={handleOpenLogoutModal}>LogoutModal</button> */}
       {/* <ModalLogout /> */}
       {isModalAddTransactionOpen ? <ModalAddTransaction /> : null}
-      {isModalEditTransactionOpen ? <ModalEditTransaction id="223" /> : null}
+      {isModalEditTransactionOpen ? <ModalEditTransaction id="sda123" /> : null}
     </div>
   );
 };

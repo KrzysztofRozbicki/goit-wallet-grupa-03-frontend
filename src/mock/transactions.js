@@ -1,6 +1,7 @@
 export default [
   {
     id: 'sda123',
+    isIncome: true,
     owner: '12233', //john
     date: '2023-10-02',
     type: '+',
@@ -10,6 +11,7 @@ export default [
   },
   {
     id: 'sda144',
+    isIncome: false,
     owner: '12233', //john
     date: '2023-10-03',
     type: '-',
