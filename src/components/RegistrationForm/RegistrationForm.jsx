@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import PasswordStrength from '../PasswordStrength/PasswordStrength';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { setIsAuth, setUserName, setUserToken } from '../../redux/session/sessionSlice';
+import { setError, setIsAuth, setUserName, setUserToken } from '../../redux/session/sessionSlice';
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string()
@@ -49,7 +49,7 @@ const RegistrationForm = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:3000/api/users/register',
+        'https://pocketbook-basket-clam.cyclic.app/api/users/register',
         JSON.stringify(dataToSend),
         {
           headers: {
