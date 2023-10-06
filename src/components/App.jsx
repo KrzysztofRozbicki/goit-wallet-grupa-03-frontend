@@ -1,13 +1,11 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsModalAddTransactionOpen } from '../redux/global/selectors';
 
 import {
   selectIsModalAddTransactionOpen,
   selectIsModalLogoutOpen,
   selectIsModalEditTransactionOpen,
 } from '../redux/global/selectors';
-
 
 import '../stylesheet/fonts.css';
 
@@ -28,6 +26,7 @@ import CurrencyTable from './Currency/Currency';
 import ModalLogout from './ModalLogout/ModalLogout';
 import Navigation from './Navigation/Navigation';
 import Table from './Table/Table';
+import Container from './Container/Container';
 import { openModalLogout, openModalEditTransaction } from '../redux/global/globalSlice';
 import { useEffect } from 'react';
 
@@ -42,9 +41,10 @@ const router = createBrowserRouter([
   },
   {
     path: 'goit-wallet-grupa-03-frontend/',
+    element: <Container />,
     children: [
       {
-        path: '',
+        path: 'home',
         element: <HomeTab />,
       },
       {
@@ -97,6 +97,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '*',
+    element: <Navigate to="goit-wallet-grupa-03-frontend/login" />,
+  },
 ]);
 
 const App = () => {
@@ -119,14 +123,14 @@ const App = () => {
       }}
     >
       <RouterProvider router={router} />
-      <HomeTab />
+      {/* <HomeTab />
       <button onClick={() => dispatch(openModalEditTransaction())}>EditTransaction</button>
       <button onClick={handleOpenLogoutModal}>LogoutModal</button>
       <ButtonAddTransactions />
       {/* <button onClick={handleOpenLogoutModal}>LogoutModal</button> */}
       {/* <ModalLogout /> */}
       {isModalAddTransactionOpen ? <ModalAddTransaction /> : null}
-      {isModalEditTransactionOpen ? <ModalEditTransaction id="sda123" /> : null}
+      {isModalEditTransactionOpen ? <ModalEditTransaction id="223" /> : null}
     </div>
   );
 };

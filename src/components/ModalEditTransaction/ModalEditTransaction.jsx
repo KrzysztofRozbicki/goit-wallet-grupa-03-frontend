@@ -23,7 +23,7 @@ import { closeModalEditTransaction } from '../../redux/global/globalSlice';
 import { editTransaction } from '../../redux/finance/financeSlice';
 import { setError } from '../../redux/session/sessionSlice';
 import { categories } from '../../mock/categories';
-import { mockTransactions } from '../../mock/transactions';
+import mockTransactions from '../../mock/transactions';
 import selectStyles from '../ModalAddTransaction/Select.styles.js';
 import DatetimePicker from '../DatetimePicker/DatetimePicker';
 
