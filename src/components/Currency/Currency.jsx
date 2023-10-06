@@ -41,7 +41,7 @@ function CurrencyTable() {
       <div className={css.currencyContainer} >
         {selectedCurrencies.map((currency) => (
           <div key={currency} className={css.currency}>
-            <div>{currency}</div>
+            <div>EUR/{currency}</div>
             <div className={css.buyValue}>{parseFloat(exchangeRates[currency]).toFixed(2)}</div>
             <div className={css.sellValue}>{calculateSellRate(exchangeRates[currency])}</div>
           </div>
