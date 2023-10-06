@@ -1,6 +1,25 @@
 @import '../../stylesheet/vars.css';
-.test {
-  width: 100px;
-  height: 100px;
-  background-color: var(--background-primary);
+
+.chartContainer {
+  position: relative;
+  background-color: inherit;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.chartHeader {
+ font-family: Poppins;
+ font-size: 1.875rem;
+ font-weight: 400;
+}
+
+.balance {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  font-family: Circe;
+  font-size: 1.125rem;
+  font-weight: 700;
 }
