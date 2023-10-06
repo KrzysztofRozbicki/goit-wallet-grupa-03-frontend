@@ -11,6 +11,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-regular-svg-icons": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@ionic/cli": "^7.1.1",
     "@mui/material": "^5.14.11",
     "@mui/styled-engine-sc": "^5.14.11",
@@ -18,6 +22,7 @@
     "apexcharts": "^3.43.0",
     "axios": "^1.5.1",
     "check-password-strength": "^2.0.7",
+    "classnames": "^2.3.2",
     "formik": "^2.4.5",
     "moment": "^2.29.4",
     "react": "^18.2.0",

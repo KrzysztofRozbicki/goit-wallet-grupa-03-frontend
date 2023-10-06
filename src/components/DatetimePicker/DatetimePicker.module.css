@@ -11,9 +11,10 @@
 }
 
 .formCalendar {
+  top: -1px;
   background-image: url(../../assets/icons/calendar.svg);
   background-repeat: no-repeat;
-  background-size: 20px;
+  background-size: 18px;
   background-position: right 20px center;
   z-index: 1;
 }

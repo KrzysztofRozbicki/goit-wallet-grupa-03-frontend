@@ -3,12 +3,16 @@ import Header from '../Header/Header';
 
 import { Outlet } from 'react-router-dom';
 
+import css from './Container.module.css';
+
 export const Container = () => {
   return (
     <>
       <Header />
-      <DashboardPage />
-      <Outlet />
+      <div className={css.wrapper}>
+        <DashboardPage />
+        <Outlet />
+      </div>
     </>
   );
 };
