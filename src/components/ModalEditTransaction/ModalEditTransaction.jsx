@@ -23,7 +23,7 @@ import * as Yup from 'yup';
 import { closeModalAddTransaction } from '../../redux/global/globalSlice';
 import { setError } from '../../redux/session/sessionSlice';
 import { categories } from '../../mock/categories';
-import selectStyles from './Select.styles.js';
+import selectStyles from '../ModalAddTransaction/Select.styles.js';
 import DatetimePicker from '../DatetimePicker/DatetimePicker';
 
 import css from '../ModalAddTransaction/ModalAddTransaction.module.css';
