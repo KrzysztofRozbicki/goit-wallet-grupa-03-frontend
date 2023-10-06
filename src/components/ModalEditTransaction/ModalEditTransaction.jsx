@@ -20,10 +20,11 @@ import Select from 'react-select';
 import axios from 'axios';
 import * as Yup from 'yup';
 
-import { closeModalAddTransaction } from '../../redux/global/globalSlice';
+import { closeModalEditTransaction } from '../../redux/global/globalSlice';
 import { setError } from '../../redux/session/sessionSlice';
 import { categories } from '../../mock/categories';
-import selectStyles from './Select.styles.js';
+import { mockTransactions } from '../../mock/transactions';
+import selectStyles from '../ModalAddTransaction/Select.styles.js';
 import DatetimePicker from '../DatetimePicker/DatetimePicker';
 
 import css from '../ModalAddTransaction/ModalAddTransaction.module.css';
@@ -39,45 +40,63 @@ const TransactionSchema = Yup.object().shape({
   value: Yup.number('').required('Please provide transaction value.'),
 });
 
+const getTransaction = (transactions, id) => {
+  const transaction = transactions.find(transaction => transaction.id === id);
+  if (transaction.type === 'income') {
+    transaction.type = true;
+  } else {
+    transaction.type = false;
+  }
+  return transaction;
+};
+
 const ModalEditTransaction = ({ id }) => {
   const dispatch = useDispatch();
+
+  const transaction = getTransaction(mockTransactions, id);
+  console.log(transaction);
 
   const handleSubmit = async values => {
     setTypeAndCategory(values);
     try {
       console.log(JSON.stringify(values));
-      const response = await axios.post(serverAddress, JSON.stringify(values), {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await axios.patch(
+        `${serverAddress}/api/transactions/${id}`,
+        JSON.stringify(values),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       console.log(response);
     } catch (error) {
       dispatch(setError(error));
     }
-    dispatch(closeModalAddTransaction());
+    dispatch(closeModalEditTransaction());
   };
 
   return (
     <>
       <div className={css.modal}>
-        <button className={css.closeButton} onClick={() => dispatch(closeModalAddTransaction())}>
+        <button className={css.closeButton} onClick={() => dispatch(closeModalEditTransaction())}>
           X
         </button>
         <Formik
           initialValues={{
-            type: false,
-            category: 'Income',
-            value: '',
-            date: `${moment(new Date()).format('DD.MM.YYYY')}`,
-            comment: '',
+            ...transaction,
+            // type: false,
+            // category: 'Income',
+            // value: '',
+            // date: `${moment(new Date()).format('DD.MM.YYYY')}`,
+            // comment: '',
           }}
           validationSchema={TransactionSchema}
           onSubmit={values => handleSubmit(values)}
         >
           {({ errors, touched, values }) => (
             <Form className={css.form}>
-              <h2 className={css.formHeader}> Add transaction</h2>
+              <h2 className={css.formHeader}>Edit Transaction</h2>
               <div className={css.switchBox}>
                 <p className={values.type ? css.incomeSelected : null}> Income </p>
                 <label className={css.switch}>
@@ -134,7 +153,7 @@ const ModalEditTransaction = ({ id }) => {
                 ADD
               </button>
               <button
-                onClick={() => dispatch(closeModalAddTransaction())}
+                onClick={() => dispatch(closeModalEditTransaction())}
                 className={`${css.button} ${css.buttonCancel}`}
               >
                 CANCEL

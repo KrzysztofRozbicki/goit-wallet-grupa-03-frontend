@@ -67,8 +67,8 @@ const ModalAddTransaction = () => {
         <Formik
           initialValues={{
             type: false,
-            category: 'Income',
-            value: '',
+            category: '',
+            amount: '',
             date: `${moment(new Date()).format('DD.MM.YYYY')}`,
             comment: '',
           }}
@@ -119,7 +119,7 @@ const ModalAddTransaction = () => {
 
               <DatetimePicker dateFormat="DD.MM.YYYY" name="date" type="date" timeFormat={false} />
               <label className={css.label}>
-                <Field className={css.formInput} type="number" name="value" placeholder="0.00" />
+                <Field className={css.formInput} type="number" name="amount" placeholder="0.00" />
                 {errors.value && touched.value ? (
                   <div className={css.validateError}>{errors.value}</div>
                 ) : null}

@@ -1,6 +1,7 @@
 export const mockTransactions = [
   {
     id: 'sda123',
+    type: 'income',
     owner: '12233', //john
     date: '2023-10-02',
     category: 'Income',
