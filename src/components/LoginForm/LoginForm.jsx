@@ -26,8 +26,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setError, setIsAuth, setUserName, setUserToken } from '../../redux/session/sessionSlice';
-import axios from 'axios';
+import { logIn } from '../../redux/session/operations';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required(''),
@@ -36,28 +35,10 @@ const LoginSchema = Yup.object().shape({
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const handleSubmit = async (values, { setSubmitting }) => {
-    const dataToSend = values;
-    try {
-      const response = await axios.post(
-        'https://pocketbook-basket-clam.cyclic.app/api/users/login',
-        JSON.stringify(dataToSend),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      dispatch(setUserName(response.data.user.name));
-      dispatch(setUserToken(response.data.user.token));
-    } catch (error) {
-      dispatch(setError(error.response.data.message));
-      console.log('Error:', error.response.data.message);
-    } finally {
-      dispatch(setIsAuth(true));
-      setSubmitting(false);
-      console.log('sumbit');
-    }
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    dispatch(logIn(values));
+    setSubmitting(false);
+    resetForm();
   };
   return (
     <>
@@ -99,7 +80,7 @@ const LoginForm = () => {
                   ) : null}
                 </div>
               </label>
-              <button type="sumbit" className={css.loginButton}>
+              <button type="submit" className={css.loginButton}>
                 Login
               </button>
               <Link to="/goit-wallet-grupa-03-frontend/register">

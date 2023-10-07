@@ -7,9 +7,8 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import PasswordStrength from '../PasswordStrength/PasswordStrength';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { setError, setIsAuth, setUserName, setUserToken } from '../../redux/session/sessionSlice';
+import { register } from '../../redux/session/operations';
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string()
@@ -41,32 +40,15 @@ const RegistrationForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    const { confirmPassword, firstName, ...requestData } = values;
+    const { firstName, password, email } = values;
     const dataToSend = {
-      ...requestData,
+      email,
+      password,
       name: firstName,
     };
-
-    try {
-      const response = await axios.post(
-        'https://pocketbook-basket-clam.cyclic.app/api/users/register',
-        JSON.stringify(dataToSend),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      dispatch(setUserName(response.data.user.name));
-      dispatch(setUserToken(response.data.user.token));
-    } catch (error) {
-      dispatch(setError(error.response.data.message));
-      console.log('Error:', error.response.data.message);
-    } finally {
-      dispatch(setIsAuth(true));
-      setSubmitting(false);
-      resetForm();
-    }
+    dispatch(register(dataToSend));
+    setSubmitting(false);
+    resetForm();
   };
   return (
     <>

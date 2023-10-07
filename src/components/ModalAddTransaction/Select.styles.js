@@ -33,6 +33,10 @@ export const selectStyles = {
     paddingInline: '20px',
     paddingBlock: '11px',
     overflow: 'hidden',
+    '&:hover': {
+      backgroundColor: 'rgb(255, 255, 255)',
+      color: '#ff6596',
+    },
   }),
   indicatorSeparator: () => ({
     display: 'none',
