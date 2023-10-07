@@ -1,14 +1,16 @@
 @import '../../stylesheet/vars.css';
 
 .container {
-  background-color: lightblue;
+  background-color: var(--background-light);
   margin: 0 auto;
   width: fit-content;
   border-radius: 30px;
+  width: 280px;
 }
 
 .container h2 {
   color: #A6A6A6;
+  font-family: 'Circe';
   font-weight: 400;
   font-size: 12px;
   line-height: 17.69px;
@@ -18,9 +20,9 @@
 }
 
 .container div {
-  color: #000000;
+  color: var(--font-color-dark);
   font-weight: 700;
   font-size: 30px;
-  line-height: 45px;
+  line-height: 17.69px;
   padding: 12px 73px 12px 32px
 }

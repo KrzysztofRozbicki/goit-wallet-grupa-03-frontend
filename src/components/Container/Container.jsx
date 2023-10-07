@@ -10,7 +10,9 @@ export const Container = () => {
     <>
       <Header />
       <div className={css.wrapper}>
-        <DashboardPage />
+        <div className={css.dashBoardWrapper}>
+          <DashboardPage />
+        </div>
         <Outlet />
       </div>
     </>

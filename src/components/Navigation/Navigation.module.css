@@ -3,9 +3,72 @@
 .nav {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 15px 32px;
+  width: 280px;
+  margin: 0 auto;
+
 }
 
-.navBtn.active {
-  fill: #4A56E2;
+.navBtn {
+  fill: var(--nav-color-inactive);
+  text-decoration: none;
+  color: var(--font-color-dark);
+  font-family: 'Poppins';
+  font-weight: 400;
+  font-size: 18px;
+
+
+}
+
+.active {
+  fill: var(--nav-color-active);
+  text-decoration: none;
+  font-family: 'Poppins';
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--font-color-dark);
+}
+
+.use {
+  border-radius: 50px 50px;
+}
+
+.active svg {
+  box-shadow: 0px 3px 10px 0px #4A56E280;
+  border-radius: 20%;
+}
+
+
+.description {
+  display: none;
+
+}
+
+@media screen and (min-width: 768px) {
+  .nav {
+    flex-direction: column;
+    padding: 0px;
+    margin: 0px;
+    min-width: 336px;
+
+  }
+
+  .description {
+    display: inline-flex;
+
+  }
+
+  .navBtn {
+    flex-direction: row;
+    text-align: center;
+  }
+
+  .navBtn svg {
+    display: inline-flex;
+  }
+
+  .currencyNavLink {
+    display: none;
+  }
 }
