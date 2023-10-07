@@ -13,23 +13,20 @@ import { Link } from 'react-router-dom';
 
 import css from './Header.module.css';
 import walletSVG from '../../assets/icons/wallet.svg';
-import logOutSVG from '../../assets/icons/lo.svg';
+import closeSVG from '../../assets/icons/lo.svg';
+import { useSelector, useDispatch } from 'react-redux';
+import { openModalLogout } from '../../redux/global/globalSlice'
 
 const Header = () => {
-  /*
-   const user = useSelector(state => state.session.user);
+  
+  const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const shortUserName = user.name.length > 8 ? user.name.slice(0, 8) + '...' : user.name;
 
   const openModal = () => {
-    dispatch(setIsModalLogoutOpen(true));
+    dispatch(openModalLogout(true));
   };
 
-  oraz dodać poniżej po <span className={css.name}>Name</span> -->
-  <button className="button" type="button">
-              {shortUserName}
-            </button>
-  */
   return (
     <>
       <div className={css.header}>
@@ -38,9 +35,11 @@ const Header = () => {
       <h2 className={css.title}>Wallet</h2>
         </div>
         <div className={css.logOutContainer}>
-          <span className={css.name}>Name</span>
+          <span className={css.name}><button className={css.button} type="button">
+              {shortUserName}
+            </button></span>
           <div className={css.exit}>
-            <img src={logOutSVG} className={css.exitLogo} alt="logout logo" />
+            <img src={closeSVG} className={css.exitLogo} alt="logout logo" onClick={openModal} />
             <span className={css.exitText}>Exit</span>
           </div>
         </div>
