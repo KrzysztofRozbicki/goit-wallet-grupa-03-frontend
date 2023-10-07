@@ -10,17 +10,17 @@ function CurrencyTable() {
   const apiKey = import.meta.env.VITE_CURRENCY_API_KEY;
   const spread = 0.02;
 
-  useEffect(() => {
-    const apiUrl = `http://data.fixer.io/api/latest?access_key=${apiKey}&symbols=${selectedCurrencies.join(',')}`;
+  // useEffect(() => {
+  //   const apiUrl = `http://data.fixer.io/api/latest?access_key=${apiKey}&symbols=${selectedCurrencies.join(',')}`;
 
-    axios.get(apiUrl)
-      .then((response) => {
-        setExchangeRates(response.data.rates);
-      })
-      .catch((error) => {
-        console.error('Błąd podczas pobierania danych z API:', error);
-      });
-  }, []);
+  //   axios.get(apiUrl)
+  //     .then((response) => {
+  //       setExchangeRates(response.data.rates);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Błąd podczas pobierania danych z API:', error);
+  //     });
+  // }, []);
 
 
 
