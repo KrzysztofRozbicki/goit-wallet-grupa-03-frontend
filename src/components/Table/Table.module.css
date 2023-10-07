@@ -1,6 +1,77 @@
 @import '../../stylesheet/vars.css';
-.test {
-  width: 100px;
-  height: 100px;
-  background-color: var(--background-primary);
+
+.selectContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  gap: 20px;
+  padding-inline: 20px;
+
+  margin-top: 32px;
+
+  max-width: 320px;
+  margin-inline: auto;
+
+  font-family: Circe;
+  font-size: 1rem;
+
+  /* background-color: inherit; */
+}
+
+@media screen and (min-width: 767px) {
+  .selectContainer {
+    flex-direction: row;
+    min-width: 336px;
+    max-width: 400px;
+
+    align-items: center;
+  }
+}
+
+.tableContainer {
+  padding: 20px;
+  font-family: Circe;
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #fff;
+  
+  padding: 16px 20px;
+
+  border-radius: 30px;
+
+  font-size: 1.125rem;
+  font-weight: 700;
+
+  text-transform: capitalize;
+}
+
+.tableList {
+  margin: 0;
+  padding: 0;
+}
+
+.summaryContainer {
+  font-weight: 700;
+  padding: 26px 16px;
+}
+
+.summary {
+  display: flex;
+  margin-top: 14px;
+}
+
+.summary span {
+  display: block;
+  margin-left: auto;
+  color: #FF6596;
+}
+
+.income {
+  color: #24CCA7;
 }

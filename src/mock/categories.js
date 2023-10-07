@@ -7,6 +7,5 @@ export const categories = [
   'Household products',
   'Education',
   'Leisure',
-  'Entertainment',
   'Other expenses',
 ];

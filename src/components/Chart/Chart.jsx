@@ -8,6 +8,7 @@ import css from './Chart.module.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
 import { colors, series } from './labels'
+import { cashFormatter } from '../../utils/cashFormatter';
  
 ChartJS.register(ArcElement, Tooltip, Legend)
 ChartJS.defaults.plugins.legends = [{ display: false}]
@@ -40,23 +41,13 @@ const Chart = () => {
 
   const balance = series.reduce((acc, curr) => acc + curr, 0)
 
-  const cashFormatter = () => {
-    const cash = Number.parseFloat(balance);
-    return (
-      "€ " +
-      cash.toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      })
-    );
-  };
+
 
   return (
     <>
-      <h3 className={css.chartHeader}>Statistics</h3>
         <div className={css.chartContainer}>
           <Doughnut data={data} options={options}/>
-          <p className={css.balance}>{undefined ?? cashFormatter()}</p>
+          <p className={css.balance}>{undefined ?? '€ ' + cashFormatter(balance)}</p>
         </div>
     </>
   );

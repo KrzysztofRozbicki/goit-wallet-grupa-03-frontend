@@ -1,0 +1,26 @@
+@import '../../stylesheet/vars.css';
+
+.colorBlock {
+    width: 24px;
+    height: 24px;
+
+    border-radius: 2px;
+    margin-inline: 1rem;
+}
+
+.tableItem {
+    display: flex;
+    align-items: center;
+
+    white-space: wrap;
+
+    padding-block: 14px;
+
+    border-bottom: 1px solid #DCDCDF;
+    box-shadow: 0 0 1px rgba(255 255 255 .6);
+}
+
+.amount {
+    margin-left: auto;
+    margin-right: 20px;
+}
