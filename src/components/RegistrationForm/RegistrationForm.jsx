@@ -59,11 +59,11 @@ const RegistrationForm = () => {
       );
       dispatch(setUserName(response.data.user.name));
       dispatch(setUserToken(response.data.user.token));
+      dispatch(setIsAuth(true));
     } catch (error) {
       dispatch(setError(error.response.data.message));
       console.log('Error:', error.response.data.message);
     } finally {
-      dispatch(setIsAuth(true));
       setSubmitting(false);
       resetForm();
     }

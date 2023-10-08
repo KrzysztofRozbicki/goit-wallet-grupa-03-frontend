@@ -48,15 +48,18 @@ const LoginForm = () => {
           },
         }
       );
-      dispatch(setUserName(response.data.user.name));
-      dispatch(setUserToken(response.data.user.token));
+      console.log(response);
+      if (response.status === 200) {
+        dispatch(setError(''));
+        dispatch(setUserName(response.data.user.name));
+        dispatch(setUserToken(response.data.token));
+        dispatch(setIsAuth(true));
+      }
     } catch (error) {
       dispatch(setError(error.response.data.message));
       console.log('Error:', error.response.data.message);
     } finally {
-      dispatch(setIsAuth(true));
       setSubmitting(false);
-      console.log('sumbit');
     }
   };
   return (
@@ -99,7 +102,7 @@ const LoginForm = () => {
                   ) : null}
                 </div>
               </label>
-              <button type="sumbit" className={css.loginButton}>
+              <button type="submit" className={css.loginButton}>
                 Login
               </button>
               <Link to="/goit-wallet-grupa-03-frontend/register">
