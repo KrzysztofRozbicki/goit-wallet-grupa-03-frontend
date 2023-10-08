@@ -9,18 +9,21 @@
 
 //W skrócie będzie to komponent w którym będą komponenty: Balance i Currency oraz Navigation oraz prawdopodobnie DiagramTab
 
-
 import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
+import { fetchTransactions } from './../../redux/finance/operations';
 import Navigation from '../Navigation/Navigation';
 import CurrencyTable from '../Currency/Currency';
 import Balance from '../Balance/Balance';
 
 export const DashboardPage = () => {
+  const dispatch = useDispatch();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
+    dispatch(fetchTransactions());
     // Funkcja do obsługi zmiany rozdzielczości ekranu
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -57,6 +60,3 @@ const Home = ({ isDesktop }) => {
 };
 
 export default DashboardPage;
-
-
-

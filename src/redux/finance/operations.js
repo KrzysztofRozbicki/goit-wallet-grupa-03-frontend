@@ -1,9 +1,16 @@
+import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { setAuthorizationHeader } from '../session/operations';
+import { setError } from '../session/sessionSlice';
+
+axios.defaults.baseURL = 'https://pocketbook-basket-clam.cyclic.app/';
+
 export const setTotalBalanceAction = (state, action) => {
   state.totalBalance = action.payload;
 };
 
-export const setDataAction = (state, action) => {
-  state.data = action.payload;
+export const setDataAction = state => {
+  state.data = fetchTransactions();
 };
 
 export const addTransactionAction = (state, action) => {
@@ -20,3 +27,16 @@ export const editTransactionAction = (state, action) => {
     };
   }
 };
+
+export const fetchTransactions = createAsyncThunk('fetchTransactions', async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  console.log(state);
+  const token = state.session.user.token;
+  try {
+    setAuthorizationHeader(token);
+    const response = await axios.get('/api/transactions');
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});

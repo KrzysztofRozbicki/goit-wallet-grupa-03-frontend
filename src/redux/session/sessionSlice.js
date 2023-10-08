@@ -40,7 +40,7 @@ const sessionSlice = createSlice({
       state.isAuth = true;
     },
     [register.rejected](state, action) {
-      state.error = action.payload;
+      state.error = action.error.message;
     },
     [logIn.fulfilled](state, action) {
       state.user.name = action.payload.user.name;
@@ -48,7 +48,7 @@ const sessionSlice = createSlice({
       state.isAuth = true;
     },
     [logIn.rejected](state, action) {
-      state.error = action.payload;
+      state.error = action.error.message;
     },
     [logOut.fulfilled](state) {
       state.user = { name: null, token: null };
@@ -63,7 +63,6 @@ const sessionSlice = createSlice({
       state.isRefreshing = false;
     },
     [refreshUser.rejected](state) {
-      state.isAuth = false;
       state.isRefreshing = false;
     },
   },

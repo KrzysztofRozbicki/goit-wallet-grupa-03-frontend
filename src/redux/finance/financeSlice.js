@@ -5,6 +5,7 @@ import {
   setDataAction,
   addTransactionAction,
   editTransactionAction,
+  fetchTransactions,
 } from './operations';
 
 const initialState = {
@@ -22,6 +23,14 @@ const financeSlice = createSlice({
     editTransaction: editTransactionAction,
     resetFinance: () => {
       return { ...initialState };
+    },
+  },
+  extraReducers: {
+    [fetchTransactions.fulfilled](state, action) {
+      state.data = action.payload;
+    },
+    [fetchTransactions.rejected](state) {
+      state.data = [];
     },
   },
 });
