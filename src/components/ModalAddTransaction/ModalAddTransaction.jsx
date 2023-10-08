@@ -61,8 +61,6 @@ const ModalAddTransaction = () => {
       // if (response.status === 200) {
       //  dispatch(addTransaction(response.data));
       // }
-
-      console.log(response);
     } catch (error) {
       dispatch(setError(error));
     }

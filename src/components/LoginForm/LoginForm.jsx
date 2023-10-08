@@ -22,10 +22,15 @@ import css from './LoginForm.module.css';
 import walletSVG from '../../assets/icons/wallet.svg';
 import emailSVG from '../../assets/icons/email.svg';
 import passwordSVG from '../../assets/icons/lock.svg';
+
+import { useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { selectIsAuth } from '../../redux/session/selectors';
+
 import { logIn } from '../../redux/session/operations';
 
 const LoginSchema = Yup.object().shape({
@@ -35,6 +40,13 @@ const LoginSchema = Yup.object().shape({
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isAuth = useSelector(selectIsAuth);
+
+  useEffect(() => {
+    if (isAuth) navigate('goit-wallet-grupa-03-frontend/home');
+  }, [isAuth, navigate]);
+
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     dispatch(logIn(values));
     setSubmitting(false);

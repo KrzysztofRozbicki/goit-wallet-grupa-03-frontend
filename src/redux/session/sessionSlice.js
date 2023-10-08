@@ -51,8 +51,7 @@ const sessionSlice = createSlice({
       state.error = action.payload;
     },
     [logOut.fulfilled](state) {
-      state.user = { name: null, email: null };
-      state.token = null;
+      state.user = { name: null, token: null };
       state.isAuth = false;
     },
     [refreshUser.pending](state) {
@@ -64,6 +63,7 @@ const sessionSlice = createSlice({
       state.isRefreshing = false;
     },
     [refreshUser.rejected](state) {
+      state.isAuth = false;
       state.isRefreshing = false;
     },
   },

@@ -31,9 +31,8 @@ import Container from './Container/Container';
 
 const WithAuthRedirect = ({ children }) => {
   const isAuth = useSelector(selectIsAuth);
-  const isRefreshing = useSelector(selectIsRefreshing);
 
-  if (!isAuth && !isRefreshing) {
+  if (!isAuth) {
     return <Navigate to="/login" />;
   }
 
@@ -49,66 +48,74 @@ const router = createBrowserRouter([
     path: 'goit-wallet-grupa-03-frontend/register',
     element: <RegistrationPage />,
   },
+
   {
-    element: <WithAuthRedirect />,
+    path: 'goit-wallet-grupa-03-frontend/',
+    element: (
+      <WithAuthRedirect>
+        <Container />
+      </WithAuthRedirect>
+    ),
     children: [
       {
-        path: 'goit-wallet-grupa-03-frontend/',
-        element: <Container />,
-        children: [
-          {
-            path: 'home',
-            element: <HomeTab />,
-          },
-          {
-            path: 'chart',
-            element: <Chart />,
-          },
-          {
-            path: 'diagram',
-            element: <DiagramTab />,
-          },
-          {
-            path: 'dashboard',
-            element: <DashboardPage />,
-          },
-          {
-            path: 'balance',
-            element: <Balance />,
-          },
-          {
-            path: 'currency',
-            element: <CurrencyTable />,
-          },
-          {
-            path: 'header',
-            element: <Header />,
-          },
-          {
-            path: 'loader',
-            element: <Loader />,
-          },
-          {
-            path: 'loader',
-            element: <Loader />,
-          },
-          {
-            path: 'modalAddTransaction',
-            element: <ModalAddTransaction />,
-          },
-          {
-            path: 'modalLogout',
-            element: <ModalLogout />,
-          },
-          {
-            path: 'navigation',
-            element: <Navigation />,
-          },
-          {
-            path: 'Table',
-            element: <Table />,
-          },
-        ],
+        path: '',
+        element: <HomeTab />,
+      },
+      {
+        path: 'home',
+        element: <HomeTab />,
+      },
+      {
+        path: 'chart',
+        element: <Chart />,
+      },
+      {
+        path: 'diagram',
+        element: <DiagramTab />,
+      },
+      {
+        path: 'logout',
+        element: <ModalLogout />,
+      },
+      {
+        path: 'dashboard',
+        element: <DashboardPage />,
+      },
+      {
+        path: 'balance',
+        element: <Balance />,
+      },
+      {
+        path: 'currency',
+        element: <CurrencyTable />,
+      },
+      {
+        path: 'header',
+        element: <Header />,
+      },
+      {
+        path: 'loader',
+        element: <Loader />,
+      },
+      {
+        path: 'loader',
+        element: <Loader />,
+      },
+      {
+        path: 'modalAddTransaction',
+        element: <ModalAddTransaction />,
+      },
+      {
+        path: 'modalLogout',
+        element: <ModalLogout />,
+      },
+      {
+        path: 'navigation',
+        element: <Navigation />,
+      },
+      {
+        path: 'Table',
+        element: <Table />,
       },
     ],
   },
