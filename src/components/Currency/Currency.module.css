@@ -42,3 +42,13 @@
   line-height: 23.58px;
 
 }
+
+@media screen and (min-width: 767px) {
+  .table {
+    position: relative;
+    top: -100px;
+  }
+
+
+
+}
