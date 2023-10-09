@@ -8,11 +8,7 @@
 
 // Nie do końca rozumiem powiązanie z innymi komponentami - szczegolnie z DiagramTab oraz DashboardPage
 
-import wallet from '../../assets/icons/wallet.svg';
-import banner from '../../assets/icons/banner.svg';
-
 import css from './HomeTab.module.css';
-import items from '../../mock/transactions';
 import TabItem from './TabItem/TabItem';
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
@@ -20,10 +16,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import TabMobileItem from './TabMobileItem/TabMobileItem';
 import ButtonAddTransactions from './../ButtonAddTransactions/ButtonAddTransactions';
+import { useSelector } from 'react-redux';
+import { selectData } from '../../redux/finance/selectors';
 
 const HomeTab = () => {
-  const [sortedItems, setSortedItems] = useState(items);
+  const items = useSelector(selectData);
+  const [sortedItems, setSortedItems] = useState([]);
   const [isUpSorted, setIsUpSorted] = useState(true);
+
+  useEffect(() => {
+    setSortedItems(items);
+  }, [items]);
 
   const getCurrentDimension = () => {
     return {
@@ -36,24 +39,20 @@ const HomeTab = () => {
   const sortChangeHandler = () => {
     if (isUpSorted) {
       setSortedItems(
-        items.sort((item1, item2) =>
+        sortedItems.sort((item1, item2) =>
           item1.date > item2.date ? 1 : item1.date < item2.date ? -1 : 0
         )
       );
       setIsUpSorted(false);
     } else {
       setSortedItems(
-        items.sort((item1, item2) =>
+        sortedItems.sort((item1, item2) =>
           item1.date < item2.date ? 1 : item1.date > item2.date ? -1 : 0
         )
       );
       setIsUpSorted(true);
     }
   };
-
-  useEffect(() => {
-    sortChangeHandler();
-  }, [sortedItems]);
 
   useEffect(() => {
     const updateDimension = () => {
@@ -104,18 +103,16 @@ const HomeTab = () => {
                 <th className={cn(css.item, css.itemLast)} style={{ width: '100px' }}></th>
               </tr>
             </thead>
-          </table>
-          <div className={css.tableBody}>
-            <tbody>
+            <tbody className={css.tableBody}>
               {sortedItems.length > 0 &&
-                sortedItems.map(item => <TabItem key={item.id} {...item} />)}
+                sortedItems.map(item => <TabItem key={item._id} {...item} />)}
             </tbody>
-          </div>
+          </table>
         </div>
       )}
       {screenSize.width < 767 &&
         sortedItems.length > 0 &&
-        sortedItems.map(item => <TabMobileItem key={item.id} {...item} />)}
+        sortedItems.map(item => <TabMobileItem key={item._id} {...item} />)}
       <ButtonAddTransactions />
     </>
   );
