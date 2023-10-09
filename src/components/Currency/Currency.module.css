@@ -46,9 +46,20 @@
 @media screen and (min-width: 767px) {
   .table {
     position: relative;
+    right: -30px;
     top: -100px;
+    width: 336px;
   }
 
 
 
+}
+
+@media screen and (min-width: 1279px) {
+  .table {
+    position: static;
+    margin: 0px;
+    padding-left: 18px;
+    width: 393px;
+  }
 }

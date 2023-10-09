@@ -1,23 +1,27 @@
 @import '../../stylesheet/vars.css';
+
 .header {
-  width: 100vw;
+  /* width: 100vw;
   max-width: 1400px;
-  max-height: 60px;
+  max-height: 60px; */
   display: flex;
   justify-content: space-between;
   background-color: var(--background-light);
 }
+
 .logoContainer {
   display: flex;
   padding: 15px 20px 15px 20px;
   align-items: center;
   justify-content: space-between;
 }
+
 .logo {
   padding-right: 15px;
   width: 40px;
   height: 40px;
 }
+
 .title {
   display: flex;
   align-items: center;
@@ -27,12 +31,14 @@
   font-family: 'Poppins';
   font-weight: 700;
 }
+
 .logOutContainer {
   display: flex;
   align-items: flex-end;
   justify-content: center;
   padding: 18px 20px 18px 20px;
 }
+
 .name {
   display: flex;
   justify-content: end;
@@ -43,14 +49,17 @@
   color: var(--color-logout-button);
   padding-right: 8px;
 }
+
 .exit {
   height: 28px;
   display: flex;
 }
+
 .exit:hover {
   transition: fill 150ms;
   background-color: var(--background-primary);
 }
+
 .exitLogo {
   width: 18px;
   height: 18px;
@@ -59,6 +68,7 @@
   stroke: var(--color-logout-button);
   cursor: pointer;
 }
+
 .exitText {
   visibility: hidden;
   display: inline-block;
@@ -67,37 +77,45 @@
   font-size: 1px;
   margin-top: 4px;
 }
+
 @media screen and (min-width: 768px) {
   .header {
     max-height: 80px;
     border: 1px solid var(--color-logout-button);
   }
+
   .logoContainer {
     display: flex;
     padding: 20px 32px 20px 32px;
   }
+
   .logo {
     padding-right: 20px;
   }
+
   .title {
     font-size: 30px;
   }
+
   .logOutContainer {
     padding: 25px 32px 25px 32px;
     max-width: 161px;
   }
+
   .name {
     border-right: 1px solid var(--color-logout-button);
     padding-right: 12px;
     min-height: 30px;
     align-items: center;
   }
+
   .exitLogo {
     padding-left: 12px;
     padding-bottom: 5px;
     width: 30px;
     height: 30px;
   }
+
   .exitText {
     visibility: visible;
     display: inline-block;
@@ -112,6 +130,7 @@
   .logoContainer {
     padding: 20px 16px 20px 16px;
   }
+
   .logOutContainer {
     padding: 25px 16px 25px 16px;
   }
