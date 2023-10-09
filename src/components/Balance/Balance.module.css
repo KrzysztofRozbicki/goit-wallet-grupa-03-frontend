@@ -6,6 +6,8 @@
   width: fit-content;
   border-radius: 30px;
   width: 280px;
+  box-shadow: 0px 3px 10px 0px #4A56E280;
+
 }
 
 .container h2 {
@@ -33,5 +35,11 @@
     width: 336px;
     margin-left: 32px;
     height: 80px;
+  }
+}
+
+@media screen and (min-width: 1279px) {
+  .container {
+    margin-left: 18px;
   }
 }
