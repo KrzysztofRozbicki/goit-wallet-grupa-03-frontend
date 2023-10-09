@@ -29,6 +29,7 @@ import Navigation from './Navigation/Navigation';
 import Table from './Table/Table';
 import Container from './Container/Container';
 import Toast from './Toast/Toast';
+import { Toaster } from 'react-hot-toast';
 
 const WithAuthRedirect = ({ children }) => {
   const isAuth = useSelector(selectIsAuth);
@@ -149,6 +150,7 @@ const App = () => {
       {isModalAddTransactionOpen ? <ModalAddTransaction /> : null}
       {isModalEditTransactionOpen ? <ModalEditTransaction id={isModalEditTransactionOpen} /> : null}
       {error ? <Toast error={error} /> : null}
+      <Toaster position="top-center" />
     </div>
   );
 };
