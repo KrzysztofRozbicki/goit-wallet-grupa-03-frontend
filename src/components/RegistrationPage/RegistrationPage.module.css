@@ -57,7 +57,6 @@
     flex-direction: row;
     justify-content: inherit;
     background-color: transparent;
-    width: 100vw;
   }
 
   .header {
@@ -68,6 +67,7 @@
     margin: auto 0;
     gap: 28px;
     /* padding: 0; */
+    width: 43vw;
 
     height: 100vh;
   }
