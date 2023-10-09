@@ -18,25 +18,29 @@ const Chart = () => {
   const data = {
     labels: categories,
     datasets: [{
-      label: '# expenses',
+      label: ' #',
       data: series,
       backgroundColor: colors,
       borderWidth: 0,
-      weight: 10
+      weight: 10,
+      hoverOffset: 5,
+      clip: 10,
+      hoverDashOffset: 20
     }],
-    // hoverOffset: 4
   }
 
   const options = {
     responsive: true,
-    maintainAspectRation: true,
+    maintainAspectRation: false,
     cutout: '70%',
-
+    layout: {
+      padding: 20
+    },
     plugins: {
       legend: {
         display: false
       }
-    }
+    },
   }
 
   const balance = series.reduce((acc, curr) => acc + curr, 0)
@@ -45,10 +49,12 @@ const Chart = () => {
 
   return (
     <>
+      <div className={css.componentContainer}>
         <div className={css.chartContainer}>
           <Doughnut data={data} options={options}/>
           <p className={css.balance}>{undefined ?? '€ ' + cashFormatter(balance)}</p>
         </div>
+      </div>
     </>
   );
 };

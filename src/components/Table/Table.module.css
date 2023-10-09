@@ -8,9 +8,9 @@
   gap: 20px;
   padding-inline: 20px;
 
-  margin-top: 32px;
+  /* margin-top: 32px; */
 
-  max-width: 320px;
+  max-width: 440px;
   margin-inline: auto;
 
   font-family: Circe;
@@ -32,6 +32,9 @@
 .tableContainer {
   padding: 20px;
   font-family: Circe;
+
+  margin-inline: auto;
+  max-width: 440px;
 }
 
 .tableHeader {

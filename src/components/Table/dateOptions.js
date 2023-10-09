@@ -20,3 +20,15 @@ export const years = [
     '2022',
     '2023'
 ]
+
+export const categories = [
+    'Main Expenses',
+    'Products',
+    'Car',
+    'Self care',
+    'Child care',
+    'Household products',
+    'Education',
+    'Leisure',
+    'Other expenses',
+];

@@ -1,14 +1,32 @@
 @import '../../stylesheet/vars.css';
 
+.componentContainer {
+  /* display: flex; 
+  align-items: center;
+  justify-content: center;
+
+  flex: 1 1 auto; */
+  margin-inline: auto; 
+}
+
 .chartContainer {
   position: relative;
   /* background-color: inherit; */
-  margin-inline: auto;
-  padding-inline: 20px;
+  /* margin-inline: auto; */
+  /* max-width: 440px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+
+  border: 1px dotted red;
+  /* padding-inline: 20px; */
 }
 
 .balance {
   position: absolute;
+  display: flex;
+
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
