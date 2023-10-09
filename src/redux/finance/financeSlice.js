@@ -6,6 +6,8 @@ import {
   addTransactionAction,
   editTransactionAction,
   fetchTransactions,
+  addTransaction,
+  editTransaction,
 } from './operations';
 
 const initialState = {
@@ -19,23 +21,33 @@ const financeSlice = createSlice({
   reducers: {
     setTotalBalance: setTotalBalanceAction,
     setData: setDataAction,
-    addTransaction: addTransactionAction,
     editTransaction: editTransactionAction,
     resetFinance: () => {
       return { ...initialState };
     },
   },
-  extraReducers: {
-    [fetchTransactions.fulfilled](state, action) {
-      state.data = action.payload;
-    },
-    [fetchTransactions.rejected](state) {
-      state.data = [];
-    },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchTransactions.pending, (state, action) => {})
+      .addCase(fetchTransactions.fulfilled, (state, action) => {
+        state.data = action.payload;
+      })
+      .addCase(fetchTransactions.rejected, (state, action) => {
+        state.data = [];
+      })
+      .addCase(addTransaction.pending, (state, action) => {})
+      .addCase(addTransaction.fulfilled, (state, action) => {
+        state.data.push(action.payload);
+      })
+      .addCase(addTransaction.rejected, (state, action) => {})
+      .addCase(editTransaction.pending, (state, action) => {})
+      .addCase(editTransaction.fulfilled, (state, action) => {
+        editTransactionAction(state, action);
+      })
+      .addCase(editTransaction.rejected, (state, action) => {});
   },
 });
 
-export const { setTotalBalance, setData, resetFinance, addTransaction, editTransaction } =
-  financeSlice.actions;
+export const { setTotalBalance, setData, resetFinance } = financeSlice.actions;
 
 export const financeReducer = financeSlice.reducer;

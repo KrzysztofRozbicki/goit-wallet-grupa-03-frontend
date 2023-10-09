@@ -9,7 +9,6 @@ import {
 } from '../redux/global/selectors';
 import { refreshUser } from '../redux/session/operations';
 import { selectIsAuth } from '../redux/session/selectors';
-import { setData } from '../redux/finance/financeSlice';
 
 import '../stylesheet/fonts.css';
 
@@ -134,7 +133,6 @@ const App = () => {
 
   useEffect(() => {
     dispatch(refreshUser());
-    // dispatch(setData());
   }, [dispatch]);
 
   return (
