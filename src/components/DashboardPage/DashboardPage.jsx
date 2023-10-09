@@ -11,9 +11,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
 import { useDispatch } from 'react-redux';
 
 import { fetchTransactions } from './../../redux/finance/operations';
+
+import css from './DashboardPage.module.css';
+
 import Navigation from '../Navigation/Navigation';
 import CurrencyTable from '../Currency/Currency';
 import Balance from '../Balance/Balance';
@@ -29,33 +33,35 @@ export const DashboardPage = () => {
       setWindowWidth(window.innerWidth);
     };
 
-    // Dodaj nasłuchiwanie zmiany rozdzielczości ekranu
     window.addEventListener('resize', handleResize);
 
-    // Warto również usunąć nasłuchiwanie po opuszczeniu komponentu
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
-  const isDesktop = windowWidth > 768; // Ustal, kiedy wyświetlić CurrencyTable
+  const isDesktop = windowWidth > 768;
 
   return (
-    <>
+    <div className={css.dashboardContainer}>
       <Navigation />
+
       <Routes>
         <Route path="/home" element={<Home isDesktop={isDesktop} />} />
       </Routes>
-    </>
+
+    </div>
   );
 };
 
 const Home = ({ isDesktop }) => {
   return (
-    <div>
+    <div className={css.homeContainer} >
+
       <Balance />
-      {isDesktop && <CurrencyTable />} {/* Wyświetl tylko na desktopie */}
+      {isDesktop && <CurrencyTable />}
     </div>
+
   );
 };
 

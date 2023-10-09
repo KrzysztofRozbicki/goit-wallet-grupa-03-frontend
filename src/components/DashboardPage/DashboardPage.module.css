@@ -1,1 +1,18 @@
 @import '../../stylesheet/vars.css';
+
+@media screen and (min-width: 767px) {
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .balance {
+        padding-left: 32px;
+        background-color: black;
+    }
+
+    .homeContainer {
+        display: flex;
+    }
+
+}

@@ -14,7 +14,7 @@ function NavigationButtons() {
     <div className={css.nav}>
       <NavLink to="/goit-wallet-grupa-03-frontend/home" className={({ isActive }) => (isActive ? `${css.active}` : `${css.navBtn}`)}>
         <div>
-          <svg width="38" height="38" xmlns="http://www.w3.org/2000/svg">
+          <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38">
             <use xlinkHref="/src/assets/icons/homeBtn.svg#my-home-icon" />
           </svg>
         </div>
@@ -22,7 +22,7 @@ function NavigationButtons() {
       </NavLink>
       <NavLink to="/goit-wallet-grupa-03-frontend/diagram" className={({ isActive }) => (isActive ? `${css.active}` : `${css.navBtn}`)}>
         <div>
-          <svg width="38" height="38" xmlns="http://www.w3.org/2000/svg">
+          <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38">
             <use xlinkHref="/src/assets/icons/statisticsBtn.svg#my-statistics-icon" />
           </svg>
         </div>
@@ -30,7 +30,7 @@ function NavigationButtons() {
       </NavLink>
       <NavLink to="/goit-wallet-grupa-03-frontend/currency" className={({ isActive }) => (isActive ? `${css.active}` : `${css.navBtn} ${css.currencyNavLink}`)}>
         <div>
-          <svg width="38" height="38" xmlns="http://www.w3.org/2000/svg">
+          <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38">
             <use xlinkHref="/src/assets/icons/currencyBtn.svg#my-currency-icon" />
           </svg>
         </div>
