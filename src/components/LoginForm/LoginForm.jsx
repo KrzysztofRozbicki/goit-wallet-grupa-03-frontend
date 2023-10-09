@@ -22,12 +22,16 @@ import css from './LoginForm.module.css';
 import walletSVG from '../../assets/icons/wallet.svg';
 import emailSVG from '../../assets/icons/email.svg';
 import passwordSVG from '../../assets/icons/lock.svg';
+
+import { useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setError, setIsAuth, setUserName, setUserToken } from '../../redux/session/sessionSlice';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { selectIsAuth } from '../../redux/session/selectors';
+
+import { logIn } from '../../redux/session/operations';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required(''),
@@ -36,28 +40,18 @@ const LoginSchema = Yup.object().shape({
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const handleSubmit = async (values, { setSubmitting }) => {
-    const dataToSend = values;
-    try {
-      const response = await axios.post(
-        'https://pocketbook-basket-clam.cyclic.app/api/users/login',
-        JSON.stringify(dataToSend),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      dispatch(setUserName(response.data.user.name));
-      dispatch(setUserToken(response.data.user.token));
-    } catch (error) {
-      dispatch(setError(error.response.data.message));
-      console.log('Error:', error.response.data.message);
-    } finally {
-      dispatch(setIsAuth(true));
-      setSubmitting(false);
-      console.log('sumbit');
-    }
+  const navigate = useNavigate();
+  const isAuth = useSelector(selectIsAuth);
+
+  useEffect(() => {
+    if (isAuth) navigate('goit-wallet-grupa-03-frontend/home');
+  }, [isAuth, navigate]);
+
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    console.log('dispatch login');
+    dispatch(logIn(values));
+    setSubmitting(false);
+    resetForm();
   };
   return (
     <>
@@ -99,7 +93,7 @@ const LoginForm = () => {
                   ) : null}
                 </div>
               </label>
-              <button type="sumbit" className={css.loginButton}>
+              <button type="submit" className={css.loginButton}>
                 Login
               </button>
               <Link to="/goit-wallet-grupa-03-frontend/register">

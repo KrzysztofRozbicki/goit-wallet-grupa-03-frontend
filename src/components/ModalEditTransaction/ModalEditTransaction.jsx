@@ -76,7 +76,6 @@ const ModalEditTransaction = ({ id }) => {
       // if (response.status === 200) {
       //  dispatch(editTransaction(id, response.data));
       // }
-      console.log(response);
     } catch (error) {
       dispatch(setError(error));
     }

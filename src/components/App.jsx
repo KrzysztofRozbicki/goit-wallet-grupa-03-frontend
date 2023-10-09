@@ -1,11 +1,15 @@
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 import {
   selectIsModalAddTransactionOpen,
   selectIsModalLogoutOpen,
   selectIsModalEditTransactionOpen,
 } from '../redux/global/selectors';
+import { refreshUser } from '../redux/session/operations';
+import { selectIsAuth } from '../redux/session/selectors';
+import { setData } from '../redux/finance/financeSlice';
 
 import '../stylesheet/fonts.css';
 
@@ -16,10 +20,8 @@ import Balance from './Balance/Balance';
 import Chart from './Chart/Chart';
 import DiagramTab from './DiagramTab/DiagramTab';
 import HomeTab from './HomeTab/HomeTab';
-import ButtonAddTransactions from './ButtonAddTransactions/ButtonAddTransactions';
 import ModalAddTransaction from './ModalAddTransaction/ModalAddTransaction';
 import ModalEditTransaction from './ModalEditTransaction/ModalEditTransaction';
-import TestComponentRedux from './TestComponentRedux/TestComponentRedux';
 import LoginPage from './LoginPage/LoginPage';
 import RegistrationPage from './RegistrationPage/RegistrationPage';
 import CurrencyTable from './Currency/Currency';
@@ -27,8 +29,16 @@ import ModalLogout from './ModalLogout/ModalLogout';
 import Navigation from './Navigation/Navigation';
 import Table from './Table/Table';
 import Container from './Container/Container';
-import { openModalLogout, openModalEditTransaction } from '../redux/global/globalSlice';
-import { useEffect } from 'react';
+
+const WithAuthRedirect = ({ children }) => {
+  const isAuth = useSelector(selectIsAuth);
+
+  if (!isAuth) {
+    return <Navigate to="/login" />;
+  }
+
+  return children;
+};
 
 const router = createBrowserRouter([
   {
@@ -39,10 +49,19 @@ const router = createBrowserRouter([
     path: 'goit-wallet-grupa-03-frontend/register',
     element: <RegistrationPage />,
   },
+
   {
     path: 'goit-wallet-grupa-03-frontend/',
-    element: <Container />,
+    element: (
+      <WithAuthRedirect>
+        <Container />
+      </WithAuthRedirect>
+    ),
     children: [
+      {
+        path: '',
+        element: <HomeTab />,
+      },
       {
         path: 'home',
         element: <HomeTab />,
@@ -54,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: 'diagram',
         element: <DiagramTab />,
+      },
+      {
+        path: 'logout',
+        element: <ModalLogout />,
       },
       {
         path: 'dashboard',
@@ -104,33 +127,27 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
+  const dispatch = useDispatch();
   const isModalAddTransactionOpen = useSelector(selectIsModalAddTransactionOpen);
   const isModalEditTransactionOpen = useSelector(selectIsModalEditTransactionOpen);
-  console.log('isModalOpen:', isModalAddTransactionOpen);
-  const dispatch = useDispatch();
+  const isModalLogoutOpen = useSelector(selectIsModalLogoutOpen);
 
-  useEffect(() => {});
+  useEffect(() => {
+    dispatch(refreshUser());
+    // dispatch(setData());
+  }, [dispatch]);
 
-  const handleOpenLogoutModal = () => {
-    dispatch(openModalLogout());
-  };
   return (
     <div
       style={{
         width: '100%',
         height: '100%',
-        backgroundColor: 'lightgray',
       }}
     >
       <RouterProvider router={router} />
-      {/* <HomeTab />
-      <button onClick={() => dispatch(openModalEditTransaction())}>EditTransaction</button>
-      <button onClick={handleOpenLogoutModal}>LogoutModal</button>
-      <ButtonAddTransactions />
-      {/* <button onClick={handleOpenLogoutModal}>LogoutModal</button> */}
-      {/* <ModalLogout /> */}
+      {isModalLogoutOpen ? <ModalLogout /> : null}
       {isModalAddTransactionOpen ? <ModalAddTransaction /> : null}
-      {isModalEditTransactionOpen ? <ModalEditTransaction id="223" /> : null}
+      {isModalEditTransactionOpen ? <ModalEditTransaction id={isModalEditTransactionOpen} /> : null}
     </div>
   );
 };

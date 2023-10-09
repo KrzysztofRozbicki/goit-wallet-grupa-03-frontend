@@ -3,13 +3,17 @@ import walletSVG from '../../assets/icons/wallet.svg';
 import emailSVG from '../../assets/icons/email.svg';
 import passwordSVG from '../../assets/icons/lock.svg';
 import nameSVG from '../../assets/icons/profile-name.svg';
+
+import { useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import PasswordStrength from '../PasswordStrength/PasswordStrength';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { setError, setIsAuth, setUserName, setUserToken } from '../../redux/session/sessionSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { selectIsAuth } from '../../redux/session/selectors';
+
+import { register } from '../../redux/session/operations';
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string()
@@ -39,34 +43,23 @@ const SignupSchema = Yup.object().shape({
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isAuth = useSelector(selectIsAuth);
+
+  useEffect(() => {
+    if (isAuth) navigate('goit-wallet-grupa-03-frontend/home');
+  }, [isAuth, navigate]);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    const { confirmPassword, firstName, ...requestData } = values;
+    const { firstName, password, email } = values;
     const dataToSend = {
-      ...requestData,
+      email,
+      password,
       name: firstName,
     };
-
-    try {
-      const response = await axios.post(
-        'https://pocketbook-basket-clam.cyclic.app/api/users/register',
-        JSON.stringify(dataToSend),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      dispatch(setUserName(response.data.user.name));
-      dispatch(setUserToken(response.data.user.token));
-    } catch (error) {
-      dispatch(setError(error.response.data.message));
-      console.log('Error:', error.response.data.message);
-    } finally {
-      dispatch(setIsAuth(true));
-      setSubmitting(false);
-      resetForm();
-    }
+    dispatch(register(dataToSend));
+    setSubmitting(false);
+    resetForm();
   };
   return (
     <>
