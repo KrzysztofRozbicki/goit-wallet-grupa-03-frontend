@@ -29,7 +29,8 @@ import Navigation from './Navigation/Navigation';
 import Table from './Table/Table';
 import Container from './Container/Container';
 import Toast from './Toast/Toast';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
+import { setError } from '../redux/session/sessionSlice';
 
 const WithAuthRedirect = ({ children }) => {
   const isAuth = useSelector(selectIsAuth);
@@ -149,7 +150,13 @@ const App = () => {
       {isModalLogoutOpen ? <ModalLogout /> : null}
       {isModalAddTransactionOpen ? <ModalAddTransaction /> : null}
       {isModalEditTransactionOpen ? <ModalEditTransaction id={isModalEditTransactionOpen} /> : null}
-      {error ? <Toast error={error} /> : null}
+      {/* {error ? <Toast error={error} /> : null} */}
+      {error && (
+        <>
+          {toast.error(error)}
+          {dispatch(setError(''))}
+        </>
+      )}
       <Toaster position="top-center" />
     </div>
   );
