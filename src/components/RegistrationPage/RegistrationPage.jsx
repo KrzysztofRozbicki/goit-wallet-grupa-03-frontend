@@ -28,7 +28,7 @@
 
 import RegistrationForm from '../RegistrationForm/RegistrationForm';
 import css from './RegistrationPage.module.css';
-import bannerSVG from '../../assets/icons/banner.svg';
+import bannerSVG from '../../assets/icons/banner-woman.svg';
 import blob1 from '../../assets/icons/blob-1.svg';
 import blob2 from '../../assets/icons/blob-2.svg';
 
