@@ -13,29 +13,19 @@
 
 //Tutaj trzeba ustlić co konkretnie i w jakiej formie jest wysyłane do servera i jaką odpowiedź dostajemy
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import Select from 'react-select';
-import axios from 'axios';
 import * as Yup from 'yup';
 
 import { closeModalEditTransaction } from '../../redux/global/globalSlice';
-import { editTransaction } from '../../redux/finance/financeSlice';
-import { setError } from '../../redux/session/sessionSlice';
+import { editTransaction } from '../../redux/finance/operations';
+import { selectData } from '../../redux/finance/selectors';
 import { categories } from '../../mock/categories';
-import mockTransactions from '../../mock/transactions';
 import selectStyles from '../ModalAddTransaction/Select.styles.js';
 import DatetimePicker from '../DatetimePicker/DatetimePicker';
 
 import css from '../ModalAddTransaction/ModalAddTransaction.module.css';
-
-const serverAddress = import.meta.env.VITE_SERVER_ADDRESS;
-
-const setIsIncomeCategory = values => {
-  if (!values.category) {
-    values.category = 'Income';
-  }
-};
 
 const TransactionSchema = Yup.object().shape({
   category: Yup.mixed().when('isIncome', {
@@ -48,37 +38,17 @@ const TransactionSchema = Yup.object().shape({
 
 const getTransaction = (transactions, id) => {
   const transaction = transactions.find(transaction => transaction.id === id);
-  const updateTransaction = { ...transaction };
-  updateTransaction.type === 'income'
-    ? (updateTransaction.type = true)
-    : (updateTransaction.type = false);
-  return updateTransaction;
+  return transaction;
 };
 
 const ModalEditTransaction = ({ id }) => {
   const dispatch = useDispatch();
+  const transactions = useSelector(selectData);
 
-  const transaction = getTransaction(mockTransactions, id);
+  const transaction = getTransaction(transactions, id);
 
   const handleSubmit = async values => {
-    setIsIncomeCategory(values);
-    try {
-      console.log(JSON.stringify(values));
-      const response = await axios.patch(
-        `${serverAddress}/api/transactions/${id}`,
-        JSON.stringify(values),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      // if (response.status === 200) {
-      //  dispatch(editTransaction(id, response.data));
-      // }
-    } catch (error) {
-      dispatch(setError(error));
-    }
+    dispatch(editTransaction(values, id));
     dispatch(closeModalEditTransaction());
   };
 

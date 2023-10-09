@@ -33,7 +33,8 @@ export const register = createAsyncThunk('authorization/register', async credent
     setAuthorizationHeader(response.data.user.token);
     return response.data;
   } catch (error) {
-    throw error.message;
+    console.log(error);
+    throw error.response.data.error;
   }
 });
 
@@ -43,7 +44,7 @@ export const logIn = createAsyncThunk('authorization/login', async credentials =
     setAuthorizationHeader(response.data.user.token);
     return response.data;
   } catch (error) {
-    throw error.message;
+    throw error.response.data.error;
   }
 });
 

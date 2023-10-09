@@ -8,8 +8,7 @@ import {
   selectIsModalEditTransactionOpen,
 } from '../redux/global/selectors';
 import { refreshUser } from '../redux/session/operations';
-import { selectIsAuth } from '../redux/session/selectors';
-import { setData } from '../redux/finance/financeSlice';
+import { selectIsAuth, selectError } from '../redux/session/selectors';
 
 import '../stylesheet/fonts.css';
 
@@ -29,6 +28,7 @@ import ModalLogout from './ModalLogout/ModalLogout';
 import Navigation from './Navigation/Navigation';
 import Table from './Table/Table';
 import Container from './Container/Container';
+import Toast from './Toast/Toast';
 
 const WithAuthRedirect = ({ children }) => {
   const isAuth = useSelector(selectIsAuth);
@@ -131,10 +131,10 @@ const App = () => {
   const isModalAddTransactionOpen = useSelector(selectIsModalAddTransactionOpen);
   const isModalEditTransactionOpen = useSelector(selectIsModalEditTransactionOpen);
   const isModalLogoutOpen = useSelector(selectIsModalLogoutOpen);
+  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(refreshUser());
-    // dispatch(setData());
   }, [dispatch]);
 
   return (
@@ -148,6 +148,7 @@ const App = () => {
       {isModalLogoutOpen ? <ModalLogout /> : null}
       {isModalAddTransactionOpen ? <ModalAddTransaction /> : null}
       {isModalEditTransactionOpen ? <ModalEditTransaction id={isModalEditTransactionOpen} /> : null}
+      {error ? <Toast error={error} /> : null}
     </div>
   );
 };

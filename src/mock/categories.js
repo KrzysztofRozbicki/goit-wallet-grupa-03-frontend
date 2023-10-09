@@ -1,5 +1,5 @@
 export const categories = [
-  'Main Expenses',
+  'Main expenses',
   'Products',
   'Car',
   'Self care',

@@ -19,6 +19,7 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import TabMobileItem from './TabMobileItem/TabMobileItem';
+import ButtonAddTransactions from './../ButtonAddTransactions/ButtonAddTransactions';
 
 const HomeTab = () => {
   const [sortedItems, setSortedItems] = useState(items);
@@ -115,6 +116,7 @@ const HomeTab = () => {
       {screenSize.width < 767 &&
         sortedItems.length > 0 &&
         sortedItems.map(item => <TabMobileItem key={item.id} {...item} />)}
+      <ButtonAddTransactions />
     </>
   );
 };

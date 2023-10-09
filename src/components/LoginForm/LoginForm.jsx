@@ -48,7 +48,6 @@ const LoginForm = () => {
   }, [isAuth, navigate]);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    console.log('dispatch login');
     dispatch(logIn(values));
     setSubmitting(false);
     resetForm();

@@ -17,6 +17,12 @@ export const addTransactionAction = (state, action) => {
   state.data.push(action.payload);
 };
 
+export const setAuthorization = getState => {
+  const state = getState();
+  const token = state.session.user.token;
+  setAuthorizationHeader(token);
+};
+
 export const editTransactionAction = (state, action) => {
   const { id, updatedTransaction } = action.payload;
   const index = state.data.findIndex(transaction => transaction.id === id);
@@ -28,12 +34,32 @@ export const editTransactionAction = (state, action) => {
   }
 };
 
-export const fetchTransactions = createAsyncThunk('fetchTransactions', async (_, thunkAPI) => {
-  const state = thunkAPI.getState();
-  console.log(state);
-  const token = state.session.user.token;
+export const addTransaction = createAsyncThunk('add/transaction', async (values, thunkAPI) => {
+  setAuthorization(thunkAPI.getState);
   try {
-    setAuthorizationHeader(token);
+    const response = await axios.post('/api/transactions', values);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const editTransaction = createAsyncThunk(
+  'edit/transaction',
+  async (values, id, thunkAPI) => {
+    setAuthorization(thunkAPI.getState);
+    try {
+      const response = await axios.post(`/api/transactions/${id}`, values);
+      console.log(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchTransactions = createAsyncThunk('fetchAll/transactions', async (_, thunkAPI) => {
+  setAuthorization(thunkAPI.getState);
+  try {
     const response = await axios.get('/api/transactions');
     return response.data;
   } catch (error) {

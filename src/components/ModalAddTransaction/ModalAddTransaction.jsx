@@ -17,25 +17,15 @@ import { useDispatch } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import moment from 'moment';
 import Select from 'react-select';
-import axios from 'axios';
 import * as Yup from 'yup';
 
 import { closeModalAddTransaction } from '../../redux/global/globalSlice';
-import { addTransaction } from '../../redux/finance/financeSlice';
-import { setError } from '../../redux/session/sessionSlice';
+import { addTransaction } from '../../redux/finance/operations';
 import { categories } from '../../mock/categories';
 import selectStyles from './Select.styles.js';
 import DatetimePicker from '../DatetimePicker/DatetimePicker';
 
 import css from './ModalAddTransaction.module.css';
-
-const serverAddress = import.meta.env.VITE_SERVER_ADDRESS;
-
-const setIsIncomeCategory = values => {
-  if (!values.category) {
-    values.category = 'Income';
-  }
-};
 
 const TransactionSchema = Yup.object().shape({
   category: Yup.mixed().when('isIncome', {
@@ -50,20 +40,7 @@ const ModalAddTransaction = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = async values => {
-    setIsIncomeCategory(values);
-    try {
-      console.log(JSON.stringify(values));
-      const response = await axios.post(serverAddress, JSON.stringify(values), {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      // if (response.status === 200) {
-      //  dispatch(addTransaction(response.data));
-      // }
-    } catch (error) {
-      dispatch(setError(error));
-    }
+    dispatch(addTransaction(values));
     dispatch(closeModalAddTransaction());
   };
 
