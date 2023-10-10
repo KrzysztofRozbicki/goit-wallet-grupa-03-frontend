@@ -102,7 +102,7 @@ export const fetchTransactions = createAsyncThunk(
     try {
       dispatch(openLoading());
       const response = await axios.get('/api/transactions');
-      return response.data;
+      return response.data.transactions;
     } catch (error) {
       dispatch(setError('Cannot get transactions from server'));
       return rejectWithValue(error.message);

@@ -1,9 +1,7 @@
-/* .outletWrapper {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin: 0 auto;
-} */
+.outletWrapper {
+  padding-top: 32px;
+
+}
 
 
 @media screen and (min-width: 767px) {
