@@ -23,6 +23,7 @@ const HomeTab = () => {
   const items = useSelector(selectData);
   const [sortedItems, setSortedItems] = useState([]);
   const [isUpSorted, setIsUpSorted] = useState(true);
+  console.log(items);
 
   useEffect(() => {
     setSortedItems(items);
@@ -36,23 +37,23 @@ const HomeTab = () => {
   };
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
-  const sortChangeHandler = () => {
-    if (isUpSorted) {
-      setSortedItems(
-        sortedItems.sort((item1, item2) =>
-          item1.date > item2.date ? 1 : item1.date < item2.date ? -1 : 0
-        )
-      );
-      setIsUpSorted(false);
-    } else {
-      setSortedItems(
-        sortedItems.sort((item1, item2) =>
-          item1.date < item2.date ? 1 : item1.date > item2.date ? -1 : 0
-        )
-      );
-      setIsUpSorted(true);
-    }
-  };
+  // const sortChangeHandler = () => {
+  //   if (isUpSorted) {
+  //     setSortedItems(
+  //       sortedItems.sort((item1, item2) =>
+  //         item1.date > item2.date ? 1 : item1.date < item2.date ? -1 : 0
+  //       )
+  //     );
+  //     setIsUpSorted(false);
+  //   } else {
+  //     setSortedItems(
+  //       sortedItems.sort((item1, item2) =>
+  //         item1.date < item2.date ? 1 : item1.date > item2.date ? -1 : 0
+  //       )
+  //     );
+  //     setIsUpSorted(true);
+  //   }
+  // };
 
   useEffect(() => {
     const updateDimension = () => {
@@ -73,20 +74,20 @@ const HomeTab = () => {
             <thead>
               <tr className={css.tableHeader}>
                 <th className={cn(css.item, css.itemFirst)} style={{ width: '110px' }}>
-                  <a onClick={sortChangeHandler} href="#" className={css.sortedBy}>
-                    {isUpSorted ? (
-                      <FontAwesomeIcon
-                        icon={faArrowDown}
-                        style={{ marginRight: '4px', color: 'black' }}
-                      />
-                    ) : (
-                      <FontAwesomeIcon
-                        icon={faArrowUp}
-                        style={{ marginRight: '4px', color: 'black' }}
-                      />
-                    )}
-                    Date
-                  </a>
+                  {/* <a onClick={sortChangeHandler} href="#" className={css.sortedBy}> */}
+                  {isUpSorted ? (
+                    <FontAwesomeIcon
+                      icon={faArrowDown}
+                      style={{ marginRight: '4px', color: 'black' }}
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      icon={faArrowUp}
+                      style={{ marginRight: '4px', color: 'black' }}
+                    />
+                  )}
+                  Date
+                  {/* </a> */}
                 </th>
                 <th className={cn(css.item, css.itemType)} style={{ width: '80px' }}>
                   Type
