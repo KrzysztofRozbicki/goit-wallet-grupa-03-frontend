@@ -1,5 +1,5 @@
-export const openLoadingAction = (state, action) => {
-  state.isLoading = action.payload;
+export const openLoadingAction = state => {
+  state.isLoading = true;
 };
 export const closeLoadingAction = state => {
   state.isLoading = false;

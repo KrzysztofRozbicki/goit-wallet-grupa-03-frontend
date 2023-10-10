@@ -3,11 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   setTotalBalanceAction,
   setDataAction,
-  addTransactionAction,
   editTransactionAction,
+  deleteTransactionAction,
   fetchTransactions,
   addTransaction,
   editTransaction,
+  deleteTransaction,
 } from './operations';
 
 const initialState = {
@@ -44,7 +45,12 @@ const financeSlice = createSlice({
       .addCase(editTransaction.fulfilled, (state, action) => {
         editTransactionAction(state, action);
       })
-      .addCase(editTransaction.rejected, (state, action) => {});
+      .addCase(editTransaction.rejected, (state, action) => {})
+      .addCase(deleteTransaction.pending, (state, action) => {})
+      .addCase(deleteTransaction.fulfilled, (state, action) => {
+        deleteTransactionAction(state, action);
+      })
+      .addCase(deleteTransaction.rejected, (state, action) => {});
   },
 });
 
