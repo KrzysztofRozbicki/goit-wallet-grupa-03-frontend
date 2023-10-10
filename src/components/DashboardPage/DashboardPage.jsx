@@ -40,7 +40,7 @@ export const DashboardPage = () => {
     };
   }, []);
 
-  const isDesktop = windowWidth > 768;
+  const isDesktop = windowWidth > 767;
 
   return (
     <div className={css.dashboardContainer}>

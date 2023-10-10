@@ -3,6 +3,7 @@
 import { useSelector } from 'react-redux';
 import { selectData } from '../../redux/finance/selectors'
 import css from './Balance.module.css';
+import { cashFormatter } from '../../utils/cashFormatter';
 
 const Balance = () => {
   const totalBalance = useSelector((state) => state.finance.totalBalance);
@@ -11,7 +12,7 @@ const Balance = () => {
     <>
       <div className={css.container}>
         <h2>YOUR BALANCE</h2>
-        <div>€ {totalBalance.toFixed(2)}</div>
+        <div>{undefined ?? '€ ' + cashFormatter(totalBalance)}</div>
       </div>
     </>
   );
