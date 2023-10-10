@@ -28,7 +28,7 @@ export const DashboardPage = () => {
 
   useEffect(() => {
     dispatch(fetchTransactions());
-    // Funkcja do obsługi zmiany rozdzielczości ekranu
+
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
@@ -48,6 +48,7 @@ export const DashboardPage = () => {
 
       <Routes>
         <Route path="/home" element={<Home isDesktop={isDesktop} />} />
+        {isDesktop && <Route path="/diagram" element={<Home isDesktop={isDesktop} />} />}
       </Routes>
 
     </div>
@@ -57,9 +58,9 @@ export const DashboardPage = () => {
 const Home = ({ isDesktop }) => {
   return (
     <div className={css.homeContainer} >
-
       <Balance />
       {isDesktop && <CurrencyTable />}
+
     </div>
 
   );

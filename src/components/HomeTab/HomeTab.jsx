@@ -69,7 +69,7 @@ const HomeTab = () => {
   return (
     <>
       {screenSize.width > 767 && (
-        <div>
+        <>
           <table className={css.table}>
             <thead>
               <tr className={css.tableHeader}>
@@ -104,12 +104,12 @@ const HomeTab = () => {
                 <th className={cn(css.item, css.itemLast)} style={{ width: '100px' }}></th>
               </tr>
             </thead>
-            <tbody className={css.tableBody}>
-              {sortedItems.length > 0 &&
-                sortedItems.map(item => <TabItem key={item._id} {...item} />)}
-            </tbody>
           </table>
-        </div>
+
+          <tbody className={css.tableBody}>
+            {sortedItems.length > 0 && sortedItems.map(item => <TabItem key={item.id} {...item} />)}
+          </tbody>
+        </>
       )}
       {screenSize.width < 767 &&
         sortedItems.length > 0 &&

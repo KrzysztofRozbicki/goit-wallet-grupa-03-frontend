@@ -1,6 +1,6 @@
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 
 import {
   selectIsModalAddTransactionOpen,
@@ -9,27 +9,31 @@ import {
 } from '../redux/global/selectors';
 import { refreshUser } from '../redux/session/operations';
 import { selectIsAuth, selectError } from '../redux/session/selectors';
+import { selectIsLoading } from '../redux/global/selectors';
 
 import '../stylesheet/fonts.css';
 
-import Loader from './Loader/Loader';
-import Header from './Header/Header';
-import DashboardPage from './DashboardPage/DashboardPage';
-import Balance from './Balance/Balance';
-import Chart from './Chart/Chart';
-import DiagramTab from './DiagramTab/DiagramTab';
-import HomeTab from './HomeTab/HomeTab';
 import ModalAddTransaction from './ModalAddTransaction/ModalAddTransaction';
 import ModalEditTransaction from './ModalEditTransaction/ModalEditTransaction';
-import LoginPage from './LoginPage/LoginPage';
-import RegistrationPage from './RegistrationPage/RegistrationPage';
-import CurrencyTable from './Currency/Currency';
 import ModalLogout from './ModalLogout/ModalLogout';
-import Navigation from './Navigation/Navigation';
-import Table from './Table/Table';
+
+import Loader from './Loader/Loader';
+const Header = lazy(() => import('./Header/Header.jsx'));
+const DashboardPage = lazy(() => import('./DashboardPage/DashboardPage.jsx'));
+const Balance = lazy(() => import('./Balance/Balance.jsx'));
+const Chart = lazy(() => import('./Chart/Chart.jsx'));
+const DiagramTab = lazy(() => import('./DiagramTab/DiagramTab.jsx'));
+const HomeTab = lazy(() => import('./HomeTab/HomeTab.jsx'));
+const LoginPage = lazy(() => import('./LoginPage/LoginPage.jsx'));
+const RegistrationPage = lazy(() => import('./RegistrationPage/RegistrationPage.jsx'));
+const CurrencyTable = lazy(() => import('./Currency/Currency.jsx'));
+const Navigation = lazy(() => import('./Navigation/Navigation.jsx'));
+const Table = lazy(() => import('./Table/Table.jsx'));
 import Container from './Container/Container';
+
 import Toast from './Toast/Toast';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
+import { setError } from '../redux/session/sessionSlice';
 
 const WithAuthRedirect = ({ children }) => {
   const isAuth = useSelector(selectIsAuth);
@@ -133,25 +137,37 @@ const App = () => {
   const isModalEditTransactionOpen = useSelector(selectIsModalEditTransactionOpen);
   const isModalLogoutOpen = useSelector(selectIsModalLogoutOpen);
   const error = useSelector(selectError);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-      }}
-    >
-      <RouterProvider router={router} />
-      {isModalLogoutOpen ? <ModalLogout /> : null}
-      {isModalAddTransactionOpen ? <ModalAddTransaction /> : null}
-      {isModalEditTransactionOpen ? <ModalEditTransaction id={isModalEditTransactionOpen} /> : null}
-      {error ? <Toast error={error} /> : null}
-      <Toaster position="top-center" />
-    </div>
+    <Suspense fallback={<Loader />}>
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+        }}
+      >
+        {isLoading ? <Loader /> : null}
+        <RouterProvider router={router} />
+        {isModalLogoutOpen ? <ModalLogout /> : null}
+        {isModalAddTransactionOpen ? <ModalAddTransaction /> : null}
+        {isModalEditTransactionOpen ? (
+          <ModalEditTransaction id={isModalEditTransactionOpen} />
+        ) : null}
+        {/* {error ? <Toast error={error} /> : null} */}
+        {error && (
+          <>
+            {toast.error(error)}
+            {dispatch(setError(''))}
+          </>
+        )}
+        <Toaster position="top-center" />
+      </div>
+    </Suspense>
   );
 };
 

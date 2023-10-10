@@ -2,6 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setAuthorizationHeader } from '../session/operations';
 import { setError } from '../session/sessionSlice';
+import { openLoading, closeLoading } from '../global/globalSlice';
 
 axios.defaults.baseURL = 'https://pocketbook-basket-clam.cyclic.app/';
 
@@ -34,35 +35,91 @@ export const editTransactionAction = (state, action) => {
   }
 };
 
-export const addTransaction = createAsyncThunk('add/transaction', async (values, thunkAPI) => {
-  setAuthorization(thunkAPI.getState);
-  try {
-    const response = await axios.post('/api/transactions', values);
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const deleteTransactionAction = (state, action) => {
+  const id = action.payload;
+  const index = state.data.findIndex(transaction => transaction.id === id);
+  if (index !== -1) {
+    state.data.splice(index, 1);
   }
-});
+};
 
-export const editTransaction = createAsyncThunk(
-  'edit/transaction',
-  async (values, id, thunkAPI) => {
-    setAuthorization(thunkAPI.getState);
+export const addTransaction = createAsyncThunk(
+  'add/transaction',
+  async (values, { getState, dispatch, rejectWithValue }) => {
+    setAuthorization(getState);
+    dispatch(openLoading());
     try {
-      const response = await axios.post(`/api/transactions/${id}`, values);
-      console.log(response.data);
+      const response = await axios.post('/api/transactions', values);
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      dispatch(setError('Error while adding transaction'));
+      return rejectWithValue(error.message);
+    } finally {
+      dispatch(closeLoading());
     }
   }
 );
 
-export const fetchTransactions = createAsyncThunk('fetchAll/transactions', async (_, thunkAPI) => {
-  setAuthorization(thunkAPI.getState);
-  try {
-    const response = await axios.get('/api/transactions');
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const editTransaction = createAsyncThunk(
+  'edit/transaction',
+  async (values, id, { getState, dispatch, rejectWithValue }) => {
+    setAuthorization(getState);
+    dispatch(openLoading());
+    try {
+      const response = await axios.post(`/api/transactions/${id}`, values);
+      return { id: id, updatedTransaction: response.data.result };
+    } catch (error) {
+      dispatch(setError('Error while editing transaction'));
+      return rejectWithValue(error.message);
+    } finally {
+      dispatch(closeLoading());
+    }
   }
-});
+);
+
+export const deleteTransaction = createAsyncThunk(
+  'delete/transaction',
+  async (id, { getState, dispatch, rejectWithValue }) => {
+    setAuthorization(getState);
+    dispatch(openLoading());
+    try {
+      await axios.delete(`/api/transactions/${id}`);
+      return { id };
+    } catch (error) {
+      dispatch(setError('Error while deleting transaction'));
+      return rejectWithValue(error.message);
+    } finally {
+      dispatch(closeLoading());
+    }
+  }
+);
+
+export const fetchTransactions = createAsyncThunk(
+  'fetchAll/transactions',
+  async (_, { getState, dispatch, rejectWithValue }) => {
+    setAuthorization(getState);
+
+    try {
+      dispatch(openLoading());
+      const response = await axios.get('/api/transactions');
+      return response.data.transactions;
+    } catch (error) {
+      dispatch(setError('Cannot get transactions from server'));
+      return rejectWithValue(error.message);
+    } finally {
+      dispatch(closeLoading());
+    }
+  }
+);
+
+export const calculateBalance = transactions => {
+  let totalAmount = 0;
+  transactions.forEach(transaction => {
+    if (transaction.isIncome) {
+      totalAmount += transaction.amount; // Add income
+    } else {
+      totalAmount -= transaction.amount; // Deduct expense
+    }
+  });
+  return totalAmount;
+};

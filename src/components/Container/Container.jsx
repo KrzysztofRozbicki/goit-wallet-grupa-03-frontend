@@ -8,12 +8,17 @@ import css from './Container.module.css';
 export const Container = () => {
   return (
     <>
-      <Header />
-      <div className={css.wrapper}>
-        <div className={css.dashBoardWrapper}>
-          <DashboardPage />
+      <div className={css.container}>
+        <Header />
+        <div className={css.wrapper}>
+
+          <div className={css.dashBoardWrapper}>
+            <DashboardPage />
+          </div>
+          <div className={css.outletWrapper}>
+            <Outlet />
+          </div>
         </div>
-        <Outlet />
       </div>
     </>
   );

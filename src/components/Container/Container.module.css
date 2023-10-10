@@ -1,6 +1,40 @@
+.outletWrapper {
+  padding-top: 32px;
+
+}
+
+
 @media screen and (min-width: 767px) {
   .wrapper {
     display: flex;
     flex-direction: column;
+
+  }
+
+  .container {
+    width: 767px;
+    margin: 0 auto;
+  }
+
+}
+
+@media screen and (min-width: 1279px) {
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .dashBoardWrapper {
+    flex: 1;
+  }
+
+  .outletWrapper {
+    flex: 1;
+  }
+
+
+  .container {
+    width: 1279px;
+    margin: 0 auto;
   }
 }
