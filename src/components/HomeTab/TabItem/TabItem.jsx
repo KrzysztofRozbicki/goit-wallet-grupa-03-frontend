@@ -1,4 +1,3 @@
-import moment from 'moment';
 import css from './TabItem.module.css';
 import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

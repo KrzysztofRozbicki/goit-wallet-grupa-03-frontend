@@ -23,7 +23,6 @@ const HomeTab = () => {
   const items = useSelector(selectData);
   const [sortedItems, setSortedItems] = useState([]);
   const [isUpSorted, setIsUpSorted] = useState(true);
-  console.log(items);
 
   useEffect(() => {
     setSortedItems(items);
@@ -37,23 +36,24 @@ const HomeTab = () => {
   };
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
-  // const sortChangeHandler = () => {
-  //   if (isUpSorted) {
-  //     setSortedItems(
-  //       sortedItems.sort((item1, item2) =>
-  //         item1.date > item2.date ? 1 : item1.date < item2.date ? -1 : 0
-  //       )
-  //     );
-  //     setIsUpSorted(false);
-  //   } else {
-  //     setSortedItems(
-  //       sortedItems.sort((item1, item2) =>
-  //         item1.date < item2.date ? 1 : item1.date > item2.date ? -1 : 0
-  //       )
-  //     );
-  //     setIsUpSorted(true);
-  //   }
-  // };
+  const sortChangeHandler = () => {
+    if (isUpSorted) {
+      setSortedItems(
+        sortedItems.toSorted((item1, item2) =>
+          item1.date > item2.date ? 1 : item1.date < item2.date ? -1 : 0
+        )
+      );
+      setIsUpSorted(false);
+    } else {
+      setSortedItems(
+        sortedItems.toSorted((item1, item2) =>
+          item1.date < item2.date ? 1 : item1.date > item2.date ? -1 : 1
+        )
+      );
+
+      setIsUpSorted(true);
+    }
+  };
 
   useEffect(() => {
     const updateDimension = () => {
@@ -69,12 +69,11 @@ const HomeTab = () => {
   return (
     <>
       {screenSize.width > 767 && (
-        <>
-          <table className={css.table}>
-            <thead>
-              <tr className={css.tableHeader}>
-                <th className={cn(css.item, css.itemFirst)} style={{ width: '110px' }}>
-                  {/* <a onClick={sortChangeHandler} href="#" className={css.sortedBy}> */}
+        <table className={css.table}>
+          <thead>
+            <tr className={css.tableHeader}>
+              <th className={cn(css.item, css.itemFirst)} style={{ width: '110px' }}>
+                <a onClick={sortChangeHandler} href="#" className={css.sortedBy}>
                   {isUpSorted ? (
                     <FontAwesomeIcon
                       icon={faArrowDown}
@@ -87,29 +86,29 @@ const HomeTab = () => {
                     />
                   )}
                   Date
-                  {/* </a> */}
-                </th>
-                <th className={cn(css.item, css.itemType)} style={{ width: '80px' }}>
-                  Type
-                </th>
-                <th className={css.item} style={{ width: '150px' }}>
-                  Category
-                </th>
-                <th className={css.item} style={{ width: '300px' }}>
-                  Comment
-                </th>
-                <th className={css.item} style={{ width: '120px' }}>
-                  Sum
-                </th>
-                <th className={cn(css.item, css.itemLast)} style={{ width: '100px' }}></th>
-              </tr>
-            </thead>
-          </table>
+                </a>
+              </th>
+              <th className={cn(css.item, css.itemType)} style={{ width: '80px' }}>
+                Type
+              </th>
+              <th className={css.item} style={{ width: '150px' }}>
+                Category
+              </th>
+              <th className={css.item} style={{ width: '300px' }}>
+                Comment
+              </th>
+              <th className={css.item} style={{ width: '120px' }}>
+                Sum
+              </th>
+              <th className={cn(css.item, css.itemLast)} style={{ width: '100px' }}></th>
+            </tr>
+          </thead>
 
           <tbody className={css.tableBody}>
-            {sortedItems.length > 0 && sortedItems.map(item => <TabItem key={item.id} {...item} />)}
+            {sortedItems.length > 0 &&
+              sortedItems.map(item => <TabItem key={item._id} {...item} />)}
           </tbody>
-        </>
+        </table>
       )}
       {screenSize.width < 767 && sortedItems.length > 0 && (
         <div className={css.mobileContainer}>
