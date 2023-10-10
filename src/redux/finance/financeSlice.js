@@ -13,7 +13,7 @@ import {
 } from './operations';
 
 const initialState = {
-  totalBalance: '',
+  totalBalance: 0,
   data: [],
 };
 
