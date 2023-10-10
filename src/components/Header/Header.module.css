@@ -57,7 +57,7 @@
 
 .exit:hover {
   transition: fill 150ms;
-  background-color: var(--background-primary);
+  background-color: var(--background-secondary);
 }
 
 .exitLogo {
@@ -76,6 +76,7 @@
   font-weight: 400;
   font-size: 1px;
   margin-top: 4px;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
