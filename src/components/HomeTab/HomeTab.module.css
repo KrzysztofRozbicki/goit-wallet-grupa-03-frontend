@@ -1,6 +1,12 @@
 @import '../../stylesheet/vars.css';
 @import '../../stylesheet/fonts.css';
 
+.mobileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .table {
   border-spacing: 0;
   width: 715px;

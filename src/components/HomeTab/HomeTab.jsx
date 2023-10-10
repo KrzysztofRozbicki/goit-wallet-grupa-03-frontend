@@ -111,9 +111,13 @@ const HomeTab = () => {
           </tbody>
         </>
       )}
-      {screenSize.width < 767 &&
-        sortedItems.length > 0 &&
-        sortedItems.map(item => <TabMobileItem key={item._id} {...item} />)}
+      {screenSize.width < 767 && sortedItems.length > 0 && (
+        <div className={css.mobileContainer}>
+          {sortedItems.map(item => (
+            <TabMobileItem key={item._id} {...item} />
+          ))}
+        </div>
+      )}
       <ButtonAddTransactions />
     </>
   );
