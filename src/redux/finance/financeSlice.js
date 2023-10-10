@@ -9,6 +9,7 @@ import {
   addTransaction,
   editTransaction,
   deleteTransaction,
+  calculateBalance,
 } from './operations';
 
 const initialState = {
@@ -32,6 +33,7 @@ const financeSlice = createSlice({
       .addCase(fetchTransactions.pending, (state, action) => {})
       .addCase(fetchTransactions.fulfilled, (state, action) => {
         state.data = action.payload;
+        state.totalBalance = calculateBalance(state.data);
       })
       .addCase(fetchTransactions.rejected, (state, action) => {
         state.data = [];
@@ -39,16 +41,19 @@ const financeSlice = createSlice({
       .addCase(addTransaction.pending, (state, action) => {})
       .addCase(addTransaction.fulfilled, (state, action) => {
         state.data.push(action.payload);
+        state.totalBalance = calculateBalance(state.data);
       })
       .addCase(addTransaction.rejected, (state, action) => {})
       .addCase(editTransaction.pending, (state, action) => {})
       .addCase(editTransaction.fulfilled, (state, action) => {
         editTransactionAction(state, action);
+        state.totalBalance = calculateBalance(state.data);
       })
       .addCase(editTransaction.rejected, (state, action) => {})
       .addCase(deleteTransaction.pending, (state, action) => {})
       .addCase(deleteTransaction.fulfilled, (state, action) => {
         deleteTransactionAction(state, action);
+        state.totalBalance = calculateBalance(state.data);
       })
       .addCase(deleteTransaction.rejected, (state, action) => {});
   },
