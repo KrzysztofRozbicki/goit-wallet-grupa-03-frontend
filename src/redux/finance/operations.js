@@ -67,7 +67,7 @@ export const editTransaction = createAsyncThunk(
     dispatch(openLoading());
     try {
       const response = await axios.post(`/api/transactions/${id}`, values);
-      return { id: id, updatedTransaction: response.data };
+      return { id: id, updatedTransaction: response.data.result };
     } catch (error) {
       dispatch(setError('Error while editing transaction'));
       return rejectWithValue(error.message);
