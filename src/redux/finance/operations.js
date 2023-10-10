@@ -67,7 +67,7 @@ export const editTransaction = createAsyncThunk(
     dispatch(openLoading());
     try {
       const response = await axios.post(`/api/transactions/${id}`, values);
-      return { id: id, updatedTransaction: response.data };
+      return { id: id, updatedTransaction: response.data.result };
     } catch (error) {
       dispatch(setError('Error while editing transaction'));
       return rejectWithValue(error.message);
@@ -102,7 +102,7 @@ export const fetchTransactions = createAsyncThunk(
     try {
       dispatch(openLoading());
       const response = await axios.get('/api/transactions');
-      return response.data;
+      return response.data.transactions;
     } catch (error) {
       dispatch(setError('Cannot get transactions from server'));
       return rejectWithValue(error.message);
