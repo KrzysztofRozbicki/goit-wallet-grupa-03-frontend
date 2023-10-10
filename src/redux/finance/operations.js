@@ -111,3 +111,15 @@ export const fetchTransactions = createAsyncThunk(
     }
   }
 );
+
+export const calculateBalance = transactions => {
+  let totalAmount = 0;
+  transactions.forEach(transaction => {
+    if (transaction.isIncome) {
+      totalAmount += transaction.amount; // Add income
+    } else {
+      totalAmount -= transaction.amount; // Deduct expense
+    }
+  });
+  return totalAmount;
+};
