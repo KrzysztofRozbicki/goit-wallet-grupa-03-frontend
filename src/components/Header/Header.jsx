@@ -26,7 +26,7 @@ const Header = () => {
           <span className={css.name}>{shortUserName}</span>
           <div className={css.exit}>
             <img src={closeSVG} className={css.exitLogo} alt="logout logo" onClick={openModal} />
-            <span className={css.exitText}>Exit</span>
+            <span className={css.exitText} onClick={openModal}>Exit</span>
           </div>
         </div>
       </div>
