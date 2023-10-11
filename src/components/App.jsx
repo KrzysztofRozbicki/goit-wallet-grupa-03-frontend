@@ -141,7 +141,11 @@ const App = () => {
 
   useEffect(() => {
     dispatch(refreshUser());
-  }, [dispatch]);
+    if (error) {
+      toast.error(error);
+      dispatch(setError(''));
+    }
+  }, [error, dispatch]);
 
   return (
     <Suspense fallback={<Loader />}>
@@ -158,13 +162,6 @@ const App = () => {
         {isModalEditTransactionOpen ? (
           <ModalEditTransaction id={isModalEditTransactionOpen} />
         ) : null}
-        {/* {error ? <Toast error={error} /> : null} */}
-        {error && (
-          <>
-            {toast.error(error)}
-            {dispatch(setError(''))}
-          </>
-        )}
         <Toaster position="top-center" />
       </div>
     </Suspense>

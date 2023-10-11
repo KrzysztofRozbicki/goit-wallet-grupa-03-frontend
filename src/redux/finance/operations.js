@@ -50,7 +50,7 @@ export const addTransaction = createAsyncThunk(
     dispatch(openLoading());
     try {
       const response = await axios.post('/api/transactions', values);
-      return response.data;
+      return response.data.newTransaction;
     } catch (error) {
       dispatch(setError('Error while adding transaction'));
       return rejectWithValue(error.message);
