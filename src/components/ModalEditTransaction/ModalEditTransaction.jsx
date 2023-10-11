@@ -37,7 +37,7 @@ const TransactionSchema = Yup.object().shape({
 });
 
 const getTransaction = (transactions, id) => {
-  const transaction = transactions.find(transaction => transaction.id === id);
+  const transaction = transactions.find(transaction => transaction._id === id);
   return transaction;
 };
 

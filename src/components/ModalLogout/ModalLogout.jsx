@@ -34,6 +34,11 @@ const ModalLogout = () => {
   return (
     <ReactModal
       isOpen={isLogoutModalOpen}
+      style={{
+        overlay: {
+          zIndex: 5,
+        },
+      }}
       contentLabel="onRequestClose Example"
       onRequestClose={handleClose}
       shouldCloseOnOverlayClick={true}

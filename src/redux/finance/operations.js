@@ -63,6 +63,7 @@ export const addTransaction = createAsyncThunk(
 export const editTransaction = createAsyncThunk(
   'edit/transaction',
   async (values, id, { getState, dispatch, rejectWithValue }) => {
+    console.log('values: ', values);
     setAuthorization(getState);
     dispatch(openLoading());
     try {
@@ -87,6 +88,24 @@ export const deleteTransaction = createAsyncThunk(
       return { id };
     } catch (error) {
       dispatch(setError('Error while deleting transaction'));
+      return rejectWithValue(error.message);
+    } finally {
+      dispatch(closeLoading());
+    }
+  }
+);
+
+export const getFilteredTransactions = createAsyncThunk(
+  'fetchFiltered/transactions',
+  async ({ month, year }, { getState, dispatch, rejectWithValue }) => {
+    setAuthorization(getState);
+
+    try {
+      dispatch(openLoading());
+      const response = await axios.get(`/api/transactions/${month}/${year}`);
+      return response.data.transactions;
+    } catch (error) {
+      dispatch(setError('Cannot get filtered transactions from the server'));
       return rejectWithValue(error.message);
     } finally {
       dispatch(closeLoading());
