@@ -5,11 +5,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 32px;
 }
 
 .table {
   border-spacing: 0;
   width: 715px;
+  margin: 0px auto;
+  position: relative;
+  top: -40px;
+}
+
+@media screen and (min-width: 1279px) {
+  .table {
+    position: static;
+  }
 }
 
 .tableBody {

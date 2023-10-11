@@ -7,22 +7,33 @@
   margin-inline: auto;
 }
 
+.diagramHeader {
+  font-family: Poppins;
+  font-size: 1.875rem;
+  font-weight: 400;
+  line-height: 0.75;
+  background-color: #E7EAF2;
+}
+
+.wrapper {
+  padding-top: 25px;
+}
+
 @media screen and (min-width: 767px) {
   .diagramContainer {
     display: flex;
     /* justify-content: flex-start; */
     align-items: flex-start;
   }
-  
+
+  .wrapper {
+    padding-top: 20px;
+  }
+
 }
 
-.diagramHeader {
-  font-family: Poppins;
-  font-size: 1.875rem;
-  font-weight: 400;
-
-  line-height: 0.75;
-  background-color: #E7EAF2;
-
-  padding-top: 8px;
- }
+@media screen and (min-width: 1279px) {
+  .diagramHeader {
+    padding-left: 84px;
+  }
+}
