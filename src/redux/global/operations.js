@@ -19,8 +19,8 @@ export const closeModalAddTransactionAction = state => {
   state.isModalAddTransactionOpen = false;
 };
 
-export const openModalEditTransactionAction = state => {
-  state.isModalEditTransactionOpen = true;
+export const openModalEditTransactionAction = (state, action) => {
+  state.isModalEditTransactionOpen = action.payload;
 };
 export const closeModalEditTransactionAction = state => {
   state.isModalEditTransactionOpen = false;

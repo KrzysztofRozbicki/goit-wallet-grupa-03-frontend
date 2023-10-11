@@ -1,19 +1,18 @@
 .wrapper {
   background-color: var(--background-accent);
   height: 100vh;
-
 }
 
 @media screen and (min-width: 767px) {
   .wrapper {
     display: flex;
     flex-direction: column;
-    flex: 1
+    flex: 1;
   }
 
   .wrapper::before,
   .wrapper::after {
-    content: "";
+    content: '';
     position: absolute;
     width: 50%;
     height: 50%;
@@ -25,7 +24,6 @@
   .wrapper::before {
     background-image: url(../../assets/icons/blob-3.svg);
     bottom: 0;
-
   }
 
   .wrapper::after {
@@ -42,7 +40,6 @@
     min-width: 767px;
     margin: 0 auto;
   }
-
 }
 
 @media screen and (min-width: 1279px) {
@@ -52,21 +49,19 @@
     position: relative;
   }
 
-
-
   .dashBoardWrapper {
     flex: 1;
-    border-right: 1px solid #E7E5F2;
-    box-shadow: 1px 0px 0px 0px #FFFFFF99;
+    border-right: 1px solid #e7e5f2;
+    box-shadow: 1px 0px 0px 0px #ffffff99;
     max-width: 480px;
   }
 
   .outletWrapper {
     flex: 1;
-    border-left: 1px solid #E7E5F2;
-    box-shadow: -1px 0px 0px 0px #0000000D;
+    border-left: 1px solid #e7e5f2;
+    box-shadow: -1px 0px 0px 0px #0000000d;
+    z-index: 2;
   }
-
 
   .container {
     width: 1279px;

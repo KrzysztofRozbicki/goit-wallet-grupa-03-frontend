@@ -63,6 +63,7 @@ export const addTransaction = createAsyncThunk(
 export const editTransaction = createAsyncThunk(
   'edit/transaction',
   async (values, id, { getState, dispatch, rejectWithValue }) => {
+    console.log('values: ', values);
     setAuthorization(getState);
     dispatch(openLoading());
     try {

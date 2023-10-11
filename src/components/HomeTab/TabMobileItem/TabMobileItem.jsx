@@ -2,16 +2,21 @@ import cn from 'classnames';
 import css from './TabMobileItem.module.css';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+import { openModalEditTransaction } from '../../../redux/global/globalSlice';
+import { deleteTransaction } from '../../../redux/finance/operations';
 
-const TabMobileItem = ({ date, type, category, comment, amount }) => {
+const TabMobileItem = ({ _id, date, type, category, comment, amount }) => {
   const formatedDate = moment(date).format('DD.MM.YY');
   const [isIncome, setIsIncome] = useState(false);
 
   useEffect(() => {
     setIsIncome(type === '+' ? true : false);
   }, [type, setIsIncome]);
+
+  const dispatch = useDispatch();
   return (
     <>
       <table className={css.table}>
@@ -44,10 +49,22 @@ const TabMobileItem = ({ date, type, category, comment, amount }) => {
           </tr>
           <tr className={css.row}>
             <td className={cn(isIncome ? css.itemIncome : css.itemExpense, css.item, css.lastItem)}>
-              <button className={css.deleteButton}>Delete</button>
+              <button
+                className={css.deleteButton}
+                onClick={() => {
+                  dispatch(deleteTransaction(_id));
+                }}
+              >
+                Delete
+              </button>
             </td>
             <td className={cn(isIncome ? css.dataIncome : css.dataExpense, css.data, css.lastData)}>
-              <button className={css.editButton}>
+              <button
+                className={css.editButton}
+                onClick={() => {
+                  dispatch(openModalEditTransaction(_id));
+                }}
+              >
                 <FontAwesomeIcon icon={faPenToSquare} />
                 Edit
               </button>
