@@ -83,6 +83,7 @@
   .header {
     max-height: 80px;
     border: 1px solid var(--color-logout-button);
+    z-index: 900;
   }
 
   .logoContainer {
@@ -127,7 +128,7 @@
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1279px) {
   .logoContainer {
     padding: 20px 16px 20px 16px;
   }
@@ -135,4 +136,6 @@
   .logOutContainer {
     padding: 25px 16px 25px 16px;
   }
+
+
 }

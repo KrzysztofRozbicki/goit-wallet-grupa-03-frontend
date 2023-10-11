@@ -11,13 +11,13 @@ import css from './DiagramTab.module.css';
 export const DiagramTab = () => {
   return (
     <>
-    <div>
-      <h3 className={css.diagramHeader}>Statistics</h3>
-      <div className={css.diagramContainer}>
-        <Chart/>
-        <Table/>
+      <div className={css.wrapper}>
+        <h3 className={css.diagramHeader}>Statistics</h3>
+        <div className={css.diagramContainer}>
+          <Chart />
+          <Table />
+        </div>
       </div>
-    </div>
     </>
   );
 };
