@@ -10,4 +10,4 @@ export const colors = [
     '#00AD84'
   ]
 
-  export const series = [ 2400, 600, 7000, 150, 130, 60, 1000, 400, 340, 509 ]
+  export const series = [ 2400, 600, 7000, 150, 130, 60, 1000, 400, 340 ]

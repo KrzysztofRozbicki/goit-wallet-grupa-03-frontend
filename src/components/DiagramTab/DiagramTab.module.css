@@ -3,10 +3,26 @@
 .diagramContainer {
   /* background-color: rgba(255,255,255, .7); */
   background-color: #E7EAF2;
+
+  margin-inline: auto;
+}
+
+@media screen and (min-width: 767px) {
+  .diagramContainer {
+    display: flex;
+    /* justify-content: flex-start; */
+    align-items: flex-start;
+  }
+  
 }
 
 .diagramHeader {
   font-family: Poppins;
   font-size: 1.875rem;
   font-weight: 400;
+
+  line-height: 0.75;
+  background-color: #E7EAF2;
+
+  padding-top: 8px;
  }
