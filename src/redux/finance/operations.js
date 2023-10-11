@@ -94,6 +94,24 @@ export const deleteTransaction = createAsyncThunk(
   }
 );
 
+export const getFilteredTransactions = createAsyncThunk(
+  'fetchFiltered/transactions',
+  async ({ month, year }, { getState, dispatch, rejectWithValue }) => {
+    setAuthorization(getState);
+
+    try {
+      dispatch(openLoading());
+      const response = await axios.get(`/api/transactions/${month}/${year}`);
+      return response.data.transactions;
+    } catch (error) {
+      dispatch(setError('Cannot get filtered transactions from the server'));
+      return rejectWithValue(error.message);
+    } finally {
+      dispatch(closeLoading());
+    }
+  }
+);
+
 export const fetchTransactions = createAsyncThunk(
   'fetchAll/transactions',
   async (_, { getState, dispatch, rejectWithValue }) => {
