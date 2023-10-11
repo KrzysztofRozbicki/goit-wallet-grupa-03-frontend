@@ -1,8 +1,37 @@
+.wrapper {
+  background-color: var(--background-accent);
+  height: 100vh;
+
+}
+
 @media screen and (min-width: 767px) {
   .wrapper {
     display: flex;
     flex-direction: column;
     flex: 1
+  }
+
+  .wrapper::before,
+  .wrapper::after {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: blur(10px);
+  }
+
+  .wrapper::before {
+    background-image: url(../../assets/icons/blob-3.svg);
+    bottom: 0;
+
+  }
+
+  .wrapper::after {
+    background-image: url(../../assets/icons/blob-4.svg);
+    right: 0;
+    z-index: 0;
   }
 
   .dashBoardWrapper {
@@ -21,44 +50,21 @@
     display: flex;
     flex-direction: row;
     position: relative;
-
-
   }
 
-  .wrapper::before,
-  .wrapper::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 50%;
-    background-size: contain;
-    background-repeat: no-repeat;
 
-  }
-
-  .wrapper::before {
-    background-image: url(../../assets/icons/blob-3.svg);
-    left: 0px;
-    top: 300px;
-    z-index: -999;
-
-  }
-
-  .wrapper::after {
-    background-image: url(../../assets/icons/blob-4.svg);
-    left: 638px;
-    z-index: -999;
-
-  }
 
   .dashBoardWrapper {
     flex: 1;
+    border-right: 1px solid #E7E5F2;
+    box-shadow: 1px 0px 0px 0px #FFFFFF99;
+    max-width: 480px;
   }
 
   .outletWrapper {
     flex: 1;
+    border-left: 1px solid #E7E5F2;
+    box-shadow: -1px 0px 0px 0px #0000000D;
   }
 
 

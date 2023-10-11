@@ -36,7 +36,9 @@
   background-repeat: no-repeat;
   background-color: var(--color-brand-primary);
   border-radius: 0 0 30px 30px;
-  background-position: bottom;
+  background-position-x: -25px;
+  background-position-y: 10px;
+  background-size: cover;
   font-weight: 400;
   font-size: 16px;
   line-height: 23.58px;
@@ -45,10 +47,11 @@
 
 @media screen and (min-width: 767px) {
   .table {
-    position: fixed;
+    position: absolute;
     right: 32px;
     top: 120px;
     padding: 0px;
+    z-index: 1;
   }
 
 
@@ -63,5 +66,10 @@
     padding-top: 32px;
     width: 393px;
 
+  }
+
+  .currencyContainer {
+    background-position-x: 0px;
+    background-position-y: 10px;
   }
 }
