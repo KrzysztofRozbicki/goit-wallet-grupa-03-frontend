@@ -1,6 +1,6 @@
 .wrapper {
   background-color: var(--background-accent);
-  height: 100vh;
+  height: calc(100vh - 70px);
   position: relative;
   z-index: 1;
   overflow: hidden;
