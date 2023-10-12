@@ -49,13 +49,10 @@
   .table {
     position: absolute;
     right: 32px;
-    top: 120px;
+    top: 30px;
     padding: 0px;
     z-index: 1;
   }
-
-
-
 }
 
 @media screen and (min-width: 1279px) {
