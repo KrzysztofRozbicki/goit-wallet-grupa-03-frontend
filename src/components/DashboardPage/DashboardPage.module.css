@@ -4,7 +4,6 @@
     .wrapper {
         display: flex;
         flex-direction: column;
-        background-image: url(../../assets/icons/blob-1.svg), url(../../assets/icons/blob-2.svg);
     }
 
     .balance {
@@ -15,6 +14,7 @@
     .homeContainer {
         display: flex;
         justify-content: space-between;
+
     }
 
 }
