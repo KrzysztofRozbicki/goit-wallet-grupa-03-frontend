@@ -26,9 +26,9 @@ const Header = () => {
         </div>
         <div className={css.logOutContainer}>
           <span className={css.name}>{shortUserName}</span>
-          <div className={css.exit}>
+          <div className={css.exit} onClick={openModal}>
             <IconContext.Provider value={{ size: 24, color: "currentColor" }}>
-              <TbLogout className={css.exitLogo} onClick={openModal} /><span className={css.exitText}>
+              <TbLogout className={css.exitLogo} /><span className={css.exitText}>
                 Exit</span></IconContext.Provider>
         </div>
         </div>
