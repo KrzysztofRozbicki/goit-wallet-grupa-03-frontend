@@ -61,6 +61,11 @@
   padding-top: 5px;
 }
 
+.exitLogo:hover {
+  transition: 150ms;
+  stroke: var(--background-secondary);
+}
+
 .exitLogo:hover + .exitText {
   transition: 150ms;
   color: var(--background-secondary);
@@ -73,12 +78,6 @@
   font-weight: 400;
   font-size: 1px;
   margin-top: 4px;
-  cursor: pointer;
-}
-
-.exitText:hover {
-  transition: 150ms;
-  color: var(--background-secondary);
 }
 
 @media screen and (min-width: 768px) {
