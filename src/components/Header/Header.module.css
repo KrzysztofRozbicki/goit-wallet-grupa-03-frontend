@@ -1,9 +1,7 @@
 @import '../../stylesheet/vars.css';
 
 .header {
-  /* width: 100vw;
   max-width: 1400px;
-  max-height: 60px; */
   display: flex;
   justify-content: space-between;
   background-color: var(--background-light);
@@ -56,17 +54,21 @@
 }
 
 .exit:hover {
-  transition: fill 150ms;
-  background-color: var(--background-secondary);
+  transition: 150ms;
+  stroke: var(--background-secondary);
 }
 
 .exitLogo {
-  width: 18px;
-  height: 18px;
   display: flex;
   align-self: center;
   stroke: var(--color-logout-button);
   cursor: pointer;
+  padding-top: 5px;
+}
+
+.exitLogo:hover {
+  transition: 150ms;
+  stroke: var(--background-secondary);
 }
 
 .exitText {
@@ -77,6 +79,11 @@
   font-size: 1px;
   margin-top: 4px;
   cursor: pointer;
+}
+
+.exitText:hover {
+  transition: 150ms;
+  color: var(--background-secondary);
 }
 
 @media screen and (min-width: 768px) {
@@ -113,7 +120,8 @@
 
   .exitLogo {
     padding-left: 12px;
-    padding-bottom: 5px;
+    padding-bottom: 8px;
+    padding-top: none;
     width: 30px;
     height: 30px;
   }
@@ -125,6 +133,7 @@
     line-height: 1.2rem;
     color: var(--color-logout-button);
     padding-left: 8px;
+    padding-bottom: 2px;
   }
 }
 
@@ -136,6 +145,4 @@
   .logOutContainer {
     padding: 25px 16px 25px 16px;
   }
-
-
 }
