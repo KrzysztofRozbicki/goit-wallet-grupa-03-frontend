@@ -12,14 +12,17 @@
 .chartContainer {
   position: relative;
   /* background-color: inherit; */
-  /* margin-inline: auto; */
-  /* max-width: 440px; */
+  margin-inline: auto;
+  max-width: 440px;
+  height: auto;
+
+  padding: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-grow: 1;
 
-  border: 1px dotted red;
+  /* border: 1px dotted red; */
   /* padding-inline: 20px; */
 }
 

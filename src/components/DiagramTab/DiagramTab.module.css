@@ -2,7 +2,8 @@
 
 .diagramContainer {
   /* background-color: rgba(255,255,255, .7); */
-  background-color: #E7EAF2;
+  /* background-color: #E7EAF2; */
+  /* flex-basis: 62.5%; */
 
   margin-inline: auto;
 }
@@ -20,9 +21,9 @@
   font-family: Poppins;
   font-size: 1.875rem;
   font-weight: 400;
+  transform: translateY(15px);
 
   line-height: 0.75;
-  background-color: #E7EAF2;
 
   padding-top: 8px;
  }
