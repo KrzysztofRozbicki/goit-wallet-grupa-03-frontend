@@ -58,8 +58,26 @@
   margin-top: 40px;
   margin-bottom: 20px;
   background-color: var(--color-brand-secondary);
-  border: none;
+  border: 1px solid var(--color-brand-secondary);
   color: var(--background-light);
+}
+.loginButton:hover,
+.loginButton:focus {
+  background-color: var(--background-light);
+  color: var(--color-brand-secondary);
+  -webkit-box-shadow: 8px 8px 24px -18px rgba(36, 204, 167, 1);
+  -moz-box-shadow: 8px 8px 24px -18px rgba(36, 204, 167, 1);
+  box-shadow: 8px 8px 24px -18px rgba(36, 204, 167, 1);
+  cursor: pointer;
+}
+.registerButton:hover,
+.registerButton:focus {
+  background-color: var(--color-brand-primary);
+  color: var(--background-light);
+  -webkit-box-shadow: 8px 8px 24px -10px rgba(74, 86, 226, 1);
+  -moz-box-shadow: 8px 8px 24px -10px rgba(74, 86, 226, 1);
+  box-shadow: 8px 8px 24px -10px rgba(74, 86, 226, 1);
+  cursor: pointer;
 }
 .registerButton {
   background-color: var(--background-light);
@@ -67,7 +85,7 @@
   color: var(--color-brand-primary);
 }
 .validateError {
-  color: red;
+  color: var(--color-brand-accent);
   position: absolute;
   top: 40px;
   width: 100vw;
