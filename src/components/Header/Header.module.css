@@ -53,11 +53,6 @@
   display: flex;
 }
 
-.exit:hover {
-  transition: 150ms;
-  stroke: var(--background-secondary);
-}
-
 .exitLogo {
   display: flex;
   align-self: center;
@@ -66,9 +61,9 @@
   padding-top: 5px;
 }
 
-.exitLogo:hover {
+.exitLogo:hover + .exitText {
   transition: 150ms;
-  stroke: var(--background-secondary);
+  color: var(--background-secondary);
 }
 
 .exitText {
