@@ -31,7 +31,6 @@ const Navigation = lazy(() => import('./Navigation/Navigation.jsx'));
 const Table = lazy(() => import('./Table/Table.jsx'));
 import Container from './Container/Container';
 
-import Toast from './Toast/Toast';
 import toast, { Toaster } from 'react-hot-toast';
 import { setError } from '../redux/session/sessionSlice';
 
