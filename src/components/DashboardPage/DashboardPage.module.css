@@ -1,5 +1,8 @@
 @import '../../stylesheet/vars.css';
 
+.wrapper {
+  min-height: calc(100vw - 70px);
+}
 @media screen and (min-width: 767px) {
   .wrapper {
     display: flex;

@@ -172,16 +172,26 @@
   transition: 0.4s ease;
 }
 
-.button:hover {
+.button:hover,
+.button:focus {
   cursor: pointer;
 }
 
 .buttonAdd {
   background-color: var(--color-brand-secondary);
-  color: var(--font-color-light);
+  color: var(--background-light);
+  border: 1px solid var(--color-brand-secondary);
 }
-.buttonAdd:hover {
-  box-shadow: 0px 6px 15px 0px var(--shadow-progress-bar);
+.buttonAdd:hover,
+.buttonAdd:focus {
+  background-color: var(--background-light);
+  color: var(--color-brand-secondary);
+  -webkit-box-shadow: 8px 8px 24px -18px rgba(36, 204, 167, 1),
+    inset 0px 10px 24px -18px rgba(36, 204, 167, 1);
+  -moz-box-shadow: 8px 8px 24px -18px rgba(36, 204, 167, 1),
+    inset 0px 10px 24px -18px rgba(36, 204, 167, 1);
+  box-shadow: 8px 8px 24px -18px rgba(36, 204, 167, 1),
+    inset 0px 10px 24px -18px rgba(36, 204, 167, 1);
 }
 
 .buttonCancel {
@@ -191,8 +201,13 @@
   color: var(--color-brand-primary);
 }
 
-.buttonCancel:hover {
-  box-shadow: 0px 6px 15px 0px #4a56e260;
+.buttonCancel:hover,
+.buttonCancel:focus {
+  background-color: var(--color-brand-primary);
+  color: var(--background-light);
+  -webkit-box-shadow: 8px 8px 24px -10px rgba(74, 86, 226, 1);
+  -moz-box-shadow: 8px 8px 24px -10px rgba(74, 86, 226, 1);
+  box-shadow: 8px 8px 24px -10px rgba(74, 86, 226, 1);
 }
 
 .formOption {

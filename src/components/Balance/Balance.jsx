@@ -10,11 +10,9 @@ const Balance = () => {
 
   return (
     <>
-      <div className={css.containerHeight}>
-        <div className={css.container}>
-          <h2>YOUR BALANCE</h2>
-          <div>{undefined ?? '€ ' + cashFormatter(totalBalance)}</div>
-        </div>
+      <div className={css.container}>
+        <h2>YOUR BALANCE</h2>
+        <div>{undefined ?? '€ ' + cashFormatter(totalBalance)}</div>
       </div>
     </>
   );
