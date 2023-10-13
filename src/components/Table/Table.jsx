@@ -7,31 +7,57 @@ import Select, { components } from 'react-select'
 import { selectStyles } from './selectStyles';
 // import makeAnimated from 'react-select/animated'
 
-import { months, years } from './dateOptions'
+import mockMonths from './dateOptions'
 import TableItem from '../TableItem/TableItem';
 import { colors } from '../DiagramTab/diagramUtils';
 import { cashFormatter } from '../../utils/cashFormatter';
+import { useEffect, useState } from 'react';
+import { getFilteredTransactions } from '../../redux/finance/operations';
+import { useDispatch } from 'react-redux';
 
+const Table = ({ transactions, totalIncome, totalExpenses, years, months }) => {
+  const [month, setMonth] =  useState('')
+  const [year, setYear] = useState('')
+  const dispatch = useDispatch()
 
-const Table = ({ transactions, totalIncome, totalExpenses }) => {
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      if (month && year) {
+        dispatch(getFilteredTransactions( { month, year } ))
+      }
+    }
+    fetchTransactions();
+  }, [month, year])
+  
+  const selectedMonth = 10
+  const selectedYear = '2023'
+
+  const [defaultMonth] = mockMonths.filter(({ name, value }) => value === selectedMonth.toString() ? { name, value } : null)
+
+  console.log(defaultMonth)
 
   return (
     <>
     <div className={css.componentContainer}>
       <div className={css.selectContainer}>
         <Select
-          options={months.map((month, idx) => {
+          options={months?.map(({ name, value }) => {
             return {
-              value: idx+1,
-              label: month,
+              value: value,
+              label: name,
             }
           })}
           placeholder='Month'
           isSearchable={false}
           styles={selectStyles}
+          defaultValue={{
+            value: defaultMonth.value,
+            label: defaultMonth.name
+          }}
           components={{
             Menu: (props) => <components.Menu {...props} className={css.menu} />
           }}
+          onChange={(choice) => setMonth(choice.value)}
         />
         <Select
           options={years.map(year => {
@@ -43,9 +69,14 @@ const Table = ({ transactions, totalIncome, totalExpenses }) => {
           placeholder='Year'
           isSearchable={false}
           styles={selectStyles}
+          defaultValue={{
+            value: selectedYear,
+            label: selectedYear
+          }}
           components={{
             Menu: (props) => <components.Menu {...props} className={css.menu} />
           }}
+          onChange={(choice) => setYear(Number.parseInt(choice.value))}
         />
       </div>
       <div className={css.tableContainer}>
@@ -55,7 +86,7 @@ const Table = ({ transactions, totalIncome, totalExpenses }) => {
         </div>
         <ul className={css.tableList}>
           {transactions.map(({amount, category}, idx) => {
-           return (
+           if (amount) return (
               <TableItem key={crypto.randomUUID()} colors={colors[idx]} category={category} amount={amount}/>
             )
           })}

@@ -16,11 +16,11 @@ export const selectStyles = {
     menu: provided => ({
       ...provided,
       width: '100%',
+      margin: '0',
       backgroundColor: 'rgba(255, 255, 255, 0.7)',
       backdropFilter: 'blur(5px)',
       filter: 'dropShadow(0 6px 1rem rgba(0,0,0,.1))',
       borderRadius: '20px',
-      // overflowY: 'scroll',
       zIndex: 2,
       scrollbarWidth: 'none',
       '&::-webkit-scrollbar': {
@@ -33,8 +33,7 @@ export const selectStyles = {
       borderRadius: '20px',
       outline: 'none',
       width: '100%',
-      height: '156px',
-      // overflowY: 'scroll',
+      maxHeight: '156px',
       scrollbarWidth: 'none',
       '::-webkit-scrollbar': {
         display: 'none'

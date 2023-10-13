@@ -8,20 +8,17 @@
   gap: 20px;
   padding-inline: 20px;
 
-  /* margin-top: 32px; */
-
   max-width: 440px;
   margin-inline: auto;
 
   font-family: Circe;
   font-size: 1rem;
-
-  /* background-color: inherit; */
 }
 
 @media screen and (min-width: 767px) {
   .selectContainer {
     flex-direction: row;
+    
     min-width: 336px;
     max-width: 400px;
 
@@ -32,18 +29,21 @@
 @media screen and (min-width: 1280px) {
   .selectContainer {
     gap: 32px;
+    
     max-width: none;
+    
     padding: 0;
     padding-right: 1rem;
   }
 }
 
 .tableContainer {
-  padding: 20px;
   font-family: Circe;
-
-  margin-inline: auto;
+  
   max-width: 440px;
+  margin-inline: auto;
+  
+  padding: 20px;
 }
 
 @media screen and (min-width: 767px) {
@@ -55,6 +55,7 @@
 @media screen and (min-width: 1280px) {
   .tableContainer {
     max-width: none;
+
     padding-left: 0;
     padding-right: 1rem;
   }
@@ -98,7 +99,7 @@
   color: #FF6596;
 }
 
-.income {
+.summary .income {
   color: #24CCA7;
 }
 
@@ -115,7 +116,6 @@
 }
 
 .menu {
-  /* overflow: auto; */
   animation: fadeIn 0.25s ease-in-out
 }
 

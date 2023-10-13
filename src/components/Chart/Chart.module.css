@@ -6,11 +6,13 @@
 
 .chartContainer {
   position: relative;
-  margin-inline: auto;
   max-width: 460px;
   height: 100vw;
   max-height: 460px;
+  
   padding: 12px;
+  margin-inline: auto;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,7 +28,8 @@
 @media screen and (min-width: 1280px) {
   .chartContainer {
     height: 30vw;
-    max-height: 425px;
+    max-height: 385px;
+    padding-top: 14px;
   }  
 }
 
@@ -47,8 +50,6 @@
   font-family: Poppins;
   font-size: 1.875rem;
   font-weight: 400;
-  /* transform: translateY(15px); */
-  
 
   line-height: 0.75;
   padding-inline: 20px;
