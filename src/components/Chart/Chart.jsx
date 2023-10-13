@@ -3,17 +3,19 @@
 //jest dzieckiem DiagramTab z którego otrzymuje dane do renderowania
 
 
-import { categories } from '../../mock/categories';
 import css from './Chart.module.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
-import { colors, series } from './labels'
+import { colors } from '../DiagramTab/diagramUtils'
+import { categories } from '../DiagramTab/diagramUtils';
 import { cashFormatter } from '../../utils/cashFormatter';
  
 ChartJS.register(ArcElement, Tooltip, Legend)
 ChartJS.defaults.plugins.legends = [{ display: false}]
 
-const Chart = () => {
+const Chart = ({ transactions, totalBalance }) => {
+
+  const series = transactions.map(t => t.amount)
 
   const data = {
     labels: categories,
@@ -31,7 +33,7 @@ const Chart = () => {
 
   const options = {
     responsive: true,
-    maintainAspectRation: false,
+    maintainAspectRation: true,
     cutout: '70%',
     layout: {
       padding: 20
@@ -43,16 +45,13 @@ const Chart = () => {
     },
   }
 
-  const balance = series.reduce((acc, curr) => acc + curr, 0)
-
-
-
   return (
     <>
       <div className={css.componentContainer}>
+      <div className={css.headerContainer}><h3 className={css.diagramHeader}>Statistics</h3></div>
         <div className={css.chartContainer}>
           <Doughnut data={data} options={options}/>
-          <p className={css.balance}>{undefined ?? '€ ' + cashFormatter(balance)}</p>
+          <p className={css.balance}>{undefined ?? '€ ' + cashFormatter(totalBalance)}</p>
         </div>
       </div>
     </>

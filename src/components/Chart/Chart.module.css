@@ -1,26 +1,33 @@
 @import '../../stylesheet/vars.css';
 
 .componentContainer {
-  /* display: flex; 
-  align-items: center;
-  justify-content: center;
-
-  flex: 1 1 auto; */
   margin-inline: auto; 
 }
 
 .chartContainer {
   position: relative;
-  /* background-color: inherit; */
-  /* margin-inline: auto; */
-  /* max-width: 440px; */
+  margin-inline: auto;
+  max-width: 460px;
+  height: 100vw;
+  max-height: 460px;
+  padding: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-grow: 1;
+}
 
-  border: 1px dotted red;
-  /* padding-inline: 20px; */
+@media screen and (min-width: 768px) {
+  .chartContainer {
+    height: 50vw;
+  }  
+}
+
+@media screen and (min-width: 1280px) {
+  .chartContainer {
+    height: 30vw;
+    max-height: 425px;
+  }  
 }
 
 .balance {
@@ -34,4 +41,27 @@
   font-family: Circe;
   font-size: 1.125rem;
   font-weight: 700;
+}
+
+.diagramHeader {
+  font-family: Poppins;
+  font-size: 1.875rem;
+  font-weight: 400;
+  /* transform: translateY(15px); */
+  
+
+  line-height: 0.75;
+  padding-inline: 20px;
+  padding-top: 8px;
+}
+
+@media screen and (min-width: 1280px) {
+  .diagramHeader {
+    margin-left: 37px;
+  }
+}
+
+.headerContainer {
+  max-width: 440px;
+  margin-inline: auto;
 }

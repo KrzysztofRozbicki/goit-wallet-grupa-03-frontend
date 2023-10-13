@@ -1,9 +1,6 @@
 @import '../../stylesheet/vars.css';
 
 .diagramContainer {
-  /* background-color: rgba(255,255,255, .7); */
-  background-color: #E7EAF2;
-
   margin-inline: auto;
 }
 
@@ -15,25 +12,31 @@
   background-color: #E7EAF2;
 }
 
-.wrapper {
+/* .wrapper {
   padding-top: 25px;
-}
+} */
 
 @media screen and (min-width: 767px) {
   .diagramContainer {
     display: flex;
     /* justify-content: flex-start; */
     align-items: flex-start;
+    padding-top: 32px;
   }
-
-  .wrapper {
-    padding-top: 20px;
+  .diagramContainer > * {
+    flex-basis: 50%;
   }
-
 }
 
-@media screen and (min-width: 1279px) {
-  .diagramHeader {
-    padding-left: 84px;
+@media screen and (min-width: 1280px) {
+  .diagramContainer {
+    margin-left: 37px;
   }
+  /* .diagramContainer > *:last-child {
+    flex-basis: 60%;
+  }
+  .diagramContainer > *:first-child {
+    flex-basis: 40%;
+  } */
+
 }

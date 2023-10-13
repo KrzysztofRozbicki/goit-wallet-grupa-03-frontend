@@ -20,6 +20,16 @@
     box-shadow: 0 0 1px rgba(255 255 255 .6);
 }
 
+.category {
+    max-width: 118px;
+}
+
+@media screen and (min-width: 768px) {
+    .category {
+        max-width: none;
+    }
+}
+
 .amount {
     margin-left: auto;
     margin-right: 20px;
