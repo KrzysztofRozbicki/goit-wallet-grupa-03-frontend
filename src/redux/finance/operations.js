@@ -26,7 +26,7 @@ export const setAuthorization = getState => {
 
 export const editTransactionAction = (state, action) => {
   const { id, updatedTransaction } = action.payload;
-  const index = state.data.findIndex(transaction => transaction.id === id);
+  const index = state.data.findIndex(transaction => transaction._id === id);
   if (index !== -1) {
     state.data[index] = {
       ...state.data[index],
@@ -36,8 +36,9 @@ export const editTransactionAction = (state, action) => {
 };
 
 export const deleteTransactionAction = (state, action) => {
-  const id = action.payload;
-  const index = state.data.findIndex(transaction => transaction.id === id);
+  const id = action.payload.id;
+  const index = state.data.findIndex(transaction => transaction._id === id);
+
   if (index !== -1) {
     state.data.splice(index, 1);
   }
@@ -62,11 +63,12 @@ export const addTransaction = createAsyncThunk(
 
 export const editTransaction = createAsyncThunk(
   'edit/transaction',
-  async (values, id, { getState, dispatch, rejectWithValue }) => {
+  async ({ values, id }, { getState, dispatch, rejectWithValue }) => {
     setAuthorization(getState);
+    console.log('values: ', values);
     dispatch(openLoading());
     try {
-      const response = await axios.post(`/api/transactions/${id}`, values);
+      const response = await axios.patch(`/api/transactions/${id}`, values);
       return { id: id, updatedTransaction: response.data.result };
     } catch (error) {
       dispatch(setError('Error while editing transaction'));
@@ -87,6 +89,24 @@ export const deleteTransaction = createAsyncThunk(
       return { id };
     } catch (error) {
       dispatch(setError('Error while deleting transaction'));
+      return rejectWithValue(error.message);
+    } finally {
+      dispatch(closeLoading());
+    }
+  }
+);
+
+export const getFilteredTransactions = createAsyncThunk(
+  'fetchFiltered/transactions',
+  async ({ month, year }, { getState, dispatch, rejectWithValue }) => {
+    setAuthorization(getState);
+
+    try {
+      dispatch(openLoading());
+      const response = await axios.get(`/api/transactions/${month}/${year}`);
+      return response.data.transactions;
+    } catch (error) {
+      dispatch(setError('Cannot get filtered transactions from the server'));
       return rejectWithValue(error.message);
     } finally {
       dispatch(closeLoading());

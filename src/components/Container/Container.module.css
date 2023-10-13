@@ -1,19 +1,57 @@
+.wrapper {
+  background-color: var(--background-accent);
+  height: calc(100vh - 70px);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+}
+
 @media screen and (min-width: 767px) {
   .wrapper {
     display: flex;
     flex-direction: column;
-    flex: 1
+    flex: 1;
+  }
+
+  .wrapper::before,
+  .wrapper::after {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: blur(50px);
+  }
+
+  .wrapper::before {
+    background-image: url(../../assets/icons/blob-3.svg);
+    bottom: -400px;
+    z-index: 0;
+
+  }
+
+  .wrapper::after {
+    background-image: url(../../assets/icons/blob-4.svg);
+    right: -300px;
+    top: -110px;
+    z-index: 0;
+    transform: rotate(-22deg);
   }
 
   .dashBoardWrapper {
-    flex: 1;
+    /* flex: 1; */
+  }
+
+  .outletWrapper {
+    z-index: 1;
   }
 
   .container {
     min-width: 767px;
     margin: 0 auto;
   }
-
 }
 
 @media screen and (min-width: 1279px) {
@@ -22,45 +60,38 @@
     flex-direction: row;
     position: relative;
 
-
   }
 
   .wrapper::before,
   .wrapper::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 50%;
-    background-size: contain;
-    background-repeat: no-repeat;
-
+    width: 60%;
+    height: 60%;
   }
 
   .wrapper::before {
-    background-image: url(../../assets/icons/blob-3.svg);
-    left: 0px;
-    top: 300px;
-    z-index: -999;
-
+    bottom: 80px;
   }
 
   .wrapper::after {
-    background-image: url(../../assets/icons/blob-4.svg);
-    left: 638px;
-    z-index: -999;
-
+    top: -150px;
+    right: -250px;
+    transform: rotate(0deg);
   }
 
   .dashBoardWrapper {
     flex: 1;
+    border-right: 1px solid #e7e5f2;
+    box-shadow: 1px 0px 0px 0px #ffffff99;
+    max-width: 480px;
   }
 
   .outletWrapper {
     flex: 1;
-  }
+    border-left: 1px solid #e7e5f2;
+    box-shadow: -1px 0px 0px 0px #0000000d;
+    z-index: 1;
 
+  }
 
   .container {
     width: 1279px;

@@ -18,6 +18,7 @@ import TabMobileItem from './TabMobileItem/TabMobileItem';
 import ButtonAddTransactions from './../ButtonAddTransactions/ButtonAddTransactions';
 import { useSelector } from 'react-redux';
 import { selectData } from '../../redux/finance/selectors';
+import moment from 'moment';
 
 const HomeTab = () => {
   const items = useSelector(selectData);
@@ -25,7 +26,11 @@ const HomeTab = () => {
   const [isUpSorted, setIsUpSorted] = useState(true);
 
   useEffect(() => {
-    setSortedItems(items);
+    setSortedItems(
+      items.map(obj => {
+        return { ...obj, sortDate: moment(obj.date, 'DD-MM-YYYY') };
+      })
+    );
   }, [items]);
 
   const getCurrentDimension = () => {
@@ -37,19 +42,12 @@ const HomeTab = () => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
   const sortChangeHandler = () => {
+    console.log('sort');
     if (isUpSorted) {
-      setSortedItems(
-        sortedItems.toSorted((item1, item2) =>
-          item1.date > item2.date ? 1 : item1.date < item2.date ? -1 : 0
-        )
-      );
+      setSortedItems(sortedItems.sort((a, b) => Number(a.sortDate) - Number(b.sortDate)));
       setIsUpSorted(false);
     } else {
-      setSortedItems(
-        sortedItems.toSorted((item1, item2) =>
-          item1.date < item2.date ? 1 : item1.date > item2.date ? -1 : 1
-        )
-      );
+      setSortedItems(sortedItems.sort((a, b) => Number(b.sortDate) - Number(a.sortDate)));
 
       setIsUpSorted(true);
     }
@@ -76,12 +74,12 @@ const HomeTab = () => {
                 <a onClick={sortChangeHandler} href="#" className={css.sortedBy}>
                   {isUpSorted ? (
                     <FontAwesomeIcon
-                      icon={faArrowDown}
+                      icon={faArrowUp}
                       style={{ marginRight: '4px', color: 'black' }}
                     />
                   ) : (
                     <FontAwesomeIcon
-                      icon={faArrowUp}
+                      icon={faArrowDown}
                       style={{ marginRight: '4px', color: 'black' }}
                     />
                   )}

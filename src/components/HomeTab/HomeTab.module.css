@@ -5,11 +5,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 32px;
+}
+
+.tableHeader {
+  border-radius: 30px;
 }
 
 .table {
   border-spacing: 0;
   width: 715px;
+  margin: 0px auto;
+  padding-top: 20px;
+
+}
+
+@media screen and (min-width: 1279px) {
+  .table {
+    position: static;
+  }
 }
 
 .tableBody {

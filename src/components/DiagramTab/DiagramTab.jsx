@@ -44,9 +44,7 @@ export const DiagramTab = () => {
   return (
     <>
     <div>
-      
       <div className={css.diagramContainer}>
-      
         <Chart transactions={transactions} totalBalance={totalBalance} />
         <Table 
           transactions={transactions} 
@@ -54,7 +52,6 @@ export const DiagramTab = () => {
           totalExpenses={totalExpenses}
           totalIncome={totalIncome} />
       </div>
-    </div>
     </>
   );
 };

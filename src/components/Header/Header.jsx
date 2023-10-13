@@ -1,9 +1,11 @@
 import css from './Header.module.css';
 import walletSVG from '../../assets/icons/wallet.svg';
-import closeSVG from '../../assets/icons/lo.svg';
+/* import closeSVG from '../../assets/icons/lo.svg';  */
 import { useSelector, useDispatch } from 'react-redux';
 import { openModalLogout } from '../../redux/global/globalSlice'
 import { selectUserName } from '../../redux/session/selectors';
+import { TbLogout } from "react-icons/tb";
+import { IconContext } from 'react-icons';
 
 const Header = () => {
   
@@ -24,12 +26,13 @@ const Header = () => {
         </div>
         <div className={css.logOutContainer}>
           <span className={css.name}>{shortUserName}</span>
-          <div className={css.exit}>
-            <img src={closeSVG} className={css.exitLogo} alt="logout logo" onClick={openModal} />
-            <span className={css.exitText} onClick={openModal}>Exit</span>
-          </div>
+          <div className={css.exit} onClick={openModal}>
+            <IconContext.Provider value={{ size: 24, color: "currentColor" }}>
+              <TbLogout className={css.exitLogo} /><span className={css.exitText}>
+                Exit</span></IconContext.Provider>
         </div>
-      </div>
+        </div>
+        </div>
     </>
   );
 };

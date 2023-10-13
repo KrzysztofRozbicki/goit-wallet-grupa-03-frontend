@@ -37,7 +37,7 @@ const TransactionSchema = Yup.object().shape({
 });
 
 const getTransaction = (transactions, id) => {
-  const transaction = transactions.find(transaction => transaction.id === id);
+  const transaction = transactions.find(transaction => transaction._id === id);
   return transaction;
 };
 
@@ -48,7 +48,7 @@ const ModalEditTransaction = ({ id }) => {
   const transaction = getTransaction(transactions, id);
 
   const handleSubmit = async values => {
-    dispatch(editTransaction(values, id));
+    dispatch(editTransaction({ values, id }));
     dispatch(closeModalEditTransaction());
   };
 
@@ -134,7 +134,7 @@ const ModalEditTransaction = ({ id }) => {
                   placeholder="Comment"
                 />
                 <button type="submit" className={`${css.button} ${css.buttonAdd}`}>
-                  ADD
+                  EDIT
                 </button>
                 <button
                   onClick={() => dispatch(closeModalEditTransaction())}
