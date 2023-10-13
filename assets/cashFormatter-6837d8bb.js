@@ -1,1 +1,0 @@
-const a=["#FED057","#FFD8D0","#FD9498","#C5BAFF","#6E78E8","#4A56E2","#81E1FF","#24CCA7","#00AD84"],o=[2400,600,7e3,150,130,60,1e3,400,340,509],c=s=>Number.parseFloat(s).toLocaleString(void 0,{minimumFractionDigits:2,maximumFractionDigits:2});export{a,c,o as s};
