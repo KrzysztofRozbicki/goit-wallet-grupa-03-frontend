@@ -8,7 +8,7 @@
 import { useDispatch } from 'react-redux';
 
 import { openModalAddTransaction } from '../../redux/global/globalSlice';
-import plus from '../../assets/icons/plus.svg';
+import plus from '../../assets/icons/Plus.svg';
 
 import css from './ButtonAddTransactions.module.css';
 
