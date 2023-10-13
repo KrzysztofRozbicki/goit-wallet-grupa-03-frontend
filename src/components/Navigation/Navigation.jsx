@@ -6,13 +6,15 @@
 
 import css from './Navigation.module.css';
 
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 function NavigationButtons() {
   return (
     <div className={css.nav}>
-      <NavLink to="/goit-wallet-grupa-03-frontend/home" className={({ isActive }) => (isActive ? `${css.active}` : `${css.navBtn}`)}>
+      <NavLink
+        to="/goit-wallet-grupa-03-frontend/home"
+        className={({ isActive }) => (isActive ? `${css.active}` : `${css.navBtn}`)}
+      >
         <div>
           <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38">
             <use xlinkHref="/src/assets/icons/homeBtn.svg#my-home-icon" />
@@ -20,7 +22,10 @@ function NavigationButtons() {
         </div>
         <div className={css.description}>Home</div>
       </NavLink>
-      <NavLink to="/goit-wallet-grupa-03-frontend/diagram" className={({ isActive }) => (isActive ? `${css.active}` : `${css.navBtn}`)}>
+      <NavLink
+        to="/goit-wallet-grupa-03-frontend/diagram"
+        className={({ isActive }) => (isActive ? `${css.active}` : `${css.navBtn}`)}
+      >
         <div>
           <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38">
             <use xlinkHref="/src/assets/icons/statisticsBtn.svg#my-statistics-icon" />
@@ -28,7 +33,12 @@ function NavigationButtons() {
         </div>
         <div className={css.description}>Statistics</div>
       </NavLink>
-      <NavLink to="/goit-wallet-grupa-03-frontend/currency" className={({ isActive }) => (isActive ? `${css.active}` : `${css.navBtn} ${css.currencyNavLink}`)}>
+      <NavLink
+        to="/goit-wallet-grupa-03-frontend/currency"
+        className={({ isActive }) =>
+          isActive ? `${css.active}` : `${css.navBtn} ${css.currencyNavLink}`
+        }
+      >
         <div>
           <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38">
             <use xlinkHref="/src/assets/icons/currencyBtn.svg#my-currency-icon" />
@@ -40,4 +50,3 @@ function NavigationButtons() {
 }
 
 export default NavigationButtons;
-

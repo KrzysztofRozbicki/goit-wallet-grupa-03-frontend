@@ -17,7 +17,6 @@
   width: 715px;
   margin: 0px auto;
   padding-top: 20px;
-
 }
 
 @media screen and (min-width: 1279px) {
@@ -38,7 +37,7 @@
 }
 
 .tableHeader {
-  display: block;
+  display: inline-table;
   background-color: var(--background-light);
   height: 58px;
   text-align: left;
@@ -52,7 +51,7 @@
 
 .sortedBy {
   text-decoration: none;
-  color: var(--font-color-dark)
+  color: var(--font-color-dark);
 }
 
 .itemFirst {
@@ -64,7 +63,7 @@
 .itemLast {
   border-top-right-radius: 29px;
   border-bottom-right-radius: 29px;
-  width: 120px
+  width: 120px;
 }
 
 .itemType {

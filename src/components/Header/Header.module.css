@@ -1,10 +1,13 @@
 @import '../../stylesheet/vars.css';
 
 .header {
-  max-width: 1400px;
   display: flex;
   justify-content: space-between;
   background-color: var(--background-light);
+  overflow: hidden;
+  width: 100vw;
+  padding-right: 40px;
+  z-index: 2;
 }
 
 .logoContainer {
