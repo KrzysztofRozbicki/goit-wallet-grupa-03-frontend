@@ -53,10 +53,13 @@
 }
 
 .confirm:hover,
-.cancel:hover {
+.cancel:hover,
+.confirm:focus,
+.cancel:focus {
   transition: 0.4s ease;
   background-color: var(--color-brand-primary);
   color: var(--font-color-light);
+  cursor: pointer;
 }
 
 @media (min-width: 767px) {

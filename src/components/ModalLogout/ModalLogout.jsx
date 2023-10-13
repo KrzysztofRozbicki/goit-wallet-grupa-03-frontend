@@ -43,6 +43,7 @@ const ModalLogout = () => {
       onRequestClose={handleClose}
       shouldCloseOnOverlayClick={true}
       className={style.modal}
+      ariaHideApp={false}
     >
       <p className={style.title}>Log out from Wallet?</p>
       <div className={style.buttonContainer}>
