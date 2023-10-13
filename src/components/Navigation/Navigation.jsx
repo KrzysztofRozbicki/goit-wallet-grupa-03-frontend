@@ -8,6 +8,10 @@ import css from './Navigation.module.css';
 
 import { NavLink } from 'react-router-dom';
 
+import homeBtn from '../../assets/icons/homeBtn.svg';
+import statisticsBtn from '../../assets/icons/statisticsBtn.svg';
+import currencyBtn from '../../assets/icons/statisticsBtn.svg';
+
 function NavigationButtons() {
   return (
     <div className={css.nav}>
@@ -17,7 +21,7 @@ function NavigationButtons() {
       >
         <div>
           <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38">
-            <use xlinkHref="/src/assets/icons/homeBtn.svg#my-home-icon" />
+            <use xlinkHref={`${homeBtn}#my-home-icon`} />
           </svg>
         </div>
         <div className={css.description}>Home</div>
@@ -28,7 +32,7 @@ function NavigationButtons() {
       >
         <div>
           <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38">
-            <use xlinkHref="/src/assets/icons/statisticsBtn.svg#my-statistics-icon" />
+            <use xlinkHref={`${statisticsBtn}#my-statistics-icon`} />
           </svg>
         </div>
         <div className={css.description}>Statistics</div>
@@ -41,7 +45,7 @@ function NavigationButtons() {
       >
         <div>
           <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38">
-            <use xlinkHref="/src/assets/icons/currencyBtn.svg#my-currency-icon" />
+            <use xlinkHref={`${currencyBtn}#my-currency-icon`} />
           </svg>
         </div>
       </NavLink>
