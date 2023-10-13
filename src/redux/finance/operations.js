@@ -14,6 +14,14 @@ export const setDataAction = state => {
   state.data = fetchTransactions();
 };
 
+export const setSelectedMonthAction = (state, action) => {
+  state.selectedMonth = action.payload;
+};
+
+export const setSelectedYearAction = (state, action) => {
+  state.selectedYear = action.payload;
+};
+
 export const addTransactionAction = (state, action) => {
   state.data.push(action.payload);
 };
