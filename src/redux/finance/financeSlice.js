@@ -10,11 +10,13 @@ import {
   editTransaction,
   deleteTransaction,
   calculateBalance,
+  getFilteredTransactions
 } from './operations';
 
 const initialState = {
   totalBalance: 0,
   data: [],
+  filteredData: []
 };
 
 const financeSlice = createSlice({
@@ -55,7 +57,15 @@ const financeSlice = createSlice({
         deleteTransactionAction(state, action);
         state.totalBalance = calculateBalance(state.data);
       })
-      .addCase(deleteTransaction.rejected, (state, action) => {});
+      .addCase(deleteTransaction.rejected, (state, action) => {})
+      /// filtered transactions
+      .addCase(getFilteredTransactions.pending, (state, action) => {})
+      .addCase(getFilteredTransactions.fulfilled, (state, action) => {
+        state.filteredData = action.payload;
+      })
+      .addCase(getFilteredTransactions.rejected, (state, action) => {
+        state.filteredData = [];
+      })
   },
 });
 
