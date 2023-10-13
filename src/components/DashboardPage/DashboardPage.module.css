@@ -1,27 +1,25 @@
 @import '../../stylesheet/vars.css';
 
 @media screen and (min-width: 767px) {
-    .wrapper {
-        display: flex;
-        flex-direction: column;
-    }
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .balance {
-        padding-left: 32px;
-        background-color: black;
-    }
+  .balance {
+    padding-left: 32px;
+    background-color: black;
+  }
 
-    .homeContainer {
-        display: flex;
-        justify-content: space-between;
-
-    }
-
+  .homeContainer {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 @media screen and (min-width: 1279px) {
-    .homeContainer {
-        flex-direction: column;
-        justify-content: flex-start;
-    }
+  .homeContainer {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 }

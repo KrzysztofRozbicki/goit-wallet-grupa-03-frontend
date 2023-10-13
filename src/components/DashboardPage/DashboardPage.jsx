@@ -22,6 +22,15 @@ import Navigation from '../Navigation/Navigation';
 import CurrencyTable from '../Currency/Currency';
 import Balance from '../Balance/Balance';
 
+const Home = ({ isDesktop }) => {
+  return (
+    <div className={css.homeContainer}>
+      <Balance />
+      {isDesktop && <CurrencyTable />}
+    </div>
+  );
+};
+
 export const DashboardPage = () => {
   const dispatch = useDispatch();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -48,21 +57,9 @@ export const DashboardPage = () => {
 
       <Routes>
         <Route path="/home" element={<Home isDesktop={isDesktop} />} />
-        {isDesktop && <Route path="/diagram" element={<Home isDesktop={isDesktop} />} />}
+        {isDesktop && <Route path="/" element={<Home isDesktop={isDesktop} />} />}
       </Routes>
-
     </div>
-  );
-};
-
-const Home = ({ isDesktop }) => {
-  return (
-    <div className={css.homeContainer} >
-      <Balance />
-      {isDesktop && <CurrencyTable />}
-
-    </div>
-
   );
 };
 

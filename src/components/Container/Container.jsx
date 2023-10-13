@@ -11,11 +11,13 @@ export const Container = () => {
       <div className={css.container}>
         <Header />
         <div className={css.wrapper}>
-          <div className={css.dashBoardWrapper}>
-            <DashboardPage />
-          </div>
-          <div className={css.outletWrapper}>
-            <Outlet />
+          <div className={css.containWrapper}>
+            <div className={css.dashBoardWrapper}>
+              <DashboardPage />
+            </div>
+            <div className={css.outletWrapper}>
+              <Outlet />
+            </div>
           </div>
         </div>
       </div>
