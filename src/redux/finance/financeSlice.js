@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import moment from 'moment';
 
 import {
   setTotalBalanceAction,
@@ -10,13 +11,17 @@ import {
   editTransaction,
   deleteTransaction,
   calculateBalance,
-  getFilteredTransactions
+  getFilteredTransactions,
+  setSelectedMonthAction,
+  setSelectedYearAction,
 } from './operations';
 
 const initialState = {
   totalBalance: 0,
   data: [],
-  filteredData: []
+  filteredData: [],
+  selectedMonth: moment(new Date()).month() + 1,
+  selectedYear: moment(new Date()).year(),
 };
 
 const financeSlice = createSlice({
@@ -26,6 +31,8 @@ const financeSlice = createSlice({
     setTotalBalance: setTotalBalanceAction,
     setData: setDataAction,
     editTransaction: editTransactionAction,
+    setSelectedMonth: setSelectedMonthAction,
+    setSelectedYear: setSelectedYearAction,
     resetFinance: () => {
       return { ...initialState };
     },
@@ -65,10 +72,11 @@ const financeSlice = createSlice({
       })
       .addCase(getFilteredTransactions.rejected, (state, action) => {
         state.filteredData = [];
-      })
+      });
   },
 });
 
-export const { setTotalBalance, setData, resetFinance } = financeSlice.actions;
+export const { setTotalBalance, setData, resetFinance, setSelectedMonth, setSelectedYear } =
+  financeSlice.actions;
 
 export const financeReducer = financeSlice.reducer;
