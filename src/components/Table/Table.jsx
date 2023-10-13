@@ -13,13 +13,18 @@ import { colors } from '../DiagramTab/diagramUtils';
 import { cashFormatter } from '../../utils/cashFormatter';
 import { useEffect, useState } from 'react';
 import { getFilteredTransactions } from '../../redux/finance/operations';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectSelectedMonth, selectedSelectedYear } from '../../redux/finance/selectors';
+import { setSelectedMonth, setSelectedYear } from '../../redux/finance/financeSlice';
 
 const Table = ({ transactions, totalIncome, totalExpenses, years, months }) => {
-  const [month, setMonth] =  useState('')
-  const [year, setYear] = useState('')
   const dispatch = useDispatch()
-
+  const selectedMonth = useSelector(selectSelectedMonth)
+  const selectedYear = useSelector(selectedSelectedYear)
+  
+  const [month, setMonth] =  useState(selectedMonth)
+  const [year, setYear] = useState(selectedYear)
+  
   useEffect(() => {
     const fetchTransactions = async () => {
       if (month && year) {
@@ -29,19 +34,17 @@ const Table = ({ transactions, totalIncome, totalExpenses, years, months }) => {
     fetchTransactions();
   }, [month, year])
   
-  const selectedMonth = 10
-  const selectedYear = '2023'
 
   const [defaultMonth] = mockMonths.filter(({ name, value }) => value === selectedMonth.toString() ? { name, value } : null)
 
-  console.log(defaultMonth)
+  // console.log(defaultMonth)
 
   return (
     <>
     <div className={css.componentContainer}>
       <div className={css.selectContainer}>
         <Select
-          options={months?.map(({ name, value }) => {
+          options={mockMonths?.map(({ name, value }) => {
             return {
               value: value,
               label: name,
@@ -57,7 +60,10 @@ const Table = ({ transactions, totalIncome, totalExpenses, years, months }) => {
           components={{
             Menu: (props) => <components.Menu {...props} className={css.menu} />
           }}
-          onChange={(choice) => setMonth(choice.value)}
+          onChange={(choice) => {
+            setMonth(choice.value)
+            dispatch(setSelectedMonth(choice.value))
+          }}
         />
         <Select
           options={years.map(year => {
@@ -76,7 +82,10 @@ const Table = ({ transactions, totalIncome, totalExpenses, years, months }) => {
           components={{
             Menu: (props) => <components.Menu {...props} className={css.menu} />
           }}
-          onChange={(choice) => setYear(Number.parseInt(choice.value))}
+          onChange={(choice) => {
+            setYear(Number.parseInt(choice.value))
+            dispatch(setSelectedYear(choice.value))
+          }}
         />
       </div>
       <div className={css.tableContainer}>

@@ -4,5 +4,5 @@ export const selectData = state => state.finance.data;
 
 export const selectFilteredData = state => state.finance.filteredData;
 
-export const selectedMonth = state => state.finance.selectedMonth;
-export const selectedYear = state => state.finance.selectedYear;
+export const selectSelectedMonth = state => state.finance.selectedMonth;
+export const selectedSelectedYear = state => state.finance.selectedYear;
