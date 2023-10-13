@@ -7,7 +7,7 @@
 .item {
   padding-left: 5px;
   padding-right: 5px;
-  box-shadow: 0px 1px 0px 0px #FFFFFF99;
+  box-shadow: 0px 1px 0px 0px #dcdcdf;
   font-family: 'Circe';
   font-size: 16px;
 }
@@ -42,11 +42,11 @@
 }
 
 .amountIncome {
-  color: var(--color-brand-secondary)
+  color: var(--color-brand-secondary);
 }
 
 .amountExpension {
-  color: var(--color-brand-accent)
+  color: var(--color-brand-accent);
 }
 
 .editButton {

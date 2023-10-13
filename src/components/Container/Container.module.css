@@ -43,7 +43,7 @@
   }
 
   .dashBoardWrapper {
-    /* flex: 1; */
+    padding-right: 30px;
   }
 
   .outletWrapper {

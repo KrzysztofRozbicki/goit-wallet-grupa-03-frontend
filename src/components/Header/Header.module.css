@@ -6,7 +6,6 @@
   background-color: var(--background-light);
   overflow: hidden;
   width: 100vw;
-  padding-right: 40px;
   z-index: 2;
 }
 
@@ -88,6 +87,7 @@
     max-height: 80px;
     border: 1px solid var(--color-logout-button);
     z-index: 900;
+    padding-right: 40px;
   }
 
   .logoContainer {
