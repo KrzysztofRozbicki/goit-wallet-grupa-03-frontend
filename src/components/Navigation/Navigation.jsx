@@ -12,7 +12,7 @@ function NavigationButtons() {
   return (
     <div className={css.nav}>
       <NavLink
-        to="/goit-wallet-grupa-03-frontend/home"
+        to="/home"
         className={({ isActive }) => (isActive ? `${css.active}` : `${css.navBtn}`)}
       >
         <div>
@@ -23,7 +23,7 @@ function NavigationButtons() {
         <div className={css.description}>Home</div>
       </NavLink>
       <NavLink
-        to="/goit-wallet-grupa-03-frontend/diagram"
+        to="/diagram"
         className={({ isActive }) => (isActive ? `${css.active}` : `${css.navBtn}`)}
       >
         <div>
@@ -34,7 +34,7 @@ function NavigationButtons() {
         <div className={css.description}>Statistics</div>
       </NavLink>
       <NavLink
-        to="/goit-wallet-grupa-03-frontend/currency"
+        to="/currency"
         className={({ isActive }) =>
           isActive ? `${css.active}` : `${css.navBtn} ${css.currencyNavLink}`
         }

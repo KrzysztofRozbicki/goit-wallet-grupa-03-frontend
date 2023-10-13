@@ -46,16 +46,16 @@ const WithAuthRedirect = ({ children }) => {
 
 const router = createBrowserRouter([
   {
-    path: 'goit-wallet-grupa-03-frontend/login',
+    path: '/login',
     element: <LoginPage />,
   },
   {
-    path: 'goit-wallet-grupa-03-frontend/register',
+    path: '/register',
     element: <RegistrationPage />,
   },
 
   {
-    path: 'goit-wallet-grupa-03-frontend/',
+    path: '/',
     element: (
       <WithAuthRedirect>
         <Container />
@@ -126,7 +126,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <Navigate to="goit-wallet-grupa-03-frontend/login" />,
+    element: <Navigate to="/login" />,
   },
 ]);
 

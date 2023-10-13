@@ -23,7 +23,7 @@ const LoginForm = () => {
   const isAuth = useSelector(selectIsAuth);
 
   useEffect(() => {
-    if (isAuth) navigate('goit-wallet-grupa-03-frontend/home');
+    if (isAuth) navigate('/home');
   }, [isAuth, navigate]);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -75,7 +75,7 @@ const LoginForm = () => {
               <button type="submit" className={css.loginButton}>
                 Login
               </button>
-              <Link to="/goit-wallet-grupa-03-frontend/register">
+              <Link to="/register">
                 <button className={css.registerButton}>Register</button>
               </Link>
             </Form>
