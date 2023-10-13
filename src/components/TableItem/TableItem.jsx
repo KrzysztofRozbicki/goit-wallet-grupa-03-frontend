@@ -8,7 +8,7 @@ const TableItem = ({ colors, category, amount }) => {
     return (
         <li key={crypto.randomUUID()} className={css.tableItem}>
             <div style={{backgroundColor: colors}} className={css.colorBlock}></div>
-            {category}
+            <span className={css.category}>{category}</span>
             <span className={css.amount}>{cashFormatter(amount)}</span>
         </li>
     )

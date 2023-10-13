@@ -1,10 +1,6 @@
 @import '../../stylesheet/vars.css';
 
 .diagramContainer {
-  /* background-color: rgba(255,255,255, .7); */
-  /* background-color: #E7EAF2; */
-  /* flex-basis: 62.5%; */
-
   margin-inline: auto;
 }
 
@@ -13,17 +9,21 @@
     display: flex;
     /* justify-content: flex-start; */
     align-items: flex-start;
+    padding-top: 32px;
   }
-  
+  .diagramContainer > * {
+    flex-basis: 50%;
+  }
 }
 
-.diagramHeader {
-  font-family: Poppins;
-  font-size: 1.875rem;
-  font-weight: 400;
-  transform: translateY(15px);
-
-  line-height: 0.75;
-
-  padding-top: 8px;
- }
+@media screen and (min-width: 1280px) {
+  .diagramContainer {
+    margin-left: 37px;
+  }
+  /* .diagramContainer > *:last-child {
+    flex-basis: 60%;
+  }
+  .diagramContainer > *:first-child {
+    flex-basis: 40%;
+  } */
+}

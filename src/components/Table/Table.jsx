@@ -3,22 +3,23 @@
 // Dziecko DiagramTab
 
 import css from './Table.module.css';
-import Select from 'react-select'
+import Select, { components } from 'react-select'
 import { selectStyles } from './selectStyles';
 // import makeAnimated from 'react-select/animated'
 
 import { months, years } from './dateOptions'
 import TableItem from '../TableItem/TableItem';
-import { colors } from '../Chart/labels';
+import { colors } from '../DiagramTab/diagramUtils';
 import { cashFormatter } from '../../utils/cashFormatter';
+
 
 const Table = ({ transactions, totalIncome, totalExpenses }) => {
 
   return (
     <>
-    <div>
+    <div className={css.componentContainer}>
       <div className={css.selectContainer}>
-        <Select 
+        <Select
           options={months.map((month, idx) => {
             return {
               value: idx+1,
@@ -28,6 +29,9 @@ const Table = ({ transactions, totalIncome, totalExpenses }) => {
           placeholder='Month'
           isSearchable={false}
           styles={selectStyles}
+          components={{
+            Menu: (props) => <components.Menu {...props} className={css.menu} />
+          }}
         />
         <Select
           options={years.map(year => {
@@ -39,6 +43,9 @@ const Table = ({ transactions, totalIncome, totalExpenses }) => {
           placeholder='Year'
           isSearchable={false}
           styles={selectStyles}
+          components={{
+            Menu: (props) => <components.Menu {...props} className={css.menu} />
+          }}
         />
       </div>
       <div className={css.tableContainer}>

@@ -3,11 +3,11 @@
 //jest dzieckiem DiagramTab z którego otrzymuje dane do renderowania
 
 
-import { categories } from '../DiagramTab/diagramUtils';
 import css from './Chart.module.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
-import { colors } from './labels'
+import { colors } from '../DiagramTab/diagramUtils'
+import { categories } from '../DiagramTab/diagramUtils';
 import { cashFormatter } from '../../utils/cashFormatter';
  
 ChartJS.register(ArcElement, Tooltip, Legend)
@@ -48,6 +48,7 @@ const Chart = ({ transactions, totalBalance }) => {
   return (
     <>
       <div className={css.componentContainer}>
+      <div className={css.headerContainer}><h3 className={css.diagramHeader}>Statistics</h3></div>
         <div className={css.chartContainer}>
           <Doughnut data={data} options={options}/>
           <p className={css.balance}>{undefined ?? '€ ' + cashFormatter(totalBalance)}</p>
