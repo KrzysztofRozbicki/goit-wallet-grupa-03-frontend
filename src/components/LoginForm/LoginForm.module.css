@@ -65,12 +65,12 @@
 .loginButton:focus {
   background-color: var(--background-light);
   color: var(--color-brand-secondary);
-  -webkit-box-shadow: 8px 8px 24px -18px rgba(36, 204, 167, 1), 
-  inset 0px 10px 24px -18px rgba(36, 204, 167, 1);
-  -moz-box-shadow: 8px 8px 24px -18px rgba(36, 204, 167, 1), 
-  inset 0px 10px 24px -18px rgba(36, 204, 167, 1);
-  box-shadow: 8px 8px 24px -18px rgba(36, 204, 167, 1), 
-  inset 0px 10px 24px -18px rgba(36, 204, 167, 1);
+  -webkit-box-shadow: 8px 8px 24px -18px rgba(36, 204, 167, 1),
+    inset 0px 10px 24px -18px rgba(36, 204, 167, 1);
+  -moz-box-shadow: 8px 8px 24px -18px rgba(36, 204, 167, 1),
+    inset 0px 10px 24px -18px rgba(36, 204, 167, 1);
+  box-shadow: 8px 8px 24px -18px rgba(36, 204, 167, 1),
+    inset 0px 10px 24px -18px rgba(36, 204, 167, 1);
   cursor: pointer;
 }
 .registerButton:hover,
@@ -81,6 +81,7 @@
   -moz-box-shadow: 8px 8px 24px -10px rgba(74, 86, 226, 1);
   box-shadow: 8px 8px 24px -10px rgba(74, 86, 226, 1);
   cursor: pointer;
+}
 
 .registerButton {
   background-color: var(--background-light);
