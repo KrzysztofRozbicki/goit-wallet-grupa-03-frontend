@@ -90,6 +90,9 @@
 .formInput::placeholder {
   color: var(--background-gray);
 }
+.formInput:focus {
+  outline: none;
+}
 .formInputComment {
   display: block;
   position: relative;

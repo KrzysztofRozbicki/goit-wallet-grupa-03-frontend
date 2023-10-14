@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom';
 
 import homeBtn from '../../assets/icons/homeBtn.svg';
 import statisticsBtn from '../../assets/icons/statisticsBtn.svg';
-import currencyBtn from '../../assets/icons/statisticsBtn.svg';
+import currencyBtn from '../../assets/icons/currencyBtn.svg';
 
 function NavigationButtons() {
   return (

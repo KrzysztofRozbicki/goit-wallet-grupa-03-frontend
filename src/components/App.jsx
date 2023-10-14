@@ -71,56 +71,12 @@ const router = createBrowserRouter([
         element: <HomeTab />,
       },
       {
-        path: 'chart',
-        element: <Chart />,
-      },
-      {
         path: 'diagram',
         element: <DiagramTab />,
       },
       {
-        path: 'logout',
-        element: <ModalLogout />,
-      },
-      {
-        path: 'dashboard',
-        element: <DashboardPage />,
-      },
-      {
-        path: 'balance',
-        element: <Balance />,
-      },
-      {
         path: 'currency',
         element: <CurrencyTable />,
-      },
-      {
-        path: 'header',
-        element: <Header />,
-      },
-      {
-        path: 'loader',
-        element: <Loader />,
-      },
-      {
-        path: 'loader',
-        element: <Loader />,
-      },
-      {
-        path: 'modalAddTransaction',
-        element: <ModalAddTransaction />,
-      },
-      {
-        path: 'modalLogout',
-        element: <ModalLogout />,
-      },
-      {
-        path: 'navigation',
-        element: <Navigation />,
-      },
-      {
-        path: 'Table',
-        element: <Table />,
       },
     ],
   },

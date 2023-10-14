@@ -14,9 +14,16 @@
 
 .table {
   border-spacing: 0;
-  width: 715px;
+  /* width: 715px; */
+  width: 100%;
   margin: 0px auto;
   padding-top: 20px;
+}
+
+@media screen and (min-width: 767px) {
+  .table {
+    padding-inline: 30px;
+  }
 }
 
 @media screen and (min-width: 1279px) {
@@ -27,8 +34,8 @@
 }
 
 .tableBody {
-  display: block;
-  width: 715px;
+  /* display: block; */
+  /* width: 715px; */
   height: 60vh;
   overflow: scroll;
 }
@@ -38,7 +45,7 @@
 }
 
 .tableHeader {
-  display: inline-table;
+  /* display: inline-table; */
   background-color: var(--background-light);
   height: 58px;
   text-align: left;
@@ -48,6 +55,11 @@
   padding-left: 5px;
   font-family: 'Circe';
   font-weight: 700;
+  padding-right: 20px;
+}
+
+.item:nth-child(5) {
+  text-align: right;
 }
 
 .sortedBy {

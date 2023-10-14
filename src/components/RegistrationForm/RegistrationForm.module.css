@@ -43,6 +43,9 @@
 .input {
   border: none;
 }
+.input:focus {
+  outline: none;
+}
 .input::placeholder {
   color: var(--color-logout-button);
   font-family: 'circe', sans-serif;

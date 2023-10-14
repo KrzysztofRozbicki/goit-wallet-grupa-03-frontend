@@ -57,7 +57,7 @@ export const DashboardPage = () => {
 
       <Routes>
         <Route path="/home" element={<Home isDesktop={isDesktop} />} />
-        <Route path="/diagram" element={<Home isDesktop={isDesktop} />} />
+        {isDesktop && <Route path="/diagram" element={<Home isDesktop={isDesktop} />} />}
         {isDesktop && <Route path="/" element={<Home isDesktop={isDesktop} />} />}
       </Routes>
     </div>

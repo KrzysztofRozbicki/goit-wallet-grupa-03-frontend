@@ -13,7 +13,7 @@ import TabItem from './TabItem/TabItem';
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import TabMobileItem from './TabMobileItem/TabMobileItem';
 import ButtonAddTransactions from './../ButtonAddTransactions/ButtonAddTransactions';
 import { useSelector } from 'react-redux';
@@ -23,7 +23,7 @@ import moment from 'moment';
 const HomeTab = () => {
   const items = useSelector(selectData);
   const [sortedItems, setSortedItems] = useState([]);
-  const [isUpSorted, setIsUpSorted] = useState(true);
+  const [isUpSorted, setIsUpSorted] = useState(false);
 
   useEffect(() => {
     setSortedItems(
@@ -74,12 +74,12 @@ const HomeTab = () => {
                 <a onClick={sortChangeHandler} href="#" className={css.sortedBy}>
                   {isUpSorted ? (
                     <FontAwesomeIcon
-                      icon={faArrowUp}
+                      icon={faSortUp}
                       style={{ marginRight: '4px', color: 'black' }}
                     />
                   ) : (
                     <FontAwesomeIcon
-                      icon={faArrowDown}
+                      icon={faSortDown}
                       style={{ marginRight: '4px', color: 'black' }}
                     />
                   )}

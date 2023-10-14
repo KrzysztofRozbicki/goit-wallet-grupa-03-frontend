@@ -18,9 +18,9 @@
 @media screen and (min-width: 767px) {
   .selectContainer {
     flex-direction: row;
-    
+
     min-width: 336px;
-    max-width: 400px;
+    max-width: 100%;
 
     align-items: center;
   }
@@ -29,9 +29,9 @@
 @media screen and (min-width: 1280px) {
   .selectContainer {
     gap: 32px;
-    
+
     max-width: none;
-    
+
     padding: 0;
     padding-right: 1rem;
   }
@@ -39,10 +39,10 @@
 
 .tableContainer {
   font-family: Circe;
-  
+
   max-width: 440px;
   margin-inline: auto;
-  
+
   padding: 20px;
 }
 
@@ -67,7 +67,7 @@
   align-items: center;
 
   background-color: #fff;
-  
+
   padding: 16px 20px;
 
   border-radius: 30px;
@@ -96,31 +96,32 @@
 .summary span {
   display: block;
   margin-left: auto;
-  color: #FF6596;
+  color: #ff6596;
 }
 
 .summary .income {
-  color: #24CCA7;
+  color: #24cca7;
 }
 
 @media screen and (min-width: 767px) {
   .componentContainer {
     padding-top: 8px;
-  } 
+    padding-inline: 20px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .componentContainer {
     margin-top: 52px;
-  } 
+  }
 }
 
 .menu {
-  animation: fadeIn 0.25s ease-in-out
+  animation: fadeIn 0.25s ease-in-out;
 }
 
 .menuClose {
-  animation: fadeOut 0.25s ease-in-out
+  animation: fadeOut 0.25s ease-in-out;
 }
 
 @keyframes fadeIn {

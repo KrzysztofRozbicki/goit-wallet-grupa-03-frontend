@@ -8,10 +8,12 @@
 }
 .container {
   width: 100vw;
-  background-color: var(--background-accent);
 }
 
 @media screen and (min-width: 767px) {
+  .wrapper {
+    min-height: calc(100vh - 80px);
+  }
   .containWrapper {
     display: flex;
     flex-direction: column;

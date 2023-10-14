@@ -46,6 +46,9 @@
   font-family: 'circe', sans-serif;
   font-size: 18px;
 }
+.input:focus {
+  outline: none;
+}
 .loginButton,
 .registerButton {
   font-family: 'circe', sans-serif;
