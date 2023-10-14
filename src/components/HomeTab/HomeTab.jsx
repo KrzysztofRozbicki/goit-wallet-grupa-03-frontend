@@ -23,7 +23,9 @@ import moment from 'moment';
 const HomeTab = () => {
   const items = useSelector(selectData);
   const [sortedItems, setSortedItems] = useState([]);
-  const [isUpSorted, setIsUpSorted] = useState(false);
+  const [isSortedByType, setIsSortedByType] = useState(false);
+  const [isSortedBySum, setIsSortedBySum] = useState(false);
+  const [isSortedByDate, setIsSortedByDate] = useState(false);
 
   useEffect(() => {
     setSortedItems(
@@ -41,15 +43,42 @@ const HomeTab = () => {
   };
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
-  const sortChangeHandler = () => {
-    console.log('sort');
-    if (isUpSorted) {
+  const sortByDate = () => {
+    setIsSortedBySum(false);
+    setIsSortedByType(false);
+
+    if (isSortedByDate === 'up' || isSortedByDate === false) {
       setSortedItems(sortedItems.sort((a, b) => Number(a.sortDate) - Number(b.sortDate)));
-      setIsUpSorted(false);
-    } else {
+      setIsSortedByDate('down');
+    } else if (isSortedByDate === 'down') {
       setSortedItems(sortedItems.sort((a, b) => Number(b.sortDate) - Number(a.sortDate)));
 
-      setIsUpSorted(true);
+      setIsSortedByDate('up');
+    }
+  };
+
+  const sortType = () => {
+    setIsSortedBySum(false);
+    setIsSortedByDate(false);
+    if (isSortedByType === 'up' || isSortedByType === false) {
+      setSortedItems(sortedItems.sort((a, b) => a.isIncome - b.isIncome));
+      setIsSortedByType('down');
+    } else if (isSortedByType === 'down') {
+      setSortedItems(sortedItems.sort((a, b) => b.isIncome - a.isIncome));
+
+      setIsSortedByType('up');
+    }
+  };
+
+  const sortBySum = () => {
+    console.log('sum');
+    if (isSortedBySum === 'up' || isSortedBySum === false) {
+      setSortedItems(sortedItems.sort((a, b) => a.amount - b.amount));
+      setIsSortedBySum('down');
+    } else if (isSortedBySum === 'down') {
+      setSortedItems(sortedItems.sort((a, b) => b.amount - a.amount));
+
+      setIsSortedBySum('up');
     }
   };
 
@@ -71,13 +100,14 @@ const HomeTab = () => {
           <thead>
             <tr className={css.tableHeader}>
               <th className={cn(css.item, css.itemFirst)} style={{ width: '110px' }}>
-                <a onClick={sortChangeHandler} href="#" className={css.sortedBy}>
-                  {isUpSorted ? (
+                <a onClick={sortByDate} href="#" className={css.sortedBy}>
+                  {isSortedByDate === 'up' && (
                     <FontAwesomeIcon
                       icon={faSortUp}
                       style={{ marginRight: '4px', color: 'black' }}
                     />
-                  ) : (
+                  )}
+                  {isSortedByDate === 'down' && (
                     <FontAwesomeIcon
                       icon={faSortDown}
                       style={{ marginRight: '4px', color: 'black' }}
@@ -87,7 +117,21 @@ const HomeTab = () => {
                 </a>
               </th>
               <th className={cn(css.item, css.itemType)} style={{ width: '80px' }}>
-                Type
+                <a onClick={sortType} href="#" className={css.sortedBy}>
+                  {isSortedByType === 'up' && (
+                    <FontAwesomeIcon
+                      icon={faSortUp}
+                      style={{ marginRight: '4px', color: 'black' }}
+                    />
+                  )}
+                  {isSortedByType === 'down' && (
+                    <FontAwesomeIcon
+                      icon={faSortDown}
+                      style={{ marginRight: '4px', color: 'black' }}
+                    />
+                  )}
+                  Type
+                </a>
               </th>
               <th className={css.item} style={{ width: '150px' }}>
                 Category
@@ -96,7 +140,21 @@ const HomeTab = () => {
                 Comment
               </th>
               <th className={css.item} style={{ width: '120px' }}>
-                Sum
+                <a onClick={sortBySum} href="#" className={css.sortedBy}>
+                  {isSortedBySum === 'up' && (
+                    <FontAwesomeIcon
+                      icon={faSortUp}
+                      style={{ marginRight: '4px', color: 'black' }}
+                    />
+                  )}
+                  {isSortedBySum === 'down' && (
+                    <FontAwesomeIcon
+                      icon={faSortDown}
+                      style={{ marginRight: '4px', color: 'black' }}
+                    />
+                  )}
+                  Sum
+                </a>
               </th>
               <th className={cn(css.item, css.itemLast)} style={{ width: '100px' }}></th>
             </tr>
