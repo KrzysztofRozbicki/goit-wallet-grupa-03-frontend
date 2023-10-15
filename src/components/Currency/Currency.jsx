@@ -10,7 +10,7 @@ function CurrencyTable() {
   const spread = 0.02;
 
   useEffect(() => {
-    const apiUrl = `https://data.fixer.io/api/latest?access_key=${apiKey}&symbols=${selectedCurrencies.join}(
+    const apiUrl = `http://data.fixer.io/api/latest?access_key=${apiKey}&symbols=${selectedCurrencies.join}(
       ','
     )}`;
 
