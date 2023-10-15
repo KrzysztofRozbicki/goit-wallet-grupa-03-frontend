@@ -44,7 +44,7 @@
 .tableBody tr {
   width: 100%;
   display: table;
-  table-layout: fixed;
+  /* table-layout: fixed; */
 }
 
 .tableBody::-webkit-scrollbar {
@@ -83,5 +83,5 @@
 }
 
 .itemType {
-  width: 50px;
+  width: 70px;
 }

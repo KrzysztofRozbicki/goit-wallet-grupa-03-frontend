@@ -10,14 +10,20 @@ function CurrencyTable() {
   const spread = 0.02;
 
   useEffect(() => {
-    const apiUrl = `http://data.fixer.io/api/latest?access_key=${apiKey}&symbols=${selectedCurrencies.join}(
-      ','
-    )}`;
+    const apiUrl = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/EUR`;
 
     axios
       .get(apiUrl)
       .then(response => {
-        setExchangeRates(response.data.rates);
+        const conversion_rates = response.data.conversion_rates;
+        console.log(conversion_rates);
+        const filteredRates = {};
+        for (const currency of selectedCurrencies) {
+          if (conversion_rates.hasOwnProperty(currency)) {
+            filteredRates[currency] = conversion_rates[currency];
+          }
+        }
+        setExchangeRates(filteredRates);
       })
       .catch(error => {
         console.error('Błąd podczas pobierania danych z API:', error);

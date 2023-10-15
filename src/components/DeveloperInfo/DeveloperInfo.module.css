@@ -6,11 +6,12 @@
   transform: translateX(-50%);
 
   align-items: center;
-  font-size: 10px;
+  font-size: 1rem;
+  z-index: 5;
 }
 
 .footer p {
-  margin-top: -2px;
+  margin-top: -4px;
 }
 
 @media screen and (min-width: 767px) {
