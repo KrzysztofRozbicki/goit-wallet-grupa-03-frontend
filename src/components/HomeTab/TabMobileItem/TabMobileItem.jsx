@@ -8,13 +8,13 @@ import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { openModalEditTransaction } from '../../../redux/global/globalSlice';
 import { deleteTransaction } from '../../../redux/finance/operations';
 
-const TabMobileItem = ({ _id, date, type, category, comment, amount }) => {
-  const formatedDate = moment(date).format('DD.MM.YY');
-  const [isIncome, setIsIncome] = useState(false);
+const TabMobileItem = ({ _id, date, isIncome, category, comment, amount }) => {
+  const formatedDate = date.replace(/\-/g, '.').substr(0, 6) + date.slice(8);
+  // const [isIncome, setIsIncome] = useState(false);
 
-  useEffect(() => {
-    setIsIncome(type === '+' ? true : false);
-  }, [type, setIsIncome]);
+  // useEffect(() => {
+  //   setIsIncome(type === '+' ? true : false);
+  // }, [type, setIsIncome]);
 
   const dispatch = useDispatch();
   return (
@@ -31,7 +31,7 @@ const TabMobileItem = ({ _id, date, type, category, comment, amount }) => {
           </tr>
           <tr className={css.row}>
             <td className={cn(isIncome ? css.itemIncome : css.itemExpense, css.item)}>Type</td>
-            <td className={css.data}>{type}</td>
+            <td className={css.data}> {isIncome ? '+' : '-'}</td>
           </tr>
           <tr className={css.row}>
             <td className={cn(isIncome ? css.itemIncome : css.itemExpense, css.item)}>Category</td>

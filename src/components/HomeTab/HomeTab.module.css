@@ -10,6 +10,8 @@
 
 .tableHeader {
   border-radius: 30px;
+  width: 100%;
+  display: table;
 }
 
 .table {
@@ -34,10 +36,15 @@
 }
 
 .tableBody {
-  /* display: block; */
-  /* width: 715px; */
-  height: 60vh;
-  overflow: scroll;
+  display: block;
+  /* width: 100%; */
+  max-height: 60vh;
+  overflow: auto;
+}
+.tableBody tr {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
 }
 
 .tableBody::-webkit-scrollbar {
@@ -56,10 +63,6 @@
   font-family: 'Circe';
   font-weight: 700;
   padding-right: 20px;
-}
-
-.item:nth-child(5) {
-  text-align: right;
 }
 
 .sortedBy {
