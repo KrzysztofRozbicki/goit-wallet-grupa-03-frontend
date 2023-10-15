@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider, Navigate, useLocation } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, lazy, Suspense } from 'react';
 
@@ -18,18 +18,13 @@ import ModalEditTransaction from './ModalEditTransaction/ModalEditTransaction';
 import ModalLogout from './ModalLogout/ModalLogout';
 
 import Loader from './Loader/Loader';
-const Header = lazy(() => import('./Header/Header.jsx'));
-const DashboardPage = lazy(() => import('./DashboardPage/DashboardPage.jsx'));
-const Balance = lazy(() => import('./Balance/Balance.jsx'));
-const Chart = lazy(() => import('./Chart/Chart.jsx'));
 const DiagramTab = lazy(() => import('./DiagramTab/DiagramTab.jsx'));
 const HomeTab = lazy(() => import('./HomeTab/HomeTab.jsx'));
 const LoginPage = lazy(() => import('./LoginPage/LoginPage.jsx'));
 const RegistrationPage = lazy(() => import('./RegistrationPage/RegistrationPage.jsx'));
 const CurrencyTable = lazy(() => import('./Currency/Currency.jsx'));
-const Navigation = lazy(() => import('./Navigation/Navigation.jsx'));
-const Table = lazy(() => import('./Table/Table.jsx'));
-import Container from './Container/Container';
+const Container = lazy(() => import('./Container/Container'));
+import DeveloperInfo from './DeveloperInfo/DeveloperInfo';
 
 import toast, { Toaster } from 'react-hot-toast';
 import { setError } from '../redux/session/sessionSlice';
@@ -119,6 +114,7 @@ const App = () => {
         ) : null}
         <Toaster position="top-center" />
       </div>
+      <DeveloperInfo />
     </Suspense>
   );
 };
