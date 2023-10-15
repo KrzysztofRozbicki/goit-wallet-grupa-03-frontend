@@ -49,6 +49,10 @@
 .input:focus {
   outline: none;
 }
+.label:focus-within img {
+  transition: 0.3s;
+  filter: invert(0.7);
+}
 .loginButton,
 .registerButton {
   font-family: 'circe', sans-serif;

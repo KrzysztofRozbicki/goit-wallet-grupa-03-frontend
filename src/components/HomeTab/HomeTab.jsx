@@ -72,18 +72,18 @@ const HomeTab = () => {
             <tr className={css.tableHeader}>
               <th className={cn(css.item, css.itemFirst)} style={{ width: '110px' }}>
                 <a onClick={sortChangeHandler} href="#" className={css.sortedBy}>
+                  Date
                   {isUpSorted ? (
                     <FontAwesomeIcon
                       icon={faSortUp}
-                      style={{ marginRight: '4px', color: 'black' }}
+                      style={{ marginLeft: '4px', color: 'black' }}
                     />
                   ) : (
                     <FontAwesomeIcon
                       icon={faSortDown}
-                      style={{ marginRight: '4px', color: 'black' }}
+                      style={{ marginLeft: '4px', color: 'black' }}
                     />
                   )}
-                  Date
                 </a>
               </th>
               <th className={cn(css.item, css.itemType)} style={{ width: '80px' }}>

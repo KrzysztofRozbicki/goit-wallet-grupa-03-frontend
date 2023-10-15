@@ -34,6 +34,11 @@
   padding-bottom: 8px;
 }
 
+.label:focus-within img {
+  transition: 0.3s;
+  filter: invert(0.7);
+}
+
 .fieldWrapper {
   display: flex;
   flex-direction: column;
