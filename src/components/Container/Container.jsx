@@ -1,7 +1,7 @@
+import { Outlet } from 'react-router-dom';
+
 import DashboardPage from '../DashboardPage/DashboardPage';
 import Header from '../Header/Header';
-
-import { Outlet } from 'react-router-dom';
 
 import css from './Container.module.css';
 

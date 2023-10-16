@@ -1,11 +1,12 @@
-import css from './Header.module.css';
-import walletSVG from '../../assets/icons/wallet.svg';
-/* import closeSVG from '../../assets/icons/lo.svg';  */
-import { useSelector, useDispatch } from 'react-redux';
-import { openModalLogout } from '../../redux/global/globalSlice';
-import { selectUserName } from '../../redux/session/selectors';
 import { TbLogout } from 'react-icons/tb';
 import { IconContext } from 'react-icons';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { openModalLogout } from '../../redux/global/globalSlice';
+import { selectUserName } from '../../redux/session/selectors';
+
+import css from './Header.module.css';
+import walletSVG from '../../assets/icons/wallet.svg';
 
 const Header = () => {
   const user = useSelector(selectUserName);

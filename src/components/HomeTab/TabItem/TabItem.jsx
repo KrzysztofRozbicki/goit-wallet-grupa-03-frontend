@@ -1,14 +1,17 @@
-import css from './TabItem.module.css';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+
 import { cashFormatter } from '../../../utils/cashFormatter';
 import { openModalEditTransaction } from '../../../redux/global/globalSlice';
 import { deleteTransaction } from '../../../redux/finance/operations';
 
+import css from './TabItem.module.css';
+
 const TabItem = ({ _id, date, isIncome, category, comment, amount }) => {
-  const formatedDate = date.replace(/\-/g, '.').substr(0, 6) + date.slice(8);
+  const formatedDate = date.replace(/-/g, '.').substr(0, 6) + date.slice(8);
 
   const dispatch = useDispatch();
   return (
@@ -55,6 +58,15 @@ const TabItem = ({ _id, date, isIncome, category, comment, amount }) => {
       </td>
     </tr>
   );
+};
+
+TabItem.propTypes = {
+  _id: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  isIncome: PropTypes.bool.isRequired,
+  category: PropTypes.string.isRequired,
+  comment: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
 };
 
 export default TabItem;

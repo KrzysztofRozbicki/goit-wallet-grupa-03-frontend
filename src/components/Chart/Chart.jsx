@@ -1,13 +1,12 @@
-// react-chartjs-2 i chart.js: opanować i zastosować biblioteki
-// Komponent bezstanowy (stateless) otrzymuje informacje do renderowania
-//jest dzieckiem DiagramTab z którego otrzymuje dane do renderowania
-
-import css from './Chart.module.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import PropTypes from 'prop-types';
+
 import { colors } from '../DiagramTab/diagramUtils';
 import { categories } from '../DiagramTab/diagramUtils';
 import { cashFormatter } from '../../utils/cashFormatter';
+
+import css from './Chart.module.css';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.defaults.plugins.legends = [{ display: false }];
@@ -61,6 +60,15 @@ const Chart = ({ transactions, totalBalance }) => {
       </div>
     </>
   );
+};
+
+Chart.propTypes = {
+  transactions: PropTypes.arrayOf(
+    PropTypes.shape({
+      amount: PropTypes.number.isRequired, // Example validation for amount
+    })
+  ).isRequired,
+  totalBalance: PropTypes.number.isRequired,
 };
 
 export default Chart;

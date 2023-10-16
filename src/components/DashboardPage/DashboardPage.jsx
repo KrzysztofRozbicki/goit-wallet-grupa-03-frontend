@@ -1,26 +1,14 @@
-// Podłączyć wszystkie komponenty podrzędne i zaimplementować logikę ich renderowania w zależności od rozdzielczości ekranu.
-//Do tego celu nadaje się biblioteka react - media
-
-// Napisać operację, która pobiera dane dotyczące transakcji
-
-// Napisać operację, która pobiera stan balansu
-
-// W DidMount komponentu wykonywać operacje z punktów 2 i 3 (pobranie danych transakcji i pobranie danych balansu)
-
-//W skrócie będzie to komponent w którym będą komponenty: Balance i Currency oraz Navigation oraz prawdopodobnie DiagramTab
-
-import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-
 import { useDispatch } from 'react-redux';
 
 import { fetchTransactions } from './../../redux/finance/operations';
-
-import css from './DashboardPage.module.css';
-
 import Navigation from '../Navigation/Navigation';
 import CurrencyTable from '../Currency/Currency';
 import Balance from '../Balance/Balance';
+
+import css from './DashboardPage.module.css';
 
 const Home = ({ isDesktop }) => {
   return (
@@ -29,6 +17,10 @@ const Home = ({ isDesktop }) => {
       {isDesktop && <CurrencyTable />}
     </div>
   );
+};
+
+Home.propTypes = {
+  isDesktop: PropTypes.bool.isRequired,
 };
 
 export const DashboardPage = () => {

@@ -1,20 +1,16 @@
-import cn from 'classnames';
-import css from './TabMobileItem.module.css';
-import moment from 'moment';
-import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+
 import { openModalEditTransaction } from '../../../redux/global/globalSlice';
 import { deleteTransaction } from '../../../redux/finance/operations';
 
-const TabMobileItem = ({ _id, date, isIncome, category, comment, amount }) => {
-  const formatedDate = date.replace(/\-/g, '.').substr(0, 6) + date.slice(8);
-  // const [isIncome, setIsIncome] = useState(false);
+import cn from 'classnames';
+import css from './TabMobileItem.module.css';
 
-  // useEffect(() => {
-  //   setIsIncome(type === '+' ? true : false);
-  // }, [type, setIsIncome]);
+const TabMobileItem = ({ _id, date, isIncome, category, comment, amount }) => {
+  const formatedDate = date.replace(/-/g, '.').substr(0, 6) + date.slice(8);
 
   const dispatch = useDispatch();
   return (
@@ -74,6 +70,15 @@ const TabMobileItem = ({ _id, date, isIncome, category, comment, amount }) => {
       </table>
     </>
   );
+};
+
+TabMobileItem.propTypes = {
+  _id: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  isIncome: PropTypes.bool.isRequired,
+  category: PropTypes.string.isRequired,
+  comment: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
 };
 
 export default TabMobileItem;

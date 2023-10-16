@@ -1,7 +1,7 @@
-import css from './Currency.module.css';
-
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+
+import css from './Currency.module.css';
 
 function CurrencyTable() {
   const [exchangeRates, setExchangeRates] = useState({});
@@ -16,7 +16,6 @@ function CurrencyTable() {
       .get(apiUrl)
       .then(response => {
         const conversion_rates = response.data.conversion_rates;
-        console.log(conversion_rates);
         const filteredRates = {};
         for (const currency of selectedCurrencies) {
           if (conversion_rates.hasOwnProperty(currency)) {

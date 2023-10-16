@@ -37,6 +37,11 @@ body {
   overflow-x: hidden;
 }
 
+*:hover,
+*:focus {
+  transition: all 0.4s;
+}
+
 /*
 Grouping content
 ================

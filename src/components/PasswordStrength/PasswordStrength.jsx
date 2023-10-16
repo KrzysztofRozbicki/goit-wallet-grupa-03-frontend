@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import { passwordStrength } from 'check-password-strength';
+
 import css from './PasswordStrength.module.css';
 
 const PasswordStrength = props => {
@@ -42,6 +44,10 @@ const PasswordStrength = props => {
   }
 
   return <progress className={css.strengthBar} value={progress} max="100" />;
+};
+
+PasswordStrength.propTypes = {
+  value: PropTypes.string.isRequired,
 };
 
 export default PasswordStrength;

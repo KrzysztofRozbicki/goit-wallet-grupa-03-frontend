@@ -1,16 +1,17 @@
+import * as Yup from 'yup';
+import { useEffect } from 'react';
+import { Formik, Form, Field } from 'formik';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import { selectIsAuth } from '../../redux/session/selectors';
+import { logIn } from '../../redux/session/operations';
+
 import css from './LoginForm.module.css';
 import walletSVG from '../../assets/icons/wallet.svg';
 import emailSVG from '../../assets/icons/email.svg';
 import passwordSVG from '../../assets/icons/lock.svg';
-
-import { useEffect } from 'react';
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { selectIsAuth } from '../../redux/session/selectors';
-import { logIn } from '../../redux/session/operations';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required(''),

@@ -1,19 +1,20 @@
-import css from './RegistrationForm.module.css';
+import * as Yup from 'yup';
+import { useEffect } from 'react';
+import { Formik, Form, Field } from 'formik';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import PasswordStrength from '../PasswordStrength/PasswordStrength';
+import { selectIsAuth } from '../../redux/session/selectors';
+import { register } from '../../redux/session/operations';
+
 import walletSVG from '../../assets/icons/wallet.svg';
 import emailSVG from '../../assets/icons/email.svg';
 import passwordSVG from '../../assets/icons/lock.svg';
 import nameSVG from '../../assets/icons/profile-name.svg';
 
-import { useEffect } from 'react';
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
-import PasswordStrength from '../PasswordStrength/PasswordStrength';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { selectIsAuth } from '../../redux/session/selectors';
-
-import { register } from '../../redux/session/operations';
+import css from './RegistrationForm.module.css';
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string()

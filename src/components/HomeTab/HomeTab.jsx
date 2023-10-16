@@ -1,24 +1,16 @@
-// Komponent zasubskrybowano na redux store, a mianowicie finance.data i renderuje całą jego zawartość
-
-// Logika filtrowania transakcji jest zaimplementowana w tym komponencie,
-//na górze powinny być najnowsze transakcje według daty
-
-// Przemyślany max-height: 60vh; (na przykład, a następnie włącza się przewijanie wewnątrz komponentu,
-// ile vh - porozmawiać o tym z autorem DashboardPage)
-
-// Nie do końca rozumiem powiązanie z innymi komponentami - szczegolnie z DiagramTab oraz DashboardPage
-
-import css from './HomeTab.module.css';
-import TabItem from './TabItem/TabItem';
 import cn from 'classnames';
+import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortUp, faSortDown, faSort } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
+
 import TabMobileItem from './TabMobileItem/TabMobileItem';
 import ButtonAddTransactions from './../ButtonAddTransactions/ButtonAddTransactions';
-import { useSelector } from 'react-redux';
+import TabItem from './TabItem/TabItem';
 import { selectData } from '../../redux/finance/selectors';
-import moment from 'moment';
+
+import css from './HomeTab.module.css';
 
 const HomeTab = () => {
   const items = useSelector(selectData);

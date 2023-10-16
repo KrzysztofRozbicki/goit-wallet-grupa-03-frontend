@@ -6,14 +6,6 @@ import { openLoading, closeLoading } from '../global/globalSlice';
 
 axios.defaults.baseURL = 'https://pocketbook-basket-clam.cyclic.app/';
 
-export const setTotalBalanceAction = (state, action) => {
-  state.totalBalance = action.payload;
-};
-
-export const setDataAction = state => {
-  state.data = fetchTransactions();
-};
-
 export const setSelectedMonthAction = (state, action) => {
   state.selectedMonth = action.payload;
 };
@@ -73,7 +65,6 @@ export const editTransaction = createAsyncThunk(
   'edit/transaction',
   async ({ values, id }, { getState, dispatch, rejectWithValue }) => {
     setAuthorization(getState);
-    console.log('values: ', values);
     dispatch(openLoading());
     try {
       const response = await axios.patch(`/api/transactions/${id}`, values);

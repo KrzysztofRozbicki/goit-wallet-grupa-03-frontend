@@ -1,16 +1,10 @@
-// To komponent bezstanowy (stateless component)
-
-// Realizuje przejście na route "/home" lub "/diagram" przez NavLink
-
-// Realizuje przejście na route "/home" lub "/diagram" przez NavLink
-
-import css from './Navigation.module.css';
-
 import { NavLink } from 'react-router-dom';
 
 import homeBtn from '../../assets/icons/homeBtn.svg';
 import statisticsBtn from '../../assets/icons/statisticsBtn.svg';
 import currencyBtn from '../../assets/icons/currencyBtn.svg';
+
+import css from './Navigation.module.css';
 
 function NavigationButtons() {
   return (

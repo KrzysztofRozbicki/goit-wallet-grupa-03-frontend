@@ -2,20 +2,8 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { openLoading, closeLoading } from '../global/globalSlice';
 
-export const setUserNameAction = (state, action) => {
-  state.user.name = action.payload;
-};
-
-export const setUserTokenAction = (state, action) => {
-  state.user.token = action.payload;
-};
-
 export const setErrorAction = (state, action) => {
   state.error = action.payload;
-};
-
-export const setIsAuthAction = state => {
-  state.isAuth = true;
 };
 
 axios.defaults.baseURL = 'https://pocketbook-basket-clam.cyclic.app/';
@@ -37,7 +25,6 @@ export const register = createAsyncThunk(
       setAuthorizationHeader(response.data.user.token);
       return response.data;
     } catch (error) {
-      console.log(error);
       throw error.response.data.error;
     } finally {
       dispatch(closeLoading());
@@ -69,7 +56,7 @@ export const logOut = createAsyncThunk('authorization/logout', async () => {
 
 export const refreshUser = createAsyncThunk(
   'authorization/refresh',
-  async (_, { getState, dispatch, rejectWithValue }) => {
+  async (_, { getState, rejectWithValue }) => {
     const state = getState();
     const persistedToken = state.session.user.token;
     if (!persistedToken) {

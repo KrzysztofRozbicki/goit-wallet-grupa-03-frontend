@@ -1,15 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import {
-  setUserNameAction,
-  setUserTokenAction,
-  setErrorAction,
-  setIsAuthAction,
-  register,
-  logIn,
-  logOut,
-  refreshUser,
-} from './operations';
+import { setErrorAction, register, logIn, logOut, refreshUser } from './operations';
 
 const initialState = {
   error: '',
@@ -25,17 +16,13 @@ const sessionSlice = createSlice({
   name: 'session',
   initialState,
   reducers: {
-    setUserName: setUserNameAction,
-    setUserToken: setUserTokenAction,
     setError: setErrorAction,
-    setIsAuth: setIsAuthAction,
     resetSession: () => {
       return { ...initialState };
     },
   },
   extraReducers: builder => {
     builder
-      .addCase(register.pending, state => {})
       .addCase(register.fulfilled, (state, action) => {
         state.user.name = action.payload.user.name;
         state.user.token = action.payload.user.token;
@@ -44,7 +31,6 @@ const sessionSlice = createSlice({
       .addCase(register.rejected, (state, action) => {
         state.error = action.error.message;
       })
-      .addCase(logIn.pending, state => {})
       .addCase(logIn.fulfilled, (state, action) => {
         state.user.name = action.payload.user.name;
         state.user.token = action.payload.user.token;
@@ -72,6 +58,5 @@ const sessionSlice = createSlice({
   },
 });
 
-export const { setUserName, setUserToken, setError, setIsAuth, resetSession } =
-  sessionSlice.actions;
+export const { setError, resetSession } = sessionSlice.actions;
 export const sessionReducer = sessionSlice.reducer;
