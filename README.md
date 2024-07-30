@@ -4,7 +4,7 @@
 
 ## test password: Test123
 
-## Project website: [https://qbd.pogbit.com/] (https://qbd.pogbit.com/)
+## Project website: [https://qbd.pogbit.com/](https://qbd.pogbit.com/)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
