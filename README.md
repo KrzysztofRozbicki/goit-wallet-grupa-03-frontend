@@ -4,7 +4,7 @@
 
 ## test password: Test123
 
-## Project website: [qbd.pogbit.com/](qbd.pogbit.com/)
+## Project website: [https://qbd.pogbit.com/](https://krzysztofrozbicki.github.io/goit-wallet-grupa-03-frontend/login)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
