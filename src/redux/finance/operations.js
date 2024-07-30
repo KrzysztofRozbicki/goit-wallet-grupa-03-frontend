@@ -4,7 +4,7 @@ import { setAuthorizationHeader } from '../session/operations';
 import { setError } from '../session/sessionSlice';
 import { openLoading, closeLoading } from '../global/globalSlice';
 
-axios.defaults.baseURL = 'https://pocketbook-basket-clam.cyclic.app/';
+axios.defaults.baseURL = 'https://goit-wallet-grupa-03-backend.onrender.com/';
 
 export const setSelectedMonthAction = (state, action) => {
   state.selectedMonth = action.payload;

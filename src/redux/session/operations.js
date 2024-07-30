@@ -6,7 +6,7 @@ export const setErrorAction = (state, action) => {
   state.error = action.payload;
 };
 
-axios.defaults.baseURL = 'https://pocketbook-basket-clam.cyclic.app/';
+axios.defaults.baseURL = 'https://goit-wallet-grupa-03-backend.onrender.com/';
 
 export const setAuthorizationHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
