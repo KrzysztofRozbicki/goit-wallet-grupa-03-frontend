@@ -34,6 +34,12 @@ Sections
 
 body {
   margin: 0; /* Remove the margin in all browsers. */
+  overflow-x: hidden;
+}
+
+*:hover,
+*:focus {
+  transition: all 0.4s;
 }
 
 /*
